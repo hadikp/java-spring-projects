@@ -25,7 +25,7 @@ public class LocationsService {
         this.modelMapper = modelMapper;
     }
 
-    public LocationDto getLocations(Optional<String> locationName) {
+    public List<LocationDto> getLocations(Optional<String> locationName) {
         Type targetListType = new TypeToken<List<LocationDto>>(){}.getType();
         List<Location> filtered = locations.stream()
                 .filter(l -> locationName.isEmpty() || l.getName().toLowerCase().equals(locationName.get().toLowerCase())).toList();

@@ -4,13 +4,29 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
+@Entity
+@Table(name = "trackpoints")
 public class TrackPoint {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @OneToOne
     private Coordinate coordinate;
     private double elevation; //magasság
+
+    @ManyToOne
+    private Training training;
+
+    public TrackPoint(Coordinate coordinate, double elevation) {
+        this.coordinate = coordinate;
+        this.elevation = elevation;
+    }
 
     public double getDistanceFrom(TrackPoint point) {
         final int REarth = 6371;

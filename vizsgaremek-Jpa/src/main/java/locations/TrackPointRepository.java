@@ -22,4 +22,14 @@ public class TrackPointRepository {
         }
         return trackPoint;
     }
+
+    public TrackPoint findTrackPointByName(String name) {
+        EntityManager em = factory.createEntityManager();
+        try {
+            return em.createQuery("Select t from Trackpoint t where t.name = :name", TrackPoint.class)
+                    .setParameter("name", name).getSingleResult();
+        } finally {
+            em.close();
+        }
+    }
 }

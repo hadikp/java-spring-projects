@@ -46,4 +46,12 @@ public class Coordinate {
     public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
+
+    public TrackPoint getTrackpoint() {
+        return trackpoint;
+    }
+
+    public void setTrackpoint(TrackPoint trackpoint) {
+        this.trackpoint = trackpoint;
+    }
 }

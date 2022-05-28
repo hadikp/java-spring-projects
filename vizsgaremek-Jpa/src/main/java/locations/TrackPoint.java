@@ -10,14 +10,21 @@ public class TrackPoint {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String name;
+
     @OneToOne(cascade = CascadeType.PERSIST)
     private Coordinate coordinate;
+
     private double elevation;
+
+    @ManyToOne
+    private Training training;
 
     public TrackPoint() {
     }
 
-    public TrackPoint(Coordinate coordinate, double elevation) {
+    public TrackPoint(String name, Coordinate coordinate, double elevation) {
+        this.name = name;
         this.coordinate = coordinate;
         this.elevation = elevation;
     }
@@ -58,5 +65,21 @@ public class TrackPoint {
 
     public void setElevation(double elevation) {
         this.elevation = elevation;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Training getTraining() {
+        return training;
+    }
+
+    public void setTraining(Training training) {
+        this.training = training;
     }
 }

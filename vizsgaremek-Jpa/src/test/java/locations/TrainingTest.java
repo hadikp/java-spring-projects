@@ -1,15 +1,20 @@
 package locations;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class TrackPointTest {
+class TrainingTest {
 
+    List<TrackPoint> trackPoints;
 
-
-    @Test
-    void testDistancePeter() {
+    @BeforeEach
+    void init() {
         Coordinate tovarosC = new Coordinate(47.182193, 18.410582);
         Coordinate lovoldeC = new Coordinate(47.190135, 18.421741);
         Coordinate lovoldeVegeC = new Coordinate(47.1864454,18.424767);
@@ -22,10 +27,14 @@ class TrackPointTest {
         TrackPoint trackPointHales = new TrackPoint("Halesz", halesC, 3.3);
         TrackPoint trackPointNagyszombati = new TrackPoint("Nagyszombati út", nagyszombati, 3.3);
 
-        System.out.println(trackPointTovaros.getDistanceFrom(trackPointLovolde)); //1221m nagyon pontos
-        System.out.println(trackPointLovolde.getDistanceFrom(trackPointLovoldeVege)); //469m pontos
-        System.out.println(trackPointLovoldeVege.getDistanceFrom(trackPointHales)); //999m pontos
-        System.out.println(trackPointHales.getDistanceFrom(trackPointNagyszombati)); //3782 nagyon pontos
+        trackPoints = new ArrayList<>(List.of(trackPointTovaros, trackPointLovolde, trackPointLovoldeVege, trackPointHales, trackPointNagyszombati));
+    }
+
+    @Test
+    void testGetTrainingAllDistance() {
+        Training training = new Training("futás", "Hosszú futás", LocalDate.of(2022, 05, 30));
+        training.setTrackPoints(trackPoints);
+        System.out.println(training.getTrainingAllDistance());
     }
 
 }

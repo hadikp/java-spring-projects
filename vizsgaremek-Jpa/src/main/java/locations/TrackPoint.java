@@ -1,6 +1,8 @@
 package locations;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "trackpoints")
@@ -17,8 +19,8 @@ public class TrackPoint {
 
     private double elevation;
 
-    @ManyToOne
-    private Training training;
+    @ManyToMany(mappedBy = "trackPoints")
+    private List<Training> trainings = new ArrayList<>();
 
     public TrackPoint() {
     }
@@ -75,11 +77,11 @@ public class TrackPoint {
         this.name = name;
     }
 
-    public Training getTraining() {
-        return training;
+    public List<Training> getTrainings() {
+        return trainings;
     }
 
-    public void setTraining(Training training) {
-        this.training = training;
+    public void setTrainings(List<Training> trainings) {
+        this.trainings = trainings;
     }
 }

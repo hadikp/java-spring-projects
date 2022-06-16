@@ -19,7 +19,7 @@ public class Training {
     @ManyToOne
     private User user;
 
-    @OneToMany(mappedBy = "training", cascade = CascadeType.PERSIST)
+    @ManyToMany(cascade = CascadeType.PERSIST)
     private List<TrackPoint> trackPoints = new ArrayList<>();
 
     public Training() {
@@ -33,7 +33,7 @@ public class Training {
 
     public void addTrackPoint (TrackPoint trackPoint) {
         trackPoints.add(trackPoint);
-        trackPoint.setTraining(this);
+        trackPoint.getTrainings().add(this);
     }
 
     public double getTrainingAllDistance() {

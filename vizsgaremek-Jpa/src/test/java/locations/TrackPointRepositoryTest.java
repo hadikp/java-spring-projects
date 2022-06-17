@@ -70,12 +70,23 @@ class TrackPointRepositoryTest {
         userRepository.saveUser(peter);
     }
 
-    /*@Test
+    @Test
     void testSaveGergely() {
+
+        Coordinate tovarosC = new Coordinate(47.182193, 18.410582);
+        Coordinate lovoldeC = new Coordinate(47.190135, 18.421741);
+        Coordinate lovoldeVegeC = new Coordinate(47.1864454,18.424767);
+        Coordinate halesC = new Coordinate(47.19416411, 18.43153511);
+        Coordinate nagyszombati = new Coordinate(47.197875, 18.481305);
+
+        TrackPoint trackPointTovaros = new TrackPoint("Tóvárosi Lakónegyed", tovarosC, 2.1);
+        TrackPoint trackPointLovolde = new TrackPoint("Lövöpde út", lovoldeC, 2.3);
+        TrackPoint trackPointLovoldeVege = new TrackPoint("Lövölde vége", lovoldeVegeC, 2.3);
+        TrackPoint trackPointHales = new TrackPoint("Halesz", halesC, 3.3);
+        TrackPoint trackPointNagyszombati = new TrackPoint("Nagyszombati út", nagyszombati, 3.3);
 
 
         Training futas = new Training("futás", "Gergő hosszú futása", LocalDate.of(2022, 05, 29));
-        //futas.addTrackPoint(trackPointParktiker);
         futas.addTrackPoint(trackPointHales);
         futas.addTrackPoint(trackPointNagyszombati);
         //trainingRepository.saveTraining(futas);
@@ -91,7 +102,7 @@ class TrackPointRepositoryTest {
         TrackPoint trackPointVidi = new TrackPoint("Videoton", videotonC, 3.1);
 
         Training bicigli = new Training("biciglizés", "Gergő rövid bicajozása", LocalDate.of(2022, 04, 30));
-        bicigli.addTrackPoint(trackPointKorhaz);
+        bicigli.addTrackPoint(trackPointHales);
         bicigli.addTrackPoint(trackPointAuchen);
         bicigli.addTrackPoint(trackPointVidi);
         //trainingRepository.saveTraining(bicigli);
@@ -101,5 +112,5 @@ class TrackPointRepositoryTest {
         gergely.addTraining(bicigli);
         userRepository.saveUser(gergely);
     }
-*/
+
 }

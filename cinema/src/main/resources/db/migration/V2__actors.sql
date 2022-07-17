@@ -1,0 +1,1 @@
+create table actors(id bigint auto_increment PRIMARY KEY, name varchar(50), age int, city varchar(50), streat varchar(50), number_of_house int);

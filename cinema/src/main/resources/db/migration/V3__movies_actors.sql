@@ -1,0 +1,1 @@
+create table movies_actors(movie_id bigint, actor_id bigint);

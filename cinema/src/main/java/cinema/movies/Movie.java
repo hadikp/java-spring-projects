@@ -32,7 +32,7 @@ public class Movie {
     @Column(name = "free_spaces")
     private int freeSpaces;
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
+  
     @JoinTable(joinColumns = @JoinColumn(name = "movie_id"), inverseJoinColumns = @JoinColumn(name = "actor_id"))
     private List<Actor> actors = new ArrayList<>();
 

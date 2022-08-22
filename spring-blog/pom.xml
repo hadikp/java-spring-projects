@@ -11,7 +11,7 @@
 	<groupId>blog</groupId>
 	<artifactId>spring-blog</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Blog</name>
+	<name>spring-blog</name>
 	<description>Blog project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>

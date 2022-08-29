@@ -40,6 +40,11 @@ public class User {
         this.registrationDate = registrationDate;
     }
 
+    public User(String password, String email) {
+        this.password = password;
+        this.email = email;
+    }
+
     public void addEntry(Entry entry){
         entries.add(entry);
         entry.setUser(this);

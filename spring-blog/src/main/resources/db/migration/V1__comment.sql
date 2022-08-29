@@ -1,0 +1,2 @@
+create table comments(id bigint auto_increment PRIMARY KEY, text varchar(150), date date, user_name varchar(50), entry_id bigint);
+insert into comments(text, date, user_name, entry_id) values ('First comment', '2022-02-11', 'Péter', 1);

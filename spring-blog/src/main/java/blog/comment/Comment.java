@@ -1,7 +1,6 @@
 package blog.comment;
 
 import blog.entry.Entry;
-import com.sun.jdi.request.MethodEntryRequest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,7 +22,7 @@ public class Comment {
     private Long id;
 
     @Column(name = "user_name")
-    private String useName;
+    private String userName;
 
     private String text;
 
@@ -33,7 +32,7 @@ public class Comment {
     private Entry entry;
 
     public Comment(String useName, String text, LocalDate date) {
-        this.useName = useName;
+        this.userName = useName;
         this.text = text;
         this.date = date;
     }

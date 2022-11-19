@@ -21,6 +21,11 @@ public class UserController {
         return service.listAllUser();
     }
 
+    @PostMapping("/login")
+    public UserDto findUserByEmail(@RequestBody UserCommand command){
+        return service.findUserByEmail(command);
+    }
+
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
     @ApiResponse(responseCode = "201", description = "User has been created")

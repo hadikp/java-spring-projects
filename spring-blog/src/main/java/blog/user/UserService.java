@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,7 +24,14 @@ public class UserService {
 
     public UserDto createUser(UserCommand command) {
         User user = new User(command.getEmail(), command.getPassword());
+        user.setRegistrationDate(LocalDate.now());
+        user.setUserName("Péter");
         repository.save(user);
+        return modelMapper.map(user, UserDto.class);
+    }
+
+    public UserDto findUserByEmail(UserCommand command) {
+        User user = repository.findUserByEmail(command.getEmail());
         return modelMapper.map(user, UserDto.class);
     }
 }

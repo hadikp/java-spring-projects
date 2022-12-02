@@ -1,9 +1,13 @@
 package blog.user;
 
+import blog.entry.Entry;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -14,4 +18,6 @@ public class UserCommand {
     private String email;
 
     private String password;
+
+    private List<Entry> entries = new ArrayList<>();
 }

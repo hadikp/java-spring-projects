@@ -1,5 +1,6 @@
 package blog.user;
 
+import blog.entry.Entry;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -23,9 +24,11 @@ public class UserService {
 
 
     public UserDto createUser(UserCommand command) {
+        List<Entry> entries = command.getEntries();
         User user = new User(command.getEmail(), command.getPassword());
         user.setRegistrationDate(LocalDate.now());
-        user.setUserName("Péter");
+        user.setEntries(entries);
+        //user.setUserName("Péter");
         repository.save(user);
         return modelMapper.map(user, UserDto.class);
     }

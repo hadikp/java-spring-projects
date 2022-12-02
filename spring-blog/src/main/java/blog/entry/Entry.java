@@ -37,12 +37,20 @@ public class Entry {
     @OneToMany(mappedBy = "entry", cascade = CascadeType.PERSIST)
     private List<Comment> comments = new ArrayList<>();
 
+    public Entry(String title, String description, String content) {
+        this.title = title;
+        this.description = description;
+        this.content = content;
+    }
+
     public Entry(String title, String description, String content, LocalDateTime createdAt) {
         this.title = title;
         this.description = description;
         this.content = content;
         this.createdAt = createdAt;
     }
+
+
 
     public void addComment(Comment comment){
         comments.add(comment);

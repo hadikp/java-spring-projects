@@ -15,6 +15,8 @@ import java.util.List;
 @AllArgsConstructor
 public class UserCommand {
 
+    private String userName;
+
     private String email;
 
     private String password;

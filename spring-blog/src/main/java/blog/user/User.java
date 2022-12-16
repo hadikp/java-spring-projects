@@ -24,8 +24,9 @@ public class User {
     @Column(name = "user_name")
     private String userName;
 
-    private String password;
     private String email;
+
+    private String password;
 
     @Column(name = "registration_date")
     private LocalDate registrationDate;
@@ -40,9 +41,10 @@ public class User {
         this.registrationDate = registrationDate;
     }
 
-    public User(String password, String email) {
-        this.password = password;
+    public User(String userName, String email, String password) {
+        this.userName = userName;
         this.email = email;
+        this.password = password;
     }
 
     public void addEntry(Entry entry){

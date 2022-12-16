@@ -25,7 +25,7 @@ public class UserService {
 
     public UserDto createUser(UserCommand command) {
         List<Entry> entries = command.getEntries();
-        User user = new User(command.getEmail(), command.getPassword());
+        User user = new User(command.getUserName(), command.getEmail(), command.getPassword());
         user.setRegistrationDate(LocalDate.now());
         user.setEntries(entries);
         //user.setUserName("Péter");

@@ -1,5 +1,7 @@
 package blog.entry;
 
+import blog.user.User;
+import blog.user.UserRepository;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class EntryService {
 
+    private UserRepository userRepository;
     private EntryRepository repository;
     private ModelMapper modelMapper;
 
@@ -21,8 +24,11 @@ public class EntryService {
     }
 
     public EntryDto createPost(EntryCommand command) {
-        Entry post = new Entry(command.getTitle(),  command.getDescription(), command.getContent());
+        Long id = command.getUserId();
+        User user = userRepository.findById(id).orElseThrow(() -> new EntryNotFoundException(id));
+        Entry post = new Entry(command.getTitle(), command.getDescription(), command.getContent());
         post.setCreatedAt(LocalDateTime.now());
+        post.setUser(user);
         repository.save(post);
         return modelMapper.map(post, EntryDto.class);
     }

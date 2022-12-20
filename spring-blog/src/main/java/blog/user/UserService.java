@@ -28,7 +28,6 @@ public class UserService {
         User user = new User(command.getUserName(), command.getEmail(), command.getPassword());
         user.setRegistrationDate(LocalDate.now());
         user.setEntries(entries);
-        //user.setUserName("Péter");
         repository.save(user);
         return modelMapper.map(user, UserDto.class);
     }

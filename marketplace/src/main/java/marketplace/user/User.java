@@ -29,4 +29,12 @@ public class User {
 
     @Column(name = "registration_date")
     private LocalDate registrationDate;
+
+    public User(String name, String userName, String email, String password, LocalDate registrationDate) {
+        this.name = name;
+        this.userName = userName;
+        this.email = email;
+        this.password = password;
+        this.registrationDate = registrationDate;
+    }
 }

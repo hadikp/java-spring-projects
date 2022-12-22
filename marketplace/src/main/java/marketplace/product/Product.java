@@ -27,11 +27,19 @@ public class Product {
     @Column(name = "image_path")
     private String imagePath;
 
-    private double price;
+    private int price;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "product_type")
     private Type productType;
+
+    public Product(String name, String description, String imagePath, int price, Type productType) {
+        this.name = name;
+        this.description = description;
+        this.imagePath = imagePath;
+        this.price = price;
+        this.productType = productType;
+    }
 
     @ManyToMany(mappedBy = "products")
     private List<User> users = new ArrayList<>();

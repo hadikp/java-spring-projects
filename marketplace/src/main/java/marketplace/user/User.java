@@ -3,9 +3,12 @@ package marketplace.user;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import marketplace.product.Product;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -30,6 +33,11 @@ public class User {
     @Column(name = "registration_date")
     private LocalDate registrationDate;
 
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "user_product", joinColumns = @JoinColumn(name = "user_id"),
+    inverseJoinColumns = @JoinColumn(name = "product_id"))
+    private List<Product> products = new ArrayList<>();
+
     public User(String name, String userName, String email, String password, LocalDate registrationDate) {
         this.name = name;
         this.userName = userName;
@@ -37,4 +45,11 @@ public class User {
         this.password = password;
         this.registrationDate = registrationDate;
     }
+
+    public void addProduct(Product product){
+        products.add(product);
+        product.getUsers().add(this);
+    }
+
+
 }

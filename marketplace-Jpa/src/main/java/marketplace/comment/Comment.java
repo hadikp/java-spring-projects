@@ -29,4 +29,9 @@ public class Comment {
 
     @ManyToOne
     private Product product;
+
+    public Comment(String content, LocalDate date) {
+        this.content = content;
+        this.date = date;
+    }
 }

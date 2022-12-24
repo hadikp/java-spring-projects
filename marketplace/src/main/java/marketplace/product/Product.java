@@ -3,6 +3,7 @@ package marketplace.product;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import marketplace.comment.Comment;
 import marketplace.user.User;
 
 import javax.persistence.*;
@@ -43,4 +44,12 @@ public class Product {
 
     @ManyToMany(mappedBy = "products")
     private List<User> users = new ArrayList<>();
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST)
+    private List<Comment> commentList = new ArrayList<>();
+
+    public void addComment(Comment comment){
+        commentList.add(comment);
+        comment.setProduct(this);
+    }
 }

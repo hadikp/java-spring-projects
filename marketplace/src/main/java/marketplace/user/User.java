@@ -3,6 +3,7 @@ package marketplace.user;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import marketplace.comment.Comment;
 import marketplace.product.Product;
 
 import javax.persistence.*;
@@ -38,6 +39,9 @@ public class User {
     inverseJoinColumns = @JoinColumn(name = "product_id"))
     private List<Product> products = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+    private List<Comment> userComments = new ArrayList<>();
+
     public User(String name, String userName, String email, String password, LocalDate registrationDate) {
         this.name = name;
         this.userName = userName;
@@ -49,6 +53,11 @@ public class User {
     public void addProduct(Product product){
         products.add(product);
         product.getUsers().add(this);
+    }
+
+    public void addComment(Comment comment){
+        userComments.add(comment);
+        comment.setUser(this);
     }
 
 

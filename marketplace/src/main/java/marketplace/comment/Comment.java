@@ -22,7 +22,8 @@ public class Comment {
 
     private String content;
 
-    private LocalDate date;
+    @Column(name = "create_date")
+    private LocalDate createDate;
 
     @ManyToOne
     private User user;
@@ -32,6 +33,6 @@ public class Comment {
 
     public Comment(String content, LocalDate date) {
         this.content = content;
-        this.date = date;
+        this.createDate = date;
     }
 }

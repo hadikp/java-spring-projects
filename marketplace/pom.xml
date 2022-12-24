@@ -71,6 +71,11 @@
 			<artifactId>problem-spring-web-starter</artifactId>
 			<version>0.27.0</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-mysql</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>

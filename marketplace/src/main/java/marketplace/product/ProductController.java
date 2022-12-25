@@ -24,4 +24,9 @@ public class ProductController {
     public List<ProductDto> listAllProducts(){
         return service.listAllProducts();
     }
+
+    @GetMapping("/comment")
+    public List<ProductDto> listAllProductsWithComments(){
+        return service.listAllProductsWithCommnets();
+    }
 }

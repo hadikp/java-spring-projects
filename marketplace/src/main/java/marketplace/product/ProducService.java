@@ -36,4 +36,15 @@ public class ProducService {
         }
         return productWithCommentDtoList;
     }
+
+    public ProductDto createProduct(ProductCommand command) {
+        Product product = new Product(command.getName(), command.getDescription(), command.getImagePath(), command.getPrice(),
+                command.getProductType());
+        repository.save(product);
+        return modelMapper.map(product, ProductDto.class);
+    }
+
+    public void deleteProduct(Long id) {
+        repository.deleteById(id);
+    }
 }

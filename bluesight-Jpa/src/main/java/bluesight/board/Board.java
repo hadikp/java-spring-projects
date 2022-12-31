@@ -22,4 +22,9 @@ public class Board {
 
     @OneToOne(mappedBy = "board")
     private Squad squad;
+
+    public Board(String name, int position) {
+        this.name = name;
+        this.position = position;
+    }
 }

@@ -32,11 +32,17 @@ public class Squad {
     @ManyToMany(mappedBy = "squads")
     private List<User> users = new ArrayList<>();
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private Board board;
 
     @OneToMany(mappedBy = "squad", cascade = CascadeType.PERSIST)
     private List<Project> projects = new ArrayList<>();
+
+    public Squad(String name, String description, LocalDate startDate) {
+        this.name = name;
+        this.description = description;
+        this.startDate = startDate;
+    }
 
     public void addProject(Project project){
         projects.add(project);

@@ -29,6 +29,14 @@ public class Project {
     @Column(name = "due_date")
     private LocalDate dueDate;
 
+    public Project(String name, String status, String description, LocalDate closedAt, LocalDate dueDate) {
+        this.name = name;
+        this.status = status;
+        this.description = description;
+        this.closedAt = closedAt;
+        this.dueDate = dueDate;
+    }
+
     @ManyToOne
     private Squad squad;
 

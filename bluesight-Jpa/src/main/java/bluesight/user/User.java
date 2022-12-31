@@ -40,6 +40,16 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "squad_id"))
     private List<Squad> squads = new ArrayList<>();
 
+    public User(String name, String userName, String email, String password, String country, Boolean admin, LocalDate registrationDate) {
+        this.name = name;
+        this.userName = userName;
+        this.email = email;
+        this.password = password;
+        this.country = country;
+        this.admin = admin;
+        this.registrationDate = registrationDate;
+    }
+
     public void addSquad(Squad squad){
         squads.add(squad);
         squad.getUsers().add(this);

@@ -18,13 +18,14 @@ public class Board {
     private Long id;
 
     private String name;
-    private int position;
+    @Column(name = "position_number")
+    private int positionNumber;
 
     @OneToOne(mappedBy = "board")
     private Squad squad;
 
     public Board(String name, int position) {
         this.name = name;
-        this.position = position;
+        this.positionNumber = position;
     }
 }

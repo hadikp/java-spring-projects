@@ -1,0 +1,2 @@
+create table projects(id bigint auto_increment PRIMARY KEY, name varchar(50), status varchar(50), description varchar(150) closed_at date, due_date date, squad_id bigint);
+insert into comments(name, status, description, closed_at, due_date, squad_id) values ('Project1', 'ready to work', 'Description of project1', '2022-12-11', '2023-01-15', 1);

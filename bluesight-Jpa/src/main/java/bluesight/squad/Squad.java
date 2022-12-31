@@ -1,5 +1,7 @@
 package bluesight.squad;
 
+import bluesight.board.Board;
+import bluesight.project.Project;
 import bluesight.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -29,5 +31,16 @@ public class Squad {
 
     @ManyToMany(mappedBy = "squads")
     private List<User> users = new ArrayList<>();
+
+    @OneToOne
+    private Board board;
+
+    @OneToMany(mappedBy = "squad", cascade = CascadeType.PERSIST)
+    private List<Project> projects = new ArrayList<>();
+
+    public void addProject(Project project){
+        projects.add(project);
+        project.setSquad(this);
+    }
 
 }

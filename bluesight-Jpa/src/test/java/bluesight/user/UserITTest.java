@@ -1,8 +1,10 @@
 package bluesight.user;
 
 import bluesight.board.Board;
+import bluesight.col.Col;
 import bluesight.project.Project;
 import bluesight.squad.Squad;
+import bluesight.swimlane.Swimlane;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -28,9 +30,20 @@ class UserITTest {
         Project project2 = new Project("project2", "ready to work", "Description of project2", LocalDate.of(2022, 12, 12), LocalDate.of(2023, 01, 21));
         Project project3 = new Project("project3", "ready to work", "Description of project3", LocalDate.of(2022, 12, 13), LocalDate.of(2023, 01, 21));
         Project project4 = new Project("project4", "ready to work", "Description of project4", LocalDate.of(2022, 12, 14), LocalDate.of(2023, 01, 21));
+        Swimlane swimlane1 = new Swimlane("swimlane1", 1, 110);
+        Swimlane swimlane2 = new Swimlane("swimlane2", 2, 110);
         Board board1 = new Board("Booard1", 11);
         Board board2 = new Board("Booard2", 15);
         Board board3 = new Board("Booard3", 16);
+        Col col1 = new Col("Column1", 1, 111, 5);
+        Col col2 = new Col("Column2", 2, 111, 5);
+        Col col3 = new Col("Column3", 1, 111, 5);
+
+        swimlane1.addColumns(col1);
+        swimlane1.addColumns(col2);
+        swimlane2.addColumns(col3);
+        board1.addSwimlane(swimlane1);
+        board1.addSwimlane(swimlane2);
 
         squad1.setBoard(board1);
         squad2.setBoard(board2);

@@ -1,6 +1,7 @@
 package bluesight.project;
 
 import bluesight.squad.Squad;
+import bluesight.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -39,6 +40,9 @@ public class Project {
 
     @ManyToOne
     private Squad squad;
+
+    @ManyToOne
+    private User user;
 
 
 }

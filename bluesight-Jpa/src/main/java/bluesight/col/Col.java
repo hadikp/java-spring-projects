@@ -1,10 +1,14 @@
 package bluesight.col;
 
+import bluesight.card.Card;
 import bluesight.swimlane.Swimlane;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -35,4 +39,12 @@ public class Col {
 
     @ManyToOne
     private Swimlane swimlane;
+
+    @OneToMany(mappedBy = "col", cascade = CascadeType.PERSIST)
+    private List<Card> cards = new ArrayList<>();
+
+    public void addNewCard(Card card){
+        cards.add(card);
+        card.setCol(this);
+    }
 }

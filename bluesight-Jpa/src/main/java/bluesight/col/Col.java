@@ -22,7 +22,9 @@ public class Col {
     private Long id;
 
     private String name;
-    private int position;
+
+    @Column(name = "position_number")
+    private int position_number;
 
     @Column(name = "wip_limit")
     private int wip_limit;
@@ -32,7 +34,7 @@ public class Col {
 
     public Col(String name, int position, int wip_limit, int cardCount) {
         this.name = name;
-        this.position = position;
+        this.position_number = position;
         this.wip_limit = wip_limit;
         this.cardCount = cardCount;
     }

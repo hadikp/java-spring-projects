@@ -24,16 +24,20 @@ public class Project {
     private String status;
     private String description;
 
+    @Column(name = "start_date")
+    private LocalDate startDate;
+
     @Column(name = "closed_at")
     private LocalDate closedAt;
 
     @Column(name = "due_date")
     private LocalDate dueDate;
 
-    public Project(String name, String status, String description, LocalDate closedAt, LocalDate dueDate) {
+    public Project(String name, String status, String description, LocalDate startDate, LocalDate closedAt, LocalDate dueDate) {
         this.name = name;
         this.status = status;
         this.description = description;
+        this.startDate = startDate;
         this.closedAt = closedAt;
         this.dueDate = dueDate;
     }

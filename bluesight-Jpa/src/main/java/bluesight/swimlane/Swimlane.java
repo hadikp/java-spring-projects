@@ -22,7 +22,7 @@ public class Swimlane {
     private Long id;
 
     private String name;
-    private int position;
+    private int position_number;
 
     @Column(name = "wip_limit")
     private int wipLimit;
@@ -35,7 +35,7 @@ public class Swimlane {
 
     public Swimlane(String name, int position, int wipLimit) {
         this.name = name;
-        this.position = position;
+        this.position_number = position;
         this.wipLimit = wipLimit;
     }
 

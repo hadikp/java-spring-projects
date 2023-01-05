@@ -25,7 +25,9 @@ public class Card {
 
     private int priority;
     private int status;
-    private int position;
+
+    @Column(name = "position_number")
+    private int position_number;
 
     @Column(name = "create_date")
     private LocalDate createDate;
@@ -50,7 +52,7 @@ public class Card {
         this.description = description;
         this.priority = priority;
         this.status = status;
-        this.position = position;
+        this.position_number = position;
         this.createDate = createDate;
         this.openedAt = openedAt;
         this.closedAt = closedAt;

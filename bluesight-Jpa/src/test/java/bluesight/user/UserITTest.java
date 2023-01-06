@@ -51,6 +51,9 @@ class UserITTest {
         swimlane1.addColumns(col1);
         swimlane1.addColumns(col2);
         swimlane2.addColumns(col3);
+
+        swimlane1.addCard(card1);
+        swimlane2.addCard(card2);
         board1.addSwimlane(swimlane1);
         board1.addSwimlane(swimlane2);
 

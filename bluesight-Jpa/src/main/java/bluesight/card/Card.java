@@ -1,6 +1,7 @@
 package bluesight.card;
 
 import bluesight.col.Col;
+import bluesight.swimlane.Swimlane;
 import bluesight.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -46,6 +47,9 @@ public class Card {
 
     @ManyToOne
     private User user;
+
+    @ManyToOne
+    private Swimlane swimlane;
 
     public Card(String title, String description, int priority, int status, int position, LocalDate createDate, LocalDate openedAt, LocalDate closedAt, LocalDate dueAt) {
         this.title = title;

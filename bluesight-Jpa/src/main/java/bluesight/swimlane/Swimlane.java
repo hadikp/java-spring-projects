@@ -1,6 +1,7 @@
 package bluesight.swimlane;
 
 import bluesight.board.Board;
+import bluesight.card.Card;
 import bluesight.col.Col;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -33,6 +34,9 @@ public class Swimlane {
     @OneToMany(mappedBy = "swimlane", cascade = CascadeType.PERSIST)
     private List<Col> columns = new ArrayList<>();
 
+    @OneToMany(mappedBy = "swimlane", cascade = CascadeType.PERSIST)
+    private List<Card> cards = new ArrayList<>();
+
     public Swimlane(String name, int position, int wipLimit) {
         this.name = name;
         this.position_number = position;
@@ -42,5 +46,10 @@ public class Swimlane {
     public void addColumns(Col col){
         columns.add(col);
         col.setSwimlane(this);
+    }
+
+    public void addCard(Card card){
+        cards.add(card);
+        card.setSwimlane(this);
     }
 }

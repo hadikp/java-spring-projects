@@ -21,7 +21,8 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    @Column(name = "product_name")
+    private String productName;
 
     private String description;
 
@@ -30,12 +31,14 @@ public class Product {
 
     private int price;
 
+    private Boolean active;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "product_type")
     private Type productType;
 
     public Product(String name, String description, String imagePath, int price, Type productType) {
-        this.name = name;
+        this.productName = name;
         this.description = description;
         this.imagePath = imagePath;
         this.price = price;

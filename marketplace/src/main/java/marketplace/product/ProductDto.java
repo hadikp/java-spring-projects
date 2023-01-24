@@ -15,10 +15,11 @@ import java.util.List;
 public class ProductDto {
 
     private Long id;
-    private String name;
+    private String productName;
     private String description;
     private String imagePath;
     private int price;
     private Type productType;
+    private Boolean active;
     private List<CommentDto> commentDtoList = new ArrayList<>();
 }

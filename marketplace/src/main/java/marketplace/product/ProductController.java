@@ -25,6 +25,12 @@ public class ProductController {
         return service.listAllProducts();
     }
 
+    @GetMapping("/{id}")
+    @Operation(summary = "Find product by id")
+    public ProductDto findProductById(@PathVariable("id") Long id){
+        return service.findProductById(id);
+    }
+
     @GetMapping("/comment")
     public List<ProductDto> listAllProductsWithComments(){
         return service.listAllProductsWithCommnets();
@@ -35,6 +41,12 @@ public class ProductController {
     @ApiResponse(responseCode = "201", description = "Product has been created")
     public ProductDto createProduct(@RequestBody ProductCommand command){
         return service.createProduct(command);
+    }
+
+    @PutMapping("/{id}")
+    @Operation(summary = "Update the user")
+    public ProductDto updateProduct(@PathVariable("id") Long id, @RequestBody UpdateProduct command){
+        return service.updateProduct(id, command);
     }
 
     @DeleteMapping("/{id}")

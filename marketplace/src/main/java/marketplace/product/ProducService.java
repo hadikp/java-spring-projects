@@ -6,6 +6,7 @@ import marketplace.comment.CommentDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -46,5 +47,23 @@ public class ProducService {
 
     public void deleteProduct(Long id) {
         repository.deleteById(id);
+    }
+
+    @Transactional
+    public ProductDto updateProduct(Long id, UpdateProduct command) {
+        Product findProduct = repository.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
+        findProduct.setProductName(command.getProductName());
+        findProduct.setDescription(command.getDescription());
+        findProduct.setProductType(command.getProductType());
+        findProduct.setCategory(command.getCategory());
+        findProduct.setActive(command.getActive());
+        findProduct.setImagePath(command.getImagePath());
+        findProduct.setPrice(command.getPrice());
+        return modelMapper.map(findProduct, ProductDto.class);
+    }
+
+    public ProductDto findProductById(Long id) {
+        Product product = repository.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
+        return modelMapper.map(product, ProductDto.class);
     }
 }

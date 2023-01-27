@@ -37,6 +37,9 @@ public class Product {
     @Column(name = "product_type")
     private Type productType;
 
+    @Enumerated(EnumType.STRING)
+    private Category category;
+
     public Product(String name, String description, String imagePath, int price, Type productType) {
         this.productName = name;
         this.description = description;

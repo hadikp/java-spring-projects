@@ -9,9 +9,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ProductCommand {
 
-    private String name;
+    private String productName;
     private String description;
+    private Type productType;
+    private Category category;
+    private Boolean active;
     private String imagePath;
     private int price;
-    private Type productType;
+
+
 }

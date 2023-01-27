@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,5 +33,16 @@ public class UserService {
 
     public void deleteUser(Long id) {
         repository.deleteById(id);
+    }
+
+    @Transactional
+    public UserDto updateUser(Long id, UpdateUser command) {
+        User findUser = repository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
+        findUser.setName(command.getName());
+        findUser.setUserName(command.getUserName());
+        findUser.setEmail(command.getEmail());
+        findUser.setPassword(command.getPassword());
+        findUser.setRegistrationDate(command.getRegistrationDate());
+        return modelMapper.map(findUser, UserDto.class);
     }
 }

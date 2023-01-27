@@ -37,6 +37,12 @@ public class UserController {
         return service.createUser(command);
     }
 
+    @PutMapping("/{id}")
+    @Operation(summary = "Update the user")
+    public UserDto updateUser(@PathVariable("id") Long id, @RequestBody UpdateUser command){
+        return service.updateUser(id, command);
+    }
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Operation(summary = "Delete a user")

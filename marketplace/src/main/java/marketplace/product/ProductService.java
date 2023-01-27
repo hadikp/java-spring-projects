@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
-public class ProducService {
+public class ProductService {
 
     private ProductRepository repository;
     private ModelMapper modelMapper;

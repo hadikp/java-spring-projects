@@ -39,6 +39,12 @@ public class CommentController {
         return service.createComment(command);
     }
 
+    @PutMapping("/{id}")
+    @Operation(summary = "Update the Comment")
+    public CommentDto updateCommand(@PathVariable("id") Long id, @RequestBody UpdateComment command){
+        return service.updateComment(id, command);
+    }
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Operation(summary = "Delete the Comment")

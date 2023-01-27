@@ -13,9 +13,9 @@ import java.util.List;
 @Tag(name = "Operations the Products")
 public class ProductController {
 
-    private ProducService service;
+    private ProductService service;
 
-    public ProductController(ProducService service) {
+    public ProductController(ProductService service) {
         this.service = service;
     }
 

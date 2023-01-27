@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,5 +33,13 @@ public class CommentService {
 
     public void deleteComment(Long id) {
         repository.deleteById(id);
+    }
+
+    @Transactional
+    public CommentDto updateComment(Long id, UpdateComment command) {
+        Comment findComment = repository.findById(id).orElseThrow(() -> new CommentNotFoundException(id));
+        findComment.setContent(command.getContent());
+        findComment.setCreateDate(command.getCreateDate());
+        return modelMapper.map(findComment, CommentDto.class);
     }
 }

@@ -2,5 +2,5 @@ package marketplace.product;
 
 public enum Category {
 
-    TRAVEL, SALE, GIFT
+    TRAVELING, SALE, GIFT
 }

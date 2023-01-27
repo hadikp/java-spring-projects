@@ -38,8 +38,8 @@ public class ProducService {
     }
 
     public ProductDto createProduct(ProductCommand command) {
-        Product product = new Product(command.getName(), command.getDescription(), command.getImagePath(), command.getPrice(),
-                command.getProductType());
+        Product product = new Product(command.getProductName(), command.getDescription(), command.getProductType(),
+                command.getCategory(), command.getActive(), command.getImagePath(), command.getPrice());
         repository.save(product);
         return modelMapper.map(product, ProductDto.class);
     }

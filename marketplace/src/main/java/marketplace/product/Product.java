@@ -26,13 +26,6 @@ public class Product {
 
     private String description;
 
-    @Column(name = "image_path")
-    private String imagePath;
-
-    private int price;
-
-    private Boolean active;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "product_type")
     private Type productType;
@@ -40,12 +33,21 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private Category category;
 
-    public Product(String name, String description, String imagePath, int price, Type productType) {
-        this.productName = name;
+    private Boolean active;
+
+    @Column(name = "image_path")
+    private String imagePath;
+
+    private int price;
+
+    public Product(String productName, String description, Type productType, Category category, Boolean active, String imagePath, int price) {
+        this.productName = productName;
         this.description = description;
+        this.productType = productType;
+        this.category = category;
+        this.active = active;
         this.imagePath = imagePath;
         this.price = price;
-        this.productType = productType;
     }
 
     @ManyToMany(mappedBy = "products")

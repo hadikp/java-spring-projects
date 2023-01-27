@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.annotation.Retention;
 import java.util.List;
 
 @RestController
@@ -55,5 +56,17 @@ public class ProductController {
     @ApiResponse(responseCode = "204", description = "Product has been deleted")
     public void deleteProduct(@PathVariable("id") Long id){
         service.deleteProduct(id);
+    }
+
+    @GetMapping("/category")
+    @Operation(summary = "Find Product by category")
+    public List<ProductDto> findProductByCategory(@RequestParam Category category){
+        return service.findProductByCategory(category);
+    }
+
+    @GetMapping("/type")
+    @Operation(summary = "Find Product by type")
+    public List<ProductDto> findProductByType(@RequestParam Type type){
+        return service.findProductByType(type);
     }
 }

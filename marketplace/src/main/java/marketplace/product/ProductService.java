@@ -66,4 +66,14 @@ public class ProductService {
         Product product = repository.findById(id).orElseThrow(() -> new ProductNotFoundException(id));
         return modelMapper.map(product, ProductDto.class);
     }
+
+    public List<ProductDto> findProductByCategory(Category category) {
+        List<Product> products = repository.findPoductByCategory(category);
+        return products.stream().map(p -> modelMapper.map(p, ProductDto.class)).collect(Collectors.toList());
+    }
+
+    public List<ProductDto> findProductByType(Type type) {
+        List<Product> products = repository.findProductByType(type);
+        return products.stream().map(p -> modelMapper.map(p, ProductDto.class)).collect(Collectors.toList());
+    }
 }

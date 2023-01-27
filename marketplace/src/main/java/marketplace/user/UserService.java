@@ -18,4 +18,9 @@ public class UserService {
         List<User> users = repository.findAll();
         return users.stream().map(u -> modelMapper.map(u, UserDto.class)).collect(Collectors.toList());
     }
+
+    public UserDto findUserById(Long id) {
+        User user = repository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
+        return modelMapper.map(user, UserDto.class);
+    }
 }

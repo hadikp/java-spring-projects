@@ -1,10 +1,10 @@
 package marketplace.user;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,5 +27,21 @@ public class UserController {
     @GetMapping("/{id}")
     public UserDto findUserById(@PathVariable("id") Long id){
         return service.findUserById(id);
+    }
+
+    @PostMapping("/create")
+    @ResponseStatus(HttpStatus.CREATED)
+    @Operation(summary = "Create a user")
+    @ApiResponse(responseCode = "201", description = "User has been created")
+    public UserDto createUser(@RequestBody UserCommand command){
+        return service.createUser(command);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @Operation(summary = "Delete a user")
+    @ApiResponse(responseCode = "204", description = "User has been deleted")
+    public void deleteUser(@PathVariable("id") Long id){
+        service.deleteUser(id);
     }
 }

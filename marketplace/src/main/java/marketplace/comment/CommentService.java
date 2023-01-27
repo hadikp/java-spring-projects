@@ -23,4 +23,14 @@ public class CommentService {
         Comment comment = repository.findById(id).orElseThrow(() -> new CommentNotFoundException(id));
         return modelMapper.map(comment, CommentDto.class);
     }
+
+    public CommentDto createComment(CommentCommand command) {
+        Comment comment = new Comment(command.getContent(), command.getCreateDate());
+        repository.save(comment);
+        return modelMapper.map(comment, CommentDto.class);
+    }
+
+    public void deleteComment(Long id) {
+        repository.deleteById(id);
+    }
 }

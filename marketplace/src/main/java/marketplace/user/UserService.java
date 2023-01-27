@@ -23,4 +23,14 @@ public class UserService {
         User user = repository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
         return modelMapper.map(user, UserDto.class);
     }
+
+    public UserDto createUser(UserCommand command) {
+        User user = new User(command.getName(), command.getUserName(), command.getEmail(), command.getPassword(), command.getRegistrationDate());
+        repository.save(user);
+        return modelMapper.map(user, UserDto.class);
+    }
+
+    public void deleteUser(Long id) {
+        repository.deleteById(id);
+    }
 }

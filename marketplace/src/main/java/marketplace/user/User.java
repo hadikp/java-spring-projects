@@ -31,6 +31,8 @@ public class User {
 
     private String password;
 
+    private Long role; //1, 2, 3
+
     @Column(name = "registration_date")
     private LocalDate registrationDate;
 
@@ -42,11 +44,12 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
     private List<Comment> userComments = new ArrayList<>();
 
-    public User(String name, String userName, String email, String password, LocalDate registrationDate) {
+    public User(String name, String userName, String email, String password, Long role, LocalDate registrationDate) {
         this.name = name;
         this.userName = userName;
         this.email = email;
         this.password = password;
+        this.role = role;
         this.registrationDate = registrationDate;
     }
 

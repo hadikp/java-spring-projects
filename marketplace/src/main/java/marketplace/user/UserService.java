@@ -26,7 +26,7 @@ public class UserService {
     }
 
     public UserDto createUser(UserCommand command) {
-        User user = new User(command.getName(), command.getUserName(), command.getEmail(), command.getPassword(), command.getRegistrationDate());
+        User user = new User(command.getName(), command.getUserName(), command.getEmail(), command.getPassword(), command.getRole(), command.getRegistrationDate());
         repository.save(user);
         return modelMapper.map(user, UserDto.class);
     }
@@ -42,6 +42,7 @@ public class UserService {
         findUser.setUserName(command.getUserName());
         findUser.setEmail(command.getEmail());
         findUser.setPassword(command.getPassword());
+        findUser.setRole(command.getRole());
         findUser.setRegistrationDate(command.getRegistrationDate());
         return modelMapper.map(findUser, UserDto.class);
     }

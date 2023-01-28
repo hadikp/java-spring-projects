@@ -14,4 +14,6 @@ public class CommentDto {
     private Long id;
     private String content;
     private LocalDate createDate;
+    private Long productId;
+    private Long userId;
 }

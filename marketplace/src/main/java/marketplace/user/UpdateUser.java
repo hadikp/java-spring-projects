@@ -15,5 +15,6 @@ public class UpdateUser {
     private String userName;
     private String email;
     private String password;
+    private Long role;
     private LocalDate registrationDate;
 }

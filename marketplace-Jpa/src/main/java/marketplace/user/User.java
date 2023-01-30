@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import marketplace.comment.Comment;
+import marketplace.message.Message;
 import marketplace.product.Product;
 
 import javax.persistence.*;
@@ -42,6 +43,9 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
     private List<Comment> comments = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+    private List<Message> messages = new ArrayList<>();
+
     public User(String name, String userName, String email, String password, LocalDate registrationDate) {
         this.name = name;
         this.userName = userName;
@@ -58,5 +62,10 @@ public class User {
     public void addComments(Comment comment){
         comments.add(comment);
         comment.setUser(this);
+    }
+
+    public void addMessages(Message message){
+        messages.add(message);
+        message.setUser(this);
     }
 }

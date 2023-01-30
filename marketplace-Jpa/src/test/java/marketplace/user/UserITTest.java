@@ -1,6 +1,7 @@
 package marketplace.user;
 
 import marketplace.comment.Comment;
+import marketplace.message.Message;
 import marketplace.product.Product;
 import marketplace.product.ProductRepository;
 import marketplace.product.Type;
@@ -41,13 +42,20 @@ class UserITTest {
         Comment com1 = new Comment("com1 content", LocalDate.of(2022, 12, 11));
         Comment com2 = new Comment("com2 content", LocalDate.of(2022, 12, 12));
         Comment com3 = new Comment("com3 content", LocalDate.of(2022, 12, 13));
+
+        Message message1 = new Message("message1 subject", "message1 content");
+        Message message2 = new Message("message2 subject", "message2 content");
+        Message message3 = new Message("message3 subject", "message3 content");
         book1.addComment(com1);
         book1.addComment(com2);
         book2.addComment(com3);
 
         gergo.addProduct(book1);
         gergo.addProduct(radio);
+        gergo.addMessages(message1);
         peter.addProduct(book2);
+        peter.addMessages(message2);
+        peter.addMessages(message3);
 
         gergo.addComments(com1);
         gergo.addComments(com2);

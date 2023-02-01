@@ -25,12 +25,16 @@ public class User {
 
     private String name;
 
+    private String city;
+
     @Column(name = "user_name")
     private String userName;
 
     private String email;
 
     private String password;
+
+   
 
     private Long role; //1, 2, 3
 
@@ -48,14 +52,7 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
     private List<Message> messages = new ArrayList<>();
 
-    public User(String name, String userName, String email, String password, Long role, LocalDate registrationDate) {
-        this.name = name;
-        this.userName = userName;
-        this.email = email;
-        this.password = password;
-        this.role = role;
-        this.registrationDate = registrationDate;
-    }
+
 
     public void addProduct(Product product){
         products.add(product);

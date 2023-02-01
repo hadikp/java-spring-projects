@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import marketplace.comment.Comment;
 import marketplace.message.Message;
 import marketplace.product.Product;
+import marketplace.wish.Wish;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -35,6 +36,12 @@ public class User {
     @Column(name = "registration_date")
     private LocalDate registrationDate;
 
+   /* @ElementCollection
+    private List<Product> demands = new ArrayList<>();*/
+
+    @ElementCollection(targetClass = Wish.class)
+    private List<Wish> wishes = new ArrayList<>();
+
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "user_product", joinColumns = @JoinColumn(name = "user_id"),
     inverseJoinColumns = @JoinColumn(name = "product_id"))
@@ -46,11 +53,16 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
     private List<Message> messages = new ArrayList<>();
 
+    /*@ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "user_wish", joinColumns = @JoinColumn(name = "user_id"),
+     inverseJoinColumns = @JoinColumn(name = "wish_id"))
+    private List<Wish> wishes = new ArrayList<>();*/
+
     public User(String name, String userName, String email, String password, LocalDate registrationDate) {
         this.name = name;
         this.userName = userName;
         this.email = email;
-        this.password = String.valueOf((userName + password).hashCode());
+        this.password = password;
         this.registrationDate = registrationDate;
     }
 
@@ -68,4 +80,15 @@ public class User {
         messages.add(message);
         message.setUser(this);
     }
+
+    /*public void addWish(Wish wish){
+        wishes.add(wish);
+        wish.getUsers().add(this);
+    }*/
+
+    public void addWish(Wish wish){
+        wishes.add(wish);
+    }
+
+
 }

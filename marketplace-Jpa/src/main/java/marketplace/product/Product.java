@@ -14,6 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Embeddable
 @Table(name = "products")
 public class Product {
 

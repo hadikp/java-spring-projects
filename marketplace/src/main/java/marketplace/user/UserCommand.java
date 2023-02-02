@@ -13,6 +13,7 @@ import java.time.LocalDate;
 public class UserCommand {
 
     private String name;
+    private String city;
     private String userName;
     private String email;
     private String password;

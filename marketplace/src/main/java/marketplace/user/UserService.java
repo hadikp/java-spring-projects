@@ -26,7 +26,8 @@ public class UserService {
     }
 
     public UserDto createUser(UserCommand command) {
-        User user = new User(command.getName(), command.getUserName(), command.getEmail(), command.getPassword(), command.getRole(), command.getRegistrationDate());
+        User user = new User(command.getName(), command.getCity(), command.getUserName(), command.getEmail(), command.getPassword(),
+                command.getRole(), command.getRegistrationDate());
         repository.save(user);
         return modelMapper.map(user, UserDto.class);
     }
@@ -39,6 +40,7 @@ public class UserService {
     public UserDto updateUser(Long id, UpdateUser command) {
         User findUser = repository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
         findUser.setName(command.getName());
+        findUser.setCity(command.getCity());
         findUser.setUserName(command.getUserName());
         findUser.setEmail(command.getEmail());
         findUser.setPassword(command.getPassword());

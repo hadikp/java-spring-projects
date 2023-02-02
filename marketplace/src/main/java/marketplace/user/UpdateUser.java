@@ -12,6 +12,7 @@ import java.time.LocalDate;
 public class UpdateUser {
 
     private String name;
+    private String city;
     private String userName;
     private String email;
     private String password;

@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import marketplace.comment.Comment;
 import marketplace.message.Message;
 import marketplace.product.Product;
+import marketplace.wish.Wish;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -34,8 +35,6 @@ public class User {
 
     private String password;
 
-   
-
     private Long role; //1, 2, 3
 
     @Column(name = "registration_date")
@@ -52,7 +51,20 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
     private List<Message> messages = new ArrayList<>();
 
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "user_wish", joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "wish_id"))
+    private List<Wish> wishes = new ArrayList<>();
 
+    public User(String name, String city, String userName, String email, String password, Long role, LocalDate registrationDate) {
+        this.name = name;
+        this.city = city;
+        this.userName = userName;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.registrationDate = registrationDate;
+    }
 
     public void addProduct(Product product){
         products.add(product);
@@ -67,6 +79,11 @@ public class User {
     public void addMessages(Message message){
         messages.add(message);
         message.setUser(this);
+    }
+
+    public void addWish(Wish wish){
+        wishes.add(wish);
+        wish.getUsers().add(this);
     }
 
 

@@ -3,9 +3,12 @@ package marketplace.user;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import marketplace.wish.WishDto;
 
 import javax.persistence.Column;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -20,4 +23,6 @@ public class UserDto {
     private String password;
     private Long role;
     private LocalDate registrationDate;
+
+    private List<WishDto> wishes = new ArrayList<>();
 }

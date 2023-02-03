@@ -18,4 +18,15 @@ public class WishService {
         List<Wish> wishes = repository.findAll();
         return wishes.stream().map(w -> modelMapper.map(w, WishDto.class)).collect(Collectors.toList());
     }
+
+    public WishDto findWishById(Long id) {
+        Wish wish = repository.findById(id).orElseThrow(() -> new WishNotFoundException(id));
+        return modelMapper.map(wish, WishDto.class);
+    }
+
+    public WishDto createWish(WishCommand command) {
+        Wish wish = new Wish(command.getWishName(), command.getDescription(), command.getWishType());
+        repository.save(wish);
+        return modelMapper.map(wish, WishDto.class);
+    }
 }

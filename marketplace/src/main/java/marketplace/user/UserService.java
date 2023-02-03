@@ -1,6 +1,7 @@
 package marketplace.user;
 
 import lombok.AllArgsConstructor;
+import marketplace.wish.Wish;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -26,8 +27,10 @@ public class UserService {
     }
 
     public UserDto createUser(UserCommand command) {
+        List<Wish> wishes = command.getWishes();
         User user = new User(command.getName(), command.getCity(), command.getUserName(), command.getEmail(), command.getPassword(),
                 command.getRole(), command.getRegistrationDate());
+        user.setWishes(wishes);
         repository.save(user);
         return modelMapper.map(user, UserDto.class);
     }
@@ -47,5 +50,14 @@ public class UserService {
         findUser.setRole(command.getRole());
         findUser.setRegistrationDate(command.getRegistrationDate());
         return modelMapper.map(findUser, UserDto.class);
+    }
+
+
+    public UserDto userAddWish(Long id, UserAddWishCommand command) {
+        List<Wish> wishes = command.getWishes();
+        User user = repository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
+        user.setWishes(wishes);
+        repository.save(user);
+        return modelMapper.map(user, UserDto.class);
     }
 }

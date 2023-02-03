@@ -50,4 +50,12 @@ public class UserController {
     public void deleteUser(@PathVariable("id") Long id){
         service.deleteUser(id);
     }
+
+    @PostMapping("/{id}/wish")
+    @ResponseStatus(HttpStatus.CREATED)
+    @Operation(summary = "Add a wish to a user")
+    @ApiResponse(responseCode = "201", description = "Wish has been added to user")
+    public UserDto userAddWish(@PathVariable("id") Long id, @RequestBody UserAddWishCommand command){
+        return service.userAddWish(id, command);
+    }
 }

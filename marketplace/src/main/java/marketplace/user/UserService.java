@@ -2,6 +2,7 @@ package marketplace.user;
 
 import lombok.AllArgsConstructor;
 import marketplace.wish.Wish;
+import marketplace.wish.WishNotFoundException;
 import marketplace.wish.WishRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -61,10 +62,18 @@ public class UserService {
         User user = repository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
         user.setWishes(wishes);
 
-        //if user exist I need to add wishes to the user, and save the wishes
+        //if user exist I need to add wishes to the user, and save the new wishes
         for(int i = 0; i < wishes.size(); i++){
             wishRepository.save(wishes.get(i));
         }
+        return modelMapper.map(user, UserDto.class);
+    }
+
+    public UserDto userAddExistingWish(Long userId, Long wishId) {
+        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+        Wish wish = wishRepository.findById(wishId).orElseThrow(() -> new WishNotFoundException(wishId));
+        user.addWish(wish);
+        repository.save(user);
         return modelMapper.map(user, UserDto.class);
     }
 }

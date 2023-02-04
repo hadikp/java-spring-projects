@@ -53,9 +53,17 @@ public class UserController {
 
     @PostMapping("/{id}/wish")
     @ResponseStatus(HttpStatus.CREATED)
-    @Operation(summary = "Add a wish to an existing user")
-    @ApiResponse(responseCode = "201", description = "Wish has been added to the user")
+    @Operation(summary = "Add a new wish to an existing user")
+    @ApiResponse(responseCode = "201", description = "New wish has been added to the user")
     public UserDto userAddWish(@PathVariable("id") Long id, @RequestBody UserAddWishCommand command){
         return service.userAddWish(id, command);
+    }
+
+    @PostMapping("/{userId}/wish/{wishId}")
+    @ResponseStatus(HttpStatus.CREATED)
+    @Operation(summary = "Add an existing wish to an existing user")
+    @ApiResponse(responseCode = "201", description = "Old wish has been added to the user")
+    public UserDto userAddWish(@PathVariable("userId") Long userId, @PathVariable("wishId") Long wishId){
+        return service.userAddExistingWish(userId, wishId);
     }
 }

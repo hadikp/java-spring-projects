@@ -14,9 +14,13 @@ import java.util.List;
 
 @NoArgsConstructor
 @Table(name = "wishes")
-@Embeddable
+@Entity
+@Data
 public class Wish {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "wish_name")
     private String wishName;
@@ -27,8 +31,8 @@ public class Wish {
     @Enumerated(EnumType.STRING)
     private Type wishType;
 
-   /* @ManyToMany(mappedBy = "wishes")
-    private List<User> users = new ArrayList<>();*/
+    @ManyToMany(mappedBy = "wishes")
+    private List<User> users = new ArrayList<>();
 
     public Wish(String wishName, String description, Type wishType) {
         this.wishName = wishName;

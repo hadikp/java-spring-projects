@@ -2,6 +2,7 @@ package marketplace.user;
 
 import lombok.AllArgsConstructor;
 import marketplace.wish.Wish;
+import marketplace.wish.WishRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,8 @@ import java.util.stream.Collectors;
 public class UserService {
 
     private UserRepository repository;
+
+    private WishRepository wishRepository;
     private ModelMapper modelMapper;
 
     public List<UserDto> listAllUser() {
@@ -57,7 +60,11 @@ public class UserService {
         List<Wish> wishes = command.getWishes();
         User user = repository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
         user.setWishes(wishes);
-        repository.save(user);
+
+        //if user exist I need to add wishes to the user, and save the wishes
+        for(int i = 0; i < wishes.size(); i++){
+            wishRepository.save(wishes.get(i));
+        }
         return modelMapper.map(user, UserDto.class);
     }
 }

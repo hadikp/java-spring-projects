@@ -38,4 +38,18 @@ public class WishController {
     public WishDto createWish(@RequestBody WishCommand command){
         return service.createWish(command);
     }
+
+    @PutMapping("/{id}")
+    @Operation(summary = "Update the wish")
+    public WishDto updateWish(@PathVariable("id") Long id, @RequestBody UpdateWish command){
+        return service.updateWish(id, command);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @Operation(summary = "Delete wish")
+    @ApiResponse(responseCode = "204", description = "Wish has been deleted")
+    public void deleteWish(@PathVariable("id") Long id){
+        service.deleteWish(id);
+    }
 }

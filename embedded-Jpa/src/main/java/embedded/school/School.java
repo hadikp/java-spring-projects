@@ -26,6 +26,7 @@ public class School {
     private Address address;
 
     @ElementCollection
+    @CollectionTable(name = "students", joinColumns =@JoinColumn(name = "schools_id"))
     private List<Student> students = new ArrayList<>();
 
     public School(String name, Address address) {

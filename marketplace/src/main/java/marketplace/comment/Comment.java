@@ -1,5 +1,6 @@
 package marketplace.comment;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,9 +27,11 @@ public class Comment {
     private LocalDate createDate;
 
     @ManyToOne
+    @JsonBackReference
     private User user;
 
     @ManyToOne
+    @JsonBackReference
     private Product product;
 
     public Comment(String content, LocalDate date) {

@@ -3,6 +3,7 @@ package marketplace.user;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import marketplace.product.Product;
 import marketplace.wish.WishDto;
 
 import javax.persistence.Column;
@@ -24,5 +25,6 @@ public class UserDto {
     private Long role;
     private LocalDate registrationDate;
 
-    private List<WishDto> wishes = new ArrayList<>();
+//    private List<WishDto> wishes;
+    private List<Product> products;
 }

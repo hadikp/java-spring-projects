@@ -1,6 +1,9 @@
 package marketplace.user;
 
 import lombok.AllArgsConstructor;
+import marketplace.product.Product;
+import marketplace.product.ProductNotFoundException;
+import marketplace.product.ProductRepository;
 import marketplace.wish.Wish;
 import marketplace.wish.WishNotFoundException;
 import marketplace.wish.WishRepository;
@@ -16,8 +19,9 @@ import java.util.stream.Collectors;
 public class UserService {
 
     private UserRepository repository;
-
     private WishRepository wishRepository;
+
+    private ProductRepository productRepository;
     private ModelMapper modelMapper;
 
     public List<UserDto> listAllUser() {
@@ -73,6 +77,14 @@ public class UserService {
         User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
         Wish wish = wishRepository.findById(wishId).orElseThrow(() -> new WishNotFoundException(wishId));
         user.addWish(wish);
+        repository.save(user);
+        return modelMapper.map(user, UserDto.class);
+    }
+
+    public UserDto userAddExistingProduct(Long userId, Long productId) {
+        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+        Product product = productRepository.findById(productId).orElseThrow(() -> new ProductNotFoundException(productId));
+        user.addProduct(product);
         repository.save(user);
         return modelMapper.map(user, UserDto.class);
     }

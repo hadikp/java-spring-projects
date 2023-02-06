@@ -1,5 +1,7 @@
 package marketplace.product;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -51,9 +53,11 @@ public class Product {
     }
 
     @ManyToMany(mappedBy = "products")
+    @JsonBackReference
     private List<User> users = new ArrayList<>();
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST)
+    @JsonManagedReference
     private List<Comment> commentList = new ArrayList<>();
 
     public void addComment(Comment comment){

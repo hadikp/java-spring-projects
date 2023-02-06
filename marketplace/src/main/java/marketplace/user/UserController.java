@@ -55,7 +55,7 @@ public class UserController {
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Add a new wish to an existing user")
     @ApiResponse(responseCode = "201", description = "New wish has been added to the user")
-    public UserDto userAddWish(@PathVariable("id") Long id, @RequestBody UserAddWishCommand command){
+    public UserDto userAddNewWish(@PathVariable("id") Long id, @RequestBody UserAddWishCommand command){
         return service.userAddWish(id, command);
     }
 
@@ -63,7 +63,15 @@ public class UserController {
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Add an existing wish to an existing user")
     @ApiResponse(responseCode = "201", description = "Old wish has been added to the user")
-    public UserDto userAddWish(@PathVariable("userId") Long userId, @PathVariable("wishId") Long wishId){
+    public UserDto userAddOldWish(@PathVariable("userId") Long userId, @PathVariable("wishId") Long wishId){
         return service.userAddExistingWish(userId, wishId);
+    }
+
+    @PostMapping("/{userId}/product/{productId}")
+    @ResponseStatus(HttpStatus.CREATED)
+    @Operation(summary = "Add an existing product to an existing user")
+    @ApiResponse(responseCode = "201", description = "Old product has been added to the user")
+    public UserDto userAddExistingProduct(@PathVariable("userId") Long userId, @PathVariable("productId") Long productId) {
+        return service.userAddExistingProduct(userId, productId);
     }
 }

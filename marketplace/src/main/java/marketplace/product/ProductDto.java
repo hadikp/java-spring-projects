@@ -22,5 +22,5 @@ public class ProductDto {
     private Boolean active;
     private String imagePath;
     private int price;
-    private List<CommentDto> commentDtoList = new ArrayList<>();
+    private List<CommentDto> comments = new ArrayList<>();
 }

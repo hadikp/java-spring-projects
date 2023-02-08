@@ -31,7 +31,7 @@ public class ProductService {
 
             for(Comment c: p.getCommentList()){
                 CommentDto cDto = modelMapper.map(c, CommentDto.class);
-                pDto.getCommentDtoList().add(cDto);
+                pDto.getComments().add(cDto);
             }
             productWithCommentDtoList.add(pDto);
         }

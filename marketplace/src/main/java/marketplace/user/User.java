@@ -45,11 +45,11 @@ public class User {
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "user_product", joinColumns = @JoinColumn(name = "user_id"),
     inverseJoinColumns = @JoinColumn(name = "product_id"))
-    @JsonManagedReference
+//    @JsonManagedReference
     private List<Product> products = new ArrayList<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
-    @JsonManagedReference
+//    @JsonManagedReference
     private List<Comment> userComments = new ArrayList<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)

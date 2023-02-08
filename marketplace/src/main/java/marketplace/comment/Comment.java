@@ -27,11 +27,11 @@ public class Comment {
     private LocalDate createDate;
 
     @ManyToOne
-    @JsonBackReference
+//    @JsonBackReference
     private User user;
 
     @ManyToOne
-    @JsonBackReference
+//    @JsonBackReference
     private Product product;
 
     public Comment(String content, LocalDate date) {

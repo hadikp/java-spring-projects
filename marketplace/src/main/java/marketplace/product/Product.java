@@ -53,11 +53,11 @@ public class Product {
     }
 
     @ManyToMany(mappedBy = "products")
-    @JsonBackReference
+//    @JsonBackReference
     private List<User> users = new ArrayList<>();
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.PERSIST)
-    @JsonManagedReference
+//    @JsonManagedReference
     private List<Comment> commentList = new ArrayList<>();
 
     public void addComment(Comment comment){

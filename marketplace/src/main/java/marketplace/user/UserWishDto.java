@@ -3,18 +3,15 @@ package marketplace.user;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import marketplace.product.Product;
 import marketplace.wish.WishDto;
 
-import javax.persistence.Column;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDto {
+public class UserWishDto {
 
     private Long id;
     private String name;
@@ -25,6 +22,5 @@ public class UserDto {
     private Long role;
     private LocalDate registrationDate;
 
-//    private List<WishDto> wishes;
-    private List<Product> products;
+    private List<WishDto> wishes;
 }

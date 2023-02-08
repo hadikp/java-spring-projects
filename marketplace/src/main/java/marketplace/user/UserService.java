@@ -77,8 +77,15 @@ public class UserService {
     public UserProductDto userAddExistingWish(Long userId, Long wishId) {
         User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
         Wish wish = wishRepository.findById(wishId).orElseThrow(() -> new WishNotFoundException(wishId));
-        user.addWish(wish);
-        repository.save(user);
+
+        //Is Product included in the user product list?
+        Boolean userWishes= repository.findWishThisUser(userId).getWishes().contains(wish);
+        if(userWishes){
+            System.out.println("This wish is already in user wishes list");
+        }else {
+            user.addWish(wish);
+            repository.save(user);
+        }
         return modelMapper.map(user, UserProductDto.class);
     }
 
@@ -93,7 +100,6 @@ public class UserService {
         }else{
             user.addProduct(product);
             repository.save(user);
-            System.out.println("else ág");
         }
         return modelMapper.map(user, UserProductDto.class);
     }

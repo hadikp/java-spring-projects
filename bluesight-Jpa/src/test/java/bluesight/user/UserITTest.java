@@ -50,6 +50,7 @@ class UserITTest {
         col1.addNewCard(card2);
         swimlane1.addColumns(col1);
         swimlane1.addColumns(col2);
+        swimlane2.addColumns(col1);
         swimlane2.addColumns(col3);
 
         swimlane1.addCard(card1);

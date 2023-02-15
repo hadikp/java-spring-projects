@@ -39,8 +39,8 @@ public class Col {
         this.cardCount = cardCount;
     }
 
-    @ManyToOne
-    private Swimlane swimlane;
+    @ManyToMany(mappedBy = "columns")
+    private List<Swimlane> swimlanes = new ArrayList<>();
 
     @OneToMany(mappedBy = "col", cascade = CascadeType.PERSIST)
     private List<Card> cards = new ArrayList<>();

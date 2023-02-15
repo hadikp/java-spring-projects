@@ -31,7 +31,9 @@ public class Swimlane {
     @ManyToOne
     private Board board;
 
-    @OneToMany(mappedBy = "swimlane", cascade = CascadeType.PERSIST)
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "swimlane_column", joinColumns = @JoinColumn(name = "swimlane_id"),
+        inverseJoinColumns = @JoinColumn(name = "column_id"))
     private List<Col> columns = new ArrayList<>();
 
     @OneToMany(mappedBy = "swimlane", cascade = CascadeType.PERSIST)
@@ -45,7 +47,7 @@ public class Swimlane {
 
     public void addColumns(Col col){
         columns.add(col);
-        col.setSwimlane(this);
+        col.getSwimlanes().add(this);
     }
 
     public void addCard(Card card){

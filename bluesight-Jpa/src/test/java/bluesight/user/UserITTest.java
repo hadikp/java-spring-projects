@@ -17,6 +17,8 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class UserITTest {
 
+    Col col1;
+    Card card1;
     @Autowired
     UserRepository repository;
 
@@ -36,10 +38,10 @@ class UserITTest {
         Board board1 = new Board("Booard1", 11);
         Board board2 = new Board("Booard2", 15);
         Board board3 = new Board("Booard3", 16);
-        Col col1 = new Col("Column1", 1, 111, 5);
+        col1 = new Col("Column1", 1, 111, 5);
         Col col2 = new Col("Column2", 2, 111, 5);
         Col col3 = new Col("Column3", 1, 111, 5);
-        Card card1 = new Card("Card1-title", "Description of card1", 2, 1, 1, LocalDate.of(2022, 12, 20),
+        card1 = new Card("Card1-title", "Description of card1", 2, 1, 1, LocalDate.of(2022, 12, 20),
                 LocalDate.of(2022, 12, 21), LocalDate.of(2023, 01,21), LocalDate.of(2023, 01, 30));
         Card card2 = new Card("Card2-title", "Description of card2", 1, 2, 2, LocalDate.of(2022, 12, 20),
                 LocalDate.of(2022, 12, 22), LocalDate.of(2023, 02,19), LocalDate.of(2023, 03, 01));
@@ -78,6 +80,10 @@ class UserITTest {
         gergo.addSquad(squad3);
         repository.save(peter);
         repository.save(gergo);
+    }
+    @Test
+    void testRemoveCollLList(){
+        //col1.deleteCard(card1);
     }
 
 }

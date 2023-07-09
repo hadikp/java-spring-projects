@@ -49,4 +49,8 @@ public class Col {
         cards.add(card);
         card.setCol(this);
     }
+
+    public void deleteCard(Card card){
+        cards.remove(card);
+    }
 }

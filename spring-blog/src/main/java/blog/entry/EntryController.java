@@ -27,4 +27,9 @@ public class EntryController {
     public EntryDto createPost(@RequestBody EntryCommand command){
         return service.createPost(command);
     }
+
+    @PutMapping("/{id}")
+    public EntryDto updateEntry(@PathVariable("id") Long id, @RequestBody EntryCommand command){
+        return service.updateEntry(id, command);
+    }
 }

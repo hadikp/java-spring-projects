@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,5 +32,14 @@ public class EntryService {
         post.setUser(user);
         repository.save(post);
         return modelMapper.map(post, EntryDto.class);
+    }
+
+    @Transactional
+    public EntryDto updateEntry(Long id, EntryCommand command) {
+        Entry findEntry = repository.findById(id).orElseThrow(() -> new EntryNotFoundException(id));
+        findEntry.setTitle(command.getTitle());
+        findEntry.setDescription(command.getDescription());
+        //findEntry.setContent(command.getContent());
+        return modelMapper.map(findEntry, EntryDto.class);
     }
 }

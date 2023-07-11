@@ -42,4 +42,9 @@ public class EntryService {
         //findEntry.setContent(command.getContent());
         return modelMapper.map(findEntry, EntryDto.class);
     }
+
+    public EntryDto findEntryById(Long id) {
+        Entry findEntry = repository.findById(id).orElseThrow(() -> new EntryNotFoundException(id));
+        return modelMapper.map(findEntry, EntryDto.class);
+    }
 }

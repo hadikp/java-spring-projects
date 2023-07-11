@@ -21,6 +21,11 @@ public class EntryController {
         return service.listAllPost();
     }
 
+    @GetMapping("/{id}")
+    public EntryDto findById(@PathVariable("id") Long id) {
+        return service.findEntryById(id);
+    }
+
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
     @ApiResponse(responseCode = "201", description = "Post has been created")

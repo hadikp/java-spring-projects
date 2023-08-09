@@ -39,7 +39,7 @@ public class EntryService {
         Entry findEntry = repository.findById(id).orElseThrow(() -> new EntryNotFoundException(id));
         findEntry.setTitle(command.getTitle());
         findEntry.setDescription(command.getDescription());
-        //findEntry.setContent(command.getContent());
+        findEntry.setContent(command.getContent());
         return modelMapper.map(findEntry, EntryDto.class);
     }
 

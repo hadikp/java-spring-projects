@@ -1,5 +1,10 @@
 package marketplace.user;
 
+import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.DocumentReference;
+import com.google.cloud.firestore.DocumentSnapshot;
+import com.google.cloud.firestore.Firestore;
+import com.google.firebase.cloud.FirestoreClient;
 import lombok.AllArgsConstructor;
 import marketplace.product.Product;
 import marketplace.product.ProductNotFoundException;
@@ -12,7 +17,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
+import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
@@ -103,4 +108,16 @@ public class UserService {
         }
         return modelMapper.map(user, UserProductDto.class);
     }
+    public FireStoreDto firebaseData(String documentId) throws ExecutionException, InterruptedException {
+        Firestore dbFirestore = FirestoreClient.getFirestore();
+        DocumentReference documentReference = dbFirestore.collection("cusers").document(documentId);
+        ApiFuture<DocumentSnapshot> snapshot = documentReference.get();
+        DocumentSnapshot document = snapshot.get();
+        System.out.println(document);
+        return modelMapper.map(document, FireStoreDto.class);
+    }
+
+
+
+
 }

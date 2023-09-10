@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 @RestController
 @RequestMapping("/api/user")
@@ -27,6 +28,11 @@ public class UserController {
     @GetMapping("/{id}")
     public UserProductDto findUserById(@PathVariable("id") Long id){
         return service.findUserById(id);
+    }
+
+    @GetMapping("/{firestoreId}")
+    public FireStoreDto firebaseData(@PathVariable("firestoreId") String documentId) throws ExecutionException, InterruptedException {
+        return service.firebaseData(documentId);
     }
 
     @PostMapping("/create")

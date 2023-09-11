@@ -35,6 +35,11 @@ public class UserController {
         return service.firebaseData(documentId);
     }
 
+    @PostMapping("/create-fire")
+    public String createFirestore(@RequestBody FireStoreDto fireStoreDto) throws ExecutionException, InterruptedException {
+        return service.createFirestore(fireStoreDto);
+    }
+
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Create a user")

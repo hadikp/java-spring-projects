@@ -4,6 +4,7 @@ import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.Firestore;
+import com.google.cloud.firestore.WriteResult;
 import com.google.firebase.cloud.FirestoreClient;
 import lombok.AllArgsConstructor;
 import marketplace.product.Product;
@@ -118,6 +119,11 @@ public class UserService {
     }
 
 
+    public String createFirestore(FireStoreDto fireStoreDto) throws ExecutionException, InterruptedException {
+        Firestore dbFirestore = FirestoreClient.getFirestore();
+        String name = fireStoreDto.getName();
+        ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection("cusers").document("user1").create(fireStoreDto);
 
-
+        return collectionsApiFuture.get().getUpdateTime().toString();
+    }
 }

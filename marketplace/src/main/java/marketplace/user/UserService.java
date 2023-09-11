@@ -17,6 +17,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
@@ -109,17 +111,21 @@ public class UserService {
         }
         return modelMapper.map(user, UserProductDto.class);
     }
-    public FireStoreDto firebaseData(String documentId) throws ExecutionException, InterruptedException {
+    public List<FireStoreDto> firebaseDatas() throws ExecutionException, InterruptedException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        DocumentReference documentReference = dbFirestore.collection("cusers").document("user1");
-        ApiFuture<DocumentSnapshot> snapshot = documentReference.get();
-        DocumentSnapshot document = snapshot.get();
+        Iterable<DocumentReference> documentReference = dbFirestore.collection("cusers").listDocuments();
+        Iterator<DocumentReference> iterator = documentReference.iterator();
 
-        if(document.exists()){
-            return modelMapper.map(document, FireStoreDto.class);
-        }else {
-            return null;
+        List<FireStoreDto> dataList = new ArrayList<>();
+        FireStoreDto fireStoreDto = null;
+        while (iterator.hasNext()){
+            DocumentReference documentReference1 = iterator.next();
+            ApiFuture<DocumentSnapshot> future = documentReference1.get();
+            DocumentSnapshot document = future.get();
+            fireStoreDto = document.toObject(FireStoreDto.class);
+            dataList.add(fireStoreDto);
         }
+        return dataList;
     }
 
 
@@ -134,6 +140,6 @@ public class UserService {
     public String deleteFirestore(String documentId) {
         Firestore dbFirestore = FirestoreClient.getFirestore();
         ApiFuture<WriteResult> writeResult = dbFirestore.collection("cusers").document(documentId).delete();
-        return "Succesfully deleted" + documentId;
+        return "Succesfully deleted " + documentId;
     }
 }

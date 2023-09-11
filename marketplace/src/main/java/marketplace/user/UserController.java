@@ -30,9 +30,9 @@ public class UserController {
         return service.findUserById(id);
     }
 
-    @GetMapping("/get-fire/{firestoreId}")
-    public FireStoreDto firebaseData(@PathVariable("firestoreId") String documentId) throws ExecutionException, InterruptedException {
-        return service.firebaseData(documentId);
+    @GetMapping("/get-fire")
+    public List<FireStoreDto> firebaseData() throws ExecutionException, InterruptedException {
+        return service.firebaseDatas();
     }
 
     @PostMapping("/create-fire")

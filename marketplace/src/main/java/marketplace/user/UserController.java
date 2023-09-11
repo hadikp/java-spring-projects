@@ -30,7 +30,7 @@ public class UserController {
         return service.findUserById(id);
     }
 
-    @GetMapping("/{firestoreId}")
+    @GetMapping("/get-fire/{firestoreId}")
     public FireStoreDto firebaseData(@PathVariable("firestoreId") String documentId) throws ExecutionException, InterruptedException {
         return service.firebaseData(documentId);
     }
@@ -38,6 +38,11 @@ public class UserController {
     @PostMapping("/create-fire")
     public String createFirestore(@RequestBody FireStoreDto fireStoreDto) throws ExecutionException, InterruptedException {
         return service.createFirestore(fireStoreDto);
+    }
+
+    @DeleteMapping("/del-fire/{docId}")
+    public String deleteFirestore(@PathVariable("docId") String documentId){
+       return service.deleteFirestore(documentId);
     }
 
     @PostMapping("/create")

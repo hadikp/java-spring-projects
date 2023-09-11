@@ -111,19 +111,29 @@ public class UserService {
     }
     public FireStoreDto firebaseData(String documentId) throws ExecutionException, InterruptedException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        DocumentReference documentReference = dbFirestore.collection("cusers").document(documentId);
+        DocumentReference documentReference = dbFirestore.collection("cusers").document("user1");
         ApiFuture<DocumentSnapshot> snapshot = documentReference.get();
         DocumentSnapshot document = snapshot.get();
-        System.out.println(document);
-        return modelMapper.map(document, FireStoreDto.class);
+
+        if(document.exists()){
+            return modelMapper.map(document, FireStoreDto.class);
+        }else {
+            return null;
+        }
     }
 
 
     public String createFirestore(FireStoreDto fireStoreDto) throws ExecutionException, InterruptedException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
         String name = fireStoreDto.getName();
-        ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection("cusers").document("user1").create(fireStoreDto);
+        ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection("cusers").document("user4").create(fireStoreDto);
 
         return collectionsApiFuture.get().getUpdateTime().toString();
+    }
+
+    public String deleteFirestore(String documentId) {
+        Firestore dbFirestore = FirestoreClient.getFirestore();
+        ApiFuture<WriteResult> writeResult = dbFirestore.collection("cusers").document(documentId).delete();
+        return "Succesfully deleted" + documentId;
     }
 }

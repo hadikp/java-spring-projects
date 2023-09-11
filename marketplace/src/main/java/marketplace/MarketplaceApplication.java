@@ -24,7 +24,7 @@ public class MarketplaceApplication {
 		FirebaseOptions options = new FirebaseOptions.Builder()
 				.setCredentials(GoogleCredentials.fromStream(serviceAccount))
 				//.setDatabaseUrl("https://marketplace-8a870.firebaseio.com")
-				//.setDatabaseUrl("https://marketplace-8a870-default-rtdb.europe-west1.firebasedatabase.app")
+				.setDatabaseUrl("https://marketplace-8a870-default-rtdb.europe-west1.firebasedatabase.app")
 				.build();
 
 		FirebaseApp.initializeApp(options);

@@ -132,7 +132,7 @@ public class UserService {
     public String createFirestore(FireStoreDto fireStoreDto) throws ExecutionException, InterruptedException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
         String name = fireStoreDto.getName();
-        ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection("cusers").document("user4").create(fireStoreDto);
+        ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection("cusers").document("user2").create(fireStoreDto);
 
         return collectionsApiFuture.get().getUpdateTime().toString();
     }

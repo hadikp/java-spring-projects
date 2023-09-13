@@ -19,8 +19,23 @@ public class BookController {
         return service.getAllBook();
     }
 
+    @GetMapping("/{id}")
+    public BookDto getOneBook(@PathVariable("id") String id){
+        return service.getOneBook(id);
+    }
+
     @PostMapping("/create")
     public BookDto createBook(@RequestBody BookDto command){
         return service.createBook(command);
+    }
+
+    @PutMapping("/{id}")
+    public BookDto updateBook(@PathVariable("id") String id, BookDto command){
+        return service.updateBook(id, command);
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteBook(@PathVariable("id") String id){
+       return service.deleteBook(id);
     }
 }

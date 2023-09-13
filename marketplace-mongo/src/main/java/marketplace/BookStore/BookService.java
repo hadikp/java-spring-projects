@@ -1,5 +1,6 @@
 package marketplace.BookStore;
 
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +27,22 @@ public class BookService {
         Book book = new Book(command.getBookName(), command.getAuthorName());
         repository.save(book);
         return modelMapper.map(book, BookDto.class);
+    }
+
+    public String deleteBook(String id) {
+        repository.deleteById(id);
+        return "Succesfully deleted";
+    }
+
+    public BookDto updateBook(String id, BookDto command) {
+        Book findBook = repository.findById(id).orElseThrow(() -> new BookNotFoundException(id));
+        findBook.setBookName(command.getBookName());
+        findBook.setAuthorName(command.getAuthorName());
+        return modelMapper.map(findBook, BookDto.class);
+    }
+
+    public BookDto getOneBook(String id) {
+        Book findBook = repository.findById(id).orElseThrow(() -> new BookNotFoundException(id));
+        return modelMapper.map(findBook, BookDto.class);
     }
 }

@@ -25,6 +25,7 @@ class UserITTest {
         Product product = new Product("könyv", "Ez egy könyv", "src/images", 1000);
         User user = new User("peter", "hadik@gmail.com", "pass", LocalDate.of(2022, 12, 11));
 
+        productRepository.save(product);
         user.addProduct(product);
         userRepository.save(user);
     }

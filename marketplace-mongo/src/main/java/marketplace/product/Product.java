@@ -1,5 +1,6 @@
 package marketplace.product;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,6 +30,7 @@ public class Product {
 
 
     @JoinColumn(name = "user_id")
+    @JsonBackReference
     private User user;
 
     public Product(String name, String description, String imagePath, int price) {

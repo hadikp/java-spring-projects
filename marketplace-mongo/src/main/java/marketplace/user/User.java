@@ -30,7 +30,7 @@ public class User {
     private LocalDate registrationDate;
 
 
-    @DBRef
+   @DBRef
     private List<Product> products = new ArrayList<>();
 
     public User(String name, String email, String password, LocalDate registrationDate) {

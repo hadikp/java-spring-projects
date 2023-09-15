@@ -22,11 +22,14 @@ class UserITTest {
 
     @BeforeEach
     void init(){
-        Product product = new Product("könyv", "Ez egy könyv", "src/images", 1000);
+        Product konyv = new Product("könyv", "Ez egy könyv", "src/images", 1000);
+        Product radio = new Product("rádió", "Ez egy rádió", "src/images", 5000);
         User user = new User("peter", "hadik@gmail.com", "pass", LocalDate.of(2022, 12, 11));
 
-        productRepository.save(product);
-        user.addProduct(product);
+        productRepository.save(konyv);
+        productRepository.save(radio);
+        user.addProduct(konyv);
+        user.addProduct(radio);
         userRepository.save(user);
     }
 

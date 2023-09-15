@@ -38,6 +38,7 @@ public class BookService {
         Book findBook = repository.findById(id).orElseThrow(() -> new BookNotFoundException(id));
         findBook.setBookName(command.getBookName());
         findBook.setAuthorName(command.getAuthorName());
+        repository.save(findBook);
         return modelMapper.map(findBook, BookDto.class);
     }
 

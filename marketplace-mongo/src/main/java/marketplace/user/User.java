@@ -39,6 +39,6 @@ public class User {
 
     public void addProduct(Product product){
         products.add(product);
-        product.setUser(this);
+        product.getUsers().add(this);
     }
 }

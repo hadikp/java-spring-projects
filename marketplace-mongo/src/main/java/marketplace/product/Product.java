@@ -29,9 +29,8 @@ public class Product {
     private int price;
 
 
-    @JoinColumn(name = "user_id")
     @JsonBackReference
-    private User user;
+    private List<User> users = new ArrayList<>();
 
     public Product(String name, String description, String imagePath, int price) {
         this.name = name;

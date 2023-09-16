@@ -24,13 +24,16 @@ class UserITTest {
     void init(){
         Product konyv = new Product("könyv", "Ez egy könyv", "src/images", 1000);
         Product radio = new Product("rádió", "Ez egy rádió", "src/images", 5000);
-        User user = new User("peter", "hadik@gmail.com", "pass", LocalDate.of(2022, 12, 11));
+        User peter = new User("peter", "hadik@gmail.com", "pass", LocalDate.of(2022, 12, 11));
+        User gergo = new User("gergő", "geri@gmail.com", "pass2", LocalDate.of(2022, 11, 10));
 
         productRepository.save(konyv);
         productRepository.save(radio);
-        user.addProduct(konyv);
-        user.addProduct(radio);
-        userRepository.save(user);
+        peter.addProduct(konyv);
+        peter.addProduct(radio);
+        gergo.addProduct(radio);
+        userRepository.save(peter);
+        userRepository.save(gergo);
     }
 
     @Test

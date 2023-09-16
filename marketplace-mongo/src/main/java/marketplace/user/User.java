@@ -6,10 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import marketplace.product.Product;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.FieldType;
-import org.springframework.data.mongodb.core.mapping.MongoId;
+import org.springframework.data.mongodb.core.mapping.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -30,7 +27,7 @@ public class User {
     private LocalDate registrationDate;
 
 
-   @DBRef
+   @DocumentReference(lazy = true)
     private List<Product> products = new ArrayList<>();
 
     public User(String name, String email, String password, LocalDate registrationDate) {

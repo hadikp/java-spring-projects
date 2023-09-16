@@ -16,6 +16,6 @@ public class UserDto {
     private String name;
     private String email;
     private String password;
-    private LocalDate registrationDate;
-    private List<UserDto> products;
+    private List<Product> products;
+
 }

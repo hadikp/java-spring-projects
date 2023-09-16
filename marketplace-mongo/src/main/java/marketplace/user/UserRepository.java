@@ -8,6 +8,4 @@ import java.util.List;
 
 public interface UserRepository extends MongoRepository<User, String> {
 
-    @Query("{'products': ?0}")
-    List<Product> findUserWithProducts(String userId);
 }

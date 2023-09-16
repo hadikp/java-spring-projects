@@ -24,9 +24,4 @@ public class UserService {
         return users.stream().map(u -> modelMapper.map(u, UserDto.class)).collect(Collectors.toList());
     }
 
-    public List<ProductDto> UserWithProducts(String userId) {
-        User findUser = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
-        List<Product> findProducts = userRepository.findUserWithProducts(userId);
-        return findProducts.stream().map(p -> modelMapper.map(p, ProductDto.class)).collect(Collectors.toList());
-    }
 }

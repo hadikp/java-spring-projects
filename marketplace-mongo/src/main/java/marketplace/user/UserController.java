@@ -23,8 +23,5 @@ public class UserController {
         return service.getAllUser();
     }
 
-    @GetMapping("/product/{userId}")
-    public List<ProductDto> listUserProducts(@PathVariable("userId") String userId){
-        return service.UserWithProducts(userId);
-    }
+
 }

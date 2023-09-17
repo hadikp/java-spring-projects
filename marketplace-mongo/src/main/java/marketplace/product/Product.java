@@ -1,13 +1,14 @@
 package marketplace.product;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import marketplace.price.Price;
 import marketplace.user.User;
-import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.ReadOnlyProperty;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import org.springframework.data.mongodb.core.mapping.FieldType;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
@@ -26,16 +27,21 @@ public class Product {
     private String name;
     private String description;
     private String imagePath;
-    private int price;
 
 
     @JsonBackReference
+    @DocumentReference(lazy = true, lookup = "{products : ?#{#self._id} }")
+    @ReadOnlyProperty
     private List<User> users = new ArrayList<>();
 
-    public Product(String name, String description, String imagePath, int price) {
+    private int price;
+
+
+    public Product(String name, String description, String imagePath) {
         this.name = name;
         this.description = description;
         this.imagePath = imagePath;
-        this.price = price;
     }
+
+
 }

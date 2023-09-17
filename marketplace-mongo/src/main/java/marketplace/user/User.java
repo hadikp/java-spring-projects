@@ -1,11 +1,11 @@
 package marketplace.user;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import marketplace.price.Price;
 import marketplace.product.Product;
-import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.ReadOnlyProperty;
 import org.springframework.data.mongodb.core.mapping.*;
 
 import java.time.LocalDate;
@@ -23,6 +23,8 @@ public class User {
 
     private String name;
     private String email;
+
+    private String address;
     private String password;
     private LocalDate registrationDate;
 
@@ -30,9 +32,15 @@ public class User {
    @DocumentReference(lazy = true)
     private List<Product> products = new ArrayList<>();
 
-    public User(String name, String email, String password, LocalDate registrationDate) {
+    @DocumentReference(lazy = true, lookup = "{userList : ?#{#self._id} }")
+    @ReadOnlyProperty
+     private Product product;
+
+
+    public User(String name, String email, String address, String password, LocalDate registrationDate) {
         this.name = name;
         this.email = email;
+        this.address = address;
         this.password = password;
         this.registrationDate = registrationDate;
     }

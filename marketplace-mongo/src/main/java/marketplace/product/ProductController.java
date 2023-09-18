@@ -19,8 +19,8 @@ public class ProductController {
         return service.getAllProduct();
     }
 
-    @PutMapping("/{productId}/price/{price}")
+    /*@PutMapping("/{productId}/price/{price}")
     public ProductDto addProductPrice(@PathVariable("productId") String id, @PathVariable("price") int price){
         return service.addProductPrice(id, price);
-    }
+    }*/
 }

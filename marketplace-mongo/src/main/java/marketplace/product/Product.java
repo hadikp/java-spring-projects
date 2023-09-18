@@ -1,6 +1,7 @@
 package marketplace.product;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.sun.jdi.PrimitiveValue;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,13 +29,13 @@ public class Product {
     private String description;
     private String imagePath;
 
+    private int price;
+
 
     @JsonBackReference
     @DocumentReference(lazy = true, lookup = "{products : ?#{#self._id} }")
     @ReadOnlyProperty
     private List<User> users = new ArrayList<>();
-
-    private int price;
 
 
     public Product(String name, String description, String imagePath) {

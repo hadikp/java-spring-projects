@@ -24,4 +24,11 @@ public class UserService {
         return users.stream().map(u -> modelMapper.map(u, UserDto.class)).collect(Collectors.toList());
     }
 
+    /*public UserProductPriceDto addUsersProductPrice(UserProductPriceDto command) {
+        String userId = command.getUserId();
+        String productId = command.getProductId();
+        User findUser = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+        Product findProduct = productRepository.findById(productId).orElseThrow(() -> new UserNotFoundException(productId));
+        return modelMapper.map(findProduct, UserProductPriceDto.class);
+    }*/
 }

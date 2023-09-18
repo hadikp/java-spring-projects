@@ -10,7 +10,9 @@ import org.springframework.data.mongodb.core.mapping.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Data
 @NoArgsConstructor
@@ -28,13 +30,8 @@ public class User {
     private String password;
     private LocalDate registrationDate;
 
-
    @DocumentReference(lazy = true)
-    private List<Product> products = new ArrayList<>();
-
-    @DocumentReference(lazy = true, lookup = "{userList : ?#{#self._id} }")
-    @ReadOnlyProperty
-     private Product product;
+    private Map<Integer, Product> products = new HashMap<>();
 
 
     public User(String name, String email, String address, String password, LocalDate registrationDate) {
@@ -46,7 +43,8 @@ public class User {
     }
 
     public void addProduct(Product product){
-        products.add(product);
+
+        products.put(product.getPrice(), product);
         product.getUsers().add(this);
     }
 }

@@ -3,6 +3,9 @@ package marketplace.product;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import marketplace.price.Details;
+
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -12,5 +15,5 @@ public class ProductDto {
     private String name;
     private String description;
     private String imagePath;
-    private int price;
+    //private List<Details> detailsList;
 }

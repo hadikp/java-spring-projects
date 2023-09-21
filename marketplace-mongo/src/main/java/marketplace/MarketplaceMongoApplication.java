@@ -10,11 +10,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @SpringBootApplication(exclude ={DataSourceAutoConfiguration.class})
-@EnableMongoRepositories
-public class MarketplaceMongoApplication {
 
-	@Autowired
-	BookRepository repository;
+public class MarketplaceMongoApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MarketplaceMongoApplication.class, args);

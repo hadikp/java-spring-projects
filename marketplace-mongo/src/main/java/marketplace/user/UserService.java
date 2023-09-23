@@ -2,7 +2,7 @@ package marketplace.user;
 
 import lombok.AllArgsConstructor;
 import marketplace.product.Product;
-import marketplace.product.ProductDto;
+import marketplace.product.ProductNotFoundException;
 import marketplace.product.ProductRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -24,11 +24,11 @@ public class UserService {
         return users.stream().map(u -> modelMapper.map(u, UserDto.class)).collect(Collectors.toList());
     }
 
-    /*public UserProductPriceDto addUsersProductPrice(UserProductPriceDto command) {
-        String userId = command.getUserId();
-        String productId = command.getProductId();
+   /* public UserProductDetailDto getUsersProductDetailsP(UserProductDetailsCommand command) {
+        String userId = command.getDetails().getUserId();
         User findUser = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
-        Product findProduct = productRepository.findById(productId).orElseThrow(() -> new UserNotFoundException(productId));
-        return modelMapper.map(findProduct, UserProductPriceDto.class);
+        String productId = command.getProductId();
+        Product findProduct = productRepository.findById(productId).orElseThrow(() -> new ProductNotFoundException(productId));
+        return modelMapper.map(findUser, UserProductDetailDto.class);
     }*/
 }

@@ -3,14 +3,13 @@ package marketplace.user;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import marketplace.product.Product;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserProductPriceDto {
+public class UserProductDetailDto {
 
-    private String userId;
-    private String productId;
-    private int price;
-
+    private User user;
+    private Product product;
 }

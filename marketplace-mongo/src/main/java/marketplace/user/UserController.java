@@ -1,6 +1,5 @@
 package marketplace.user;
 
-import marketplace.product.ProductDto;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,9 +19,9 @@ public class UserController {
         return service.getAllUser();
     }
 
-   /* @PutMapping("/product/price")
-    public UserProductPriceDto addUsersProductPrice(@RequestBody UserProductPriceDto command){
-        return service.addUsersProductPrice(command);
+   /*@GetMapping("/product-detail")
+    public UserProductDetailDto getUsersProductDetailsP(@RequestBody UserProductDetailsCommand command){
+        return service.getUsersProductDetailsP(command);
     }*/
 
 

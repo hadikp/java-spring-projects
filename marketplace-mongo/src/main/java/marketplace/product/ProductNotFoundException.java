@@ -5,8 +5,8 @@ import org.zalando.problem.Status;
 
 import java.net.URI;
 
-public class PriceNotFoundException extends AbstractThrowableProblem {
-    public PriceNotFoundException(String id) {
+public class ProductNotFoundException extends AbstractThrowableProblem {
+    public ProductNotFoundException(String id) {
         super(
                 URI.create("product/not-found"),
                 "Not-found",

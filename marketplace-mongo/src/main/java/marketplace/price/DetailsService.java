@@ -1,6 +1,7 @@
 package marketplace.price;
 
 import lombok.AllArgsConstructor;
+import marketplace.product.Product;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -24,10 +25,8 @@ public class DetailsService {
         List<Details> detailsList = detailsRepository.findAll();
         List<Details> results = new ArrayList<>();
         for(Details d: detailsList){
-            if(d.getUserId() != null){
-                if(d.getUserId().equals(userId)){
+            if(d.getUserId() != null && d.getUserId().equals(userId)){
                     results.add(d);
-                }
             }
         }
         return results.stream().map(r -> modelMapper.map(r, DetailsDto.class)).collect(Collectors.toList());

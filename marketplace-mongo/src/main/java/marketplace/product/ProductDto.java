@@ -15,5 +15,4 @@ public class ProductDto {
     private String name;
     private String description;
     private String imagePath;
-    //private List<Details> detailsList;
 }

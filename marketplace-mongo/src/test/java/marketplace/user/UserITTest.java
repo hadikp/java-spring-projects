@@ -35,6 +35,8 @@ class UserITTest {
         Details konyvDetails = new Details(3000, 1122);
         Details konyvWilburDetails = new Details(4000, 1133);
         Details konyvAsimovDetails = new Details(4500, 1144);
+        Details konyvAsimovDetails2 = new Details(5500, 1155);
+        Details konyvAsimovDetails3 = new Details(6500, 1166);
         Details radioDetails = new Details(5000, 2211);
         Details tvDetails = new Details(15000, 3311);
         Details tv2Details = new Details(17000, 3322);
@@ -56,6 +58,8 @@ class UserITTest {
         konyvDetails.setUserId(peter.getId());
         konyvWilburDetails.setUserId(peter.getId());
         konyvAsimovDetails.setUserId(peter.getId());
+        konyvAsimovDetails2.setUserId(peter.getId());
+        konyvAsimovDetails3.setUserId(gergo.getId());
         radioDetails.setUserId(gergo.getId());
         tvDetails.setUserId(jani.getId());
         tv2Details.setUserId(jani.getId());
@@ -63,6 +67,8 @@ class UserITTest {
         detailsRepository.save(konyvDetails);
         detailsRepository.save(konyvWilburDetails);
         detailsRepository.save(konyvAsimovDetails);
+        detailsRepository.save(konyvAsimovDetails2);
+        detailsRepository.save(konyvAsimovDetails3);
         detailsRepository.save(radioDetails);
         detailsRepository.save(tvDetails);
         detailsRepository.save(tv2Details);
@@ -70,6 +76,8 @@ class UserITTest {
         konyv.addDetails(konyvDetails);
         konyvWilbur.addDetails(konyvWilburDetails);
         konyvAsimov.addDetails(konyvAsimovDetails);
+        konyvAsimov.addDetails(konyvAsimovDetails2);
+        konyvAsimov.addDetails(konyvAsimovDetails3);
         radio.addDetails(radioDetails);
         tv.addDetails(tvDetails);
         tv2.addDetails(tv2Details);
@@ -78,12 +86,15 @@ class UserITTest {
         peter.addProduct(konyvWilbur);
         peter.addProduct(konyvAsimov);
         gergo.addProduct(radio);
+        gergo.addProduct(konyvAsimov);
         jani.addProduct(tv);
         jani.addProduct(tv2);
 
         detailsRepository.save(konyvDetails);
-        detailsRepository.save(konyvAsimovDetails);
         detailsRepository.save(konyvWilburDetails);
+        detailsRepository.save(konyvAsimovDetails);
+        detailsRepository.save(konyvAsimovDetails2);
+        detailsRepository.save(konyvAsimovDetails3);
         detailsRepository.save(radioDetails);
         detailsRepository.save(tvDetails);
         detailsRepository.save(tv2Details);

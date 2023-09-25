@@ -25,6 +25,7 @@ public class Product {
     private String description;
     private String imagePath;
 
+
     @JsonBackReference
     @DocumentReference(lazy = true, lookup = "{'products':?#{#self._id} }")
     @ReadOnlyProperty
@@ -38,6 +39,7 @@ public class Product {
         this.description = description;
         this.imagePath = imagePath;
     }
+
 
     public void addDetails(Details details){
         detailsList.add(details);

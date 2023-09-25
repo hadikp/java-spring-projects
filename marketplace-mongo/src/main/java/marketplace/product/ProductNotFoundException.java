@@ -11,7 +11,7 @@ public class ProductNotFoundException extends AbstractThrowableProblem {
                 URI.create("product/not-found"),
                 "Not-found",
                 Status.NOT_FOUND,
-                String.format("Product not found %d", id)
+                String.format("Product not found %s", id)
         );
     }
 }

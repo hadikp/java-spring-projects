@@ -19,10 +19,9 @@ public class UserController {
         return service.getAllUser();
     }
 
-   /*@GetMapping("/product-detail")
-    public UserProductDetailDto getUsersProductDetailsP(@RequestBody UserProductDetailsCommand command){
-        return service.getUsersProductDetailsP(command);
-    }*/
-
+    @PostMapping("/create")
+    public UserDto createUser(@RequestBody UserDto command){
+        return service.createUser(command);
+    }
 
 }

@@ -7,6 +7,7 @@ import marketplace.product.Product;
 import org.springframework.data.mongodb.core.mapping.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,13 +23,13 @@ public class User {
     private String email;
     private String address;
     private String password;
-    private LocalDate registrationDate;
+    private LocalDateTime registrationDate;
 
    @DocumentReference(lazy = true)
     private List<Product> products = new ArrayList<>();
 
 
-    public User(String name, String email, String address, String password, LocalDate registrationDate) {
+    public User(String name, String email, String address, String password, LocalDateTime registrationDate) {
         this.name = name;
         this.email = email;
         this.address = address;

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class UserITTest {
@@ -40,9 +41,9 @@ class UserITTest {
         Details radioDetails = new Details(5000, 2211);
         Details tvDetails = new Details(15000, 3311);
         Details tv2Details = new Details(17000, 3322);
-        User peter = new User("Péter", "hadik@gmail.com", "Székesfehérvár, Tóváros 11", "pass", LocalDate.of(2022, 12, 11));
-        User gergo = new User("Gergő", "geri@gmail.com", "Bárna, Csókás út 5", "pass2", LocalDate.of(2022, 11, 10));
-        User jani = new User("János", "jani@gmail.com", "Veszprém, Fenyő út 22", "pass22", LocalDate.of(2023, 10, 22));
+        User peter = new User("Péter", "hadik@gmail.com", "Székesfehérvár, Tóváros 11", "pass", LocalDateTime.of(2022, 12, 11, 11,22));
+        User gergo = new User("Gergő", "geri@gmail.com", "Bárna, Csókás út 5", "pass2", LocalDateTime.of(2022, 11, 10, 10,11));
+        User jani = new User("János", "jani@gmail.com", "Veszprém, Fenyő út 22", "pass22", LocalDateTime.of(2023, 10, 22, 12, 23));
 
         productRepository.save(konyv);
         productRepository.save(konyvWilbur);

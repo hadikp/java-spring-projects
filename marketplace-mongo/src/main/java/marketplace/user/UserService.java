@@ -7,6 +7,7 @@ import marketplace.product.ProductRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,11 +25,20 @@ public class UserService {
         return users.stream().map(u -> modelMapper.map(u, UserDto.class)).collect(Collectors.toList());
     }
 
-   /* public UserProductDetailDto getUsersProductDetailsP(UserProductDetailsCommand command) {
-        String userId = command.getDetails().getUserId();
-        User findUser = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
-        String productId = command.getProductId();
-        Product findProduct = productRepository.findById(productId).orElseThrow(() -> new ProductNotFoundException(productId));
-        return modelMapper.map(findUser, UserProductDetailDto.class);
-    }*/
+    public UserDto createUser(UserDto command) {
+        User userExist = userRepository.existByNameAndEmail(command.getName(), command.getEmail());
+        System.out.println(userExist);
+
+        UserDto newUserDto = null;
+        if(userExist==null){
+            User newUser = new User(command.getName(), command.getEmail(), command.getAddress(), command.getPassword(), LocalDateTime.now());
+            userRepository.save(newUser);
+            newUserDto = modelMapper.map(newUser, UserDto.class);
+        } else {
+            throw new UserAlreadyExistException(command.getName());
+        }
+        return newUserDto;
+    }
+
+
 }

@@ -30,7 +30,7 @@ public class ProductService {
             productRepository.save(newProduct);
             newProductDto = modelMapper.map(newProduct, ProductDto.class);
         }else {
-            new ProductAlreadyExistException(nameExist.getName());
+            throw new ProductAlreadyExistException(nameExist.getName());
         }
         return newProductDto;
     }

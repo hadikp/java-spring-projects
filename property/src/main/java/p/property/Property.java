@@ -1,5 +1,6 @@
 package p.property;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,6 +28,7 @@ public class Property {
 
     private List<String> images = new ArrayList<>(); //több kép is
 
+    @JsonBackReference
     private User user;
 
     public Property(String description, String category, int price, String city, String county, List<String> images) {

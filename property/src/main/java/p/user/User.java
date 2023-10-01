@@ -1,4 +1,4 @@
-package properties.user;
+package p.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import org.springframework.data.mongodb.core.mapping.FieldType;
 import org.springframework.data.mongodb.core.mapping.MongoId;
-import properties.property.Property;
+import p.property.Property;
 
 import java.util.ArrayList;
 import java.util.List;

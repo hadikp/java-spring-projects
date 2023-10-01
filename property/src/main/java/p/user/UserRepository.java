@@ -1,4 +1,4 @@
-package properties.user;
+package p.user;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 

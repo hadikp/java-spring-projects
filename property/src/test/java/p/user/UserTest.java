@@ -1,17 +1,18 @@
-package properties.user;
+package p.user;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import properties.property.Property;
-import properties.property.PropertyRepository;
+import p.property.Property;
+import p.property.PropertyRepository;
 
-import java.util.Arrays;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class UserITTest {
+class UserTest {
 
     @Autowired
     UserRepository userRepository;
@@ -21,7 +22,6 @@ class UserITTest {
 
     @BeforeEach
     void init(){
-
         Property lakas1 = new Property("Lakás1 leírás", "Lakás", 1_000_000, "Veszprém", "Veszprém",
                 List.of("src/images1", "src/images2", "src/images3"));
         Property lakas2 = new Property("Lakás2 leírás", "Lakás", 2_000_000, "Fejér", "Székesfehérvár",
@@ -38,8 +38,9 @@ class UserITTest {
     }
 
     @Test
-    void startMongoDB(){
+    void createMongoDb(){
         System.out.println();
     }
+
 
 }

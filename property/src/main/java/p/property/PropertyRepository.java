@@ -1,4 +1,4 @@
-package properties.property;
+package p.property;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 

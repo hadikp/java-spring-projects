@@ -27,6 +27,7 @@ class UserTest {
         Property lakas2 = new Property("Lakás2 leírás", "Lakás", 2_000_000, "Fejér", "Székesfehérvár",
                 List.of("src/images1", "src/images2", "src/images3"));
         User eniko = new User("Enikő", "ve@gmail.com", "20-528-2234", "Székesfehérvár", "Tóvárosi Ln 42.", 1);
+        User peter = new User("Péter", "pet@gmail.com", "20-522-1122", "Veszprém", "Vári út 11.", 2);
 
         propertyRepository.save(lakas1);
         propertyRepository.save(lakas2);
@@ -35,6 +36,7 @@ class UserTest {
         eniko.addProperty(lakas2);
 
         userRepository.save(eniko);
+        userRepository.save(peter);
     }
 
     @Test

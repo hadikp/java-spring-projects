@@ -41,4 +41,9 @@ public class PropertyService {
         Property findproperty = repository.findById(id).orElseThrow(() -> new PropertyNotFoundexception(id));
         repository.delete(findproperty);
     }
+
+    public List<PropertyDto> findPropertyByCategory(String category) {
+        List<Property> properties = repository.findByCategory(category);
+        return properties.stream().map(p -> modelMapper.map(p, PropertyDto.class)).collect(Collectors.toList());
+    }
 }

@@ -24,6 +24,11 @@ public class PropertyController {
         return service.findPropertyById(id);
     }
 
+    @GetMapping("/category/{category}")
+    public List<PropertyDto> findPropertyByCategory(@PathVariable("category") String category){
+        return service.findPropertyByCategory(category);
+    }
+
     @PostMapping("/create")
     public PropertyDto createProperty(@RequestBody PropertyDto command){
         return service.createProperty(command);

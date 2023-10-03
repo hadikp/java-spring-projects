@@ -27,14 +27,19 @@ public class PropertyService {
     }
 
     public PropertyDto createProperty(PropertyDto command) {
-        List<String> imagesList = new ArrayList<>();
-        for (String i : command.getImages()){
-            imagesList.add(i);
+        Property propertyExist = repository.existByCityAndStreetAndHouseNumber(command.getCity(), command.getStreet(), command.getHouseNumber());
+
+        PropertyDto newPropertyDto = null;
+        if(propertyExist == null){
+            Property createProperty = new Property(command.getDescription(), command.getCategory(), command.getPrice(),
+                    command.getCity(), command.getCounty(), command.getStreet(), command.getHouseNumber(), command.getImages());
+            repository.save(createProperty);
+            newPropertyDto = modelMapper.map(createProperty, PropertyDto.class);
+        } else {
+            throw new PropertyAlreadyExistException(command.getCity(), command.getStreet());
         }
-        Property createProperty = new Property(command.getDescription(), command.getCategory(), command.getPrice(),
-                command.getCity(), command.getCounty(), imagesList);
-        repository.save(createProperty);
-        return modelMapper.map(createProperty, PropertyDto.class);
+
+        return newPropertyDto;
     }
 
     public void deleteProperty(String id) {

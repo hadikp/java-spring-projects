@@ -17,5 +17,7 @@ public class PropertyDto {
     private int price;
     private String city;
     private String county;
+    private String street;
+    private int houseNumber;
     private List<String> images;
 }

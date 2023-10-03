@@ -25,18 +25,22 @@ public class Property {
     private int price;
     private String city;
     private String county;
+    private String street;
+    private int houseNumber;
 
     private List<String> images = new ArrayList<>(); //több kép is
 
     @JsonBackReference
     private User user;
 
-    public Property(String description, String category, int price, String city, String county, List<String> images) {
+    public Property(String description, String category, int price, String city, String county, String street, int houseNumber, List<String> images) {
         this.description = description;
         this.category = category;
         this.price = price;
         this.city = city;
         this.county = county;
+        this.street = street;
+        this.houseNumber = houseNumber;
         this.images = images;
     }
 }

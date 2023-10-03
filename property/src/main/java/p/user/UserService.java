@@ -26,9 +26,18 @@ public class UserService {
     }
 
     public UserDto createUser(UserDto command) {
-        User user = new User(command.getName(), command.getEmail(), command.getTelephone(), command.getCity(), command.getStreet(), command.getRole());
-        repository.save(user);
-        return modelMapper.map(user, UserDto.class);
+        User existUser = repository.existByNameAndEmail(command.getName(), command.getEmail());
+
+        UserDto newUserDto = null;
+        if(existUser == null){
+            User user = new User(command.getName(), command.getEmail(), command.getTelephone(), command.getCity(), command.getStreet(), command.getRole());
+            repository.save(user);
+            newUserDto = modelMapper.map(user, UserDto.class);
+        } else {
+            throw new UserAlreadyExistException(command.getName());
+        }
+
+        return newUserDto;
     }
 
     public void deleteUser(String id) {

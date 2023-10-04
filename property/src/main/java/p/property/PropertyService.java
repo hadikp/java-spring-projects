@@ -31,14 +31,21 @@ public class PropertyService {
 
         PropertyDto newPropertyDto = null;
         if(propertyExist == null){
-            Property createProperty = new Property(command.getDescription(), command.getCategory(), command.getPrice(),
-                    command.getCity(), command.getCounty(), command.getStreet(), command.getHouseNumber(), command.getImages());
-            repository.save(createProperty);
-            newPropertyDto = modelMapper.map(createProperty, PropertyDto.class);
+            newPropertyDto = getPropertyDto(command);
+        } else if (propertyExist.getPrice() != command.getPrice()) {
+                newPropertyDto = getPropertyDto(command);
         } else {
             throw new PropertyAlreadyExistException(command.getCity(), command.getStreet());
         }
+        return newPropertyDto;
+    }
 
+    private PropertyDto getPropertyDto(PropertyDto command) {
+        PropertyDto newPropertyDto;
+        Property createProperty = new Property(command.getDescription(), command.getCategory(), command.getPrice(),
+                command.getCity(), command.getCounty(), command.getStreet(), command.getHouseNumber(), command.getImages());
+        repository.save(createProperty);
+        newPropertyDto = modelMapper.map(createProperty, PropertyDto.class);
         return newPropertyDto;
     }
 

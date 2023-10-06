@@ -13,7 +13,7 @@ public class PropertyDto {
 
     private String id;
     private String description;
-    private String category;
+    private Category category;
     private int price;
     private String city;
     private String county;

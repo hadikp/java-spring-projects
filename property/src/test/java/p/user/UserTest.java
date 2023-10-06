@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import p.property.Category;
 import p.property.Property;
 import p.property.PropertyRepository;
 
@@ -20,10 +21,10 @@ class UserTest {
 
     @BeforeEach
     void init(){
-        Property lakas1 = new Property("Lakás1 leírás", "lakas", 1_000_000, "Veszprém", "Veszprém", "Bocskai ut", 1,
+        Property lakas1 = new Property("Lakás1 leírás", Category.LAKAS, 1_000_000, "Veszprém", "Veszprém", "Bocskai ut", 1,
                 List.of("src/images1", "src/images2", "src/images3"));
-        Property lakas2 = new Property("Lakás2 leírás", "lakas", 2_000_000, "Fejér", "Székesfehérvár", "Budai út", 128, List.of("src/images1", "src/images2", "src/images3"));
-        Property telek = new Property("Telek leírás", "telek", 2_000_000, "Fejér", "Székesfehérvár", "Palotai út", 40, List.of("src/images1", "src/images2", "src/images3"));
+        Property lakas2 = new Property("Lakás2 leírás", Category.LAKAS, 2_000_000, "Fejér", "Székesfehérvár", "Budai út", 128, List.of("src/images1", "src/images2", "src/images3"));
+        Property telek = new Property("Telek leírás", Category.TELEK, 2_000_000, "Fejér", "Székesfehérvár", "Palotai út", 40, List.of("src/images1", "src/images2", "src/images3"));
         User eniko = new User("Enikő", "ve@gmail.com", "20-528-2234", "Székesfehérvár", "Tóvárosi Ln 42.", 1);
         User peter = new User("Péter", "pet@gmail.com", "20-522-1122", "Veszprém", "Vári út 11.", 2);
 

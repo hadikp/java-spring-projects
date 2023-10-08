@@ -12,7 +12,7 @@ import java.util.List;
 public class PropertyCommand {
 
     private String description;
-    private String category;
+    private Category category;
     private int price;
     private String city;
     private String county;

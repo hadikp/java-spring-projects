@@ -26,7 +26,7 @@ public class PropertyService {
         return modelMapper.map(findProperty, PropertyDto.class);
     }
 
-    public PropertyDto createProperty(PropertyDto command) {
+    public PropertyDto createProperty(PropertyCommand command) {
         Property propertyExist = repository.existByCityAndStreetAndHouseNumber(command.getCity(), command.getStreet(), command.getHouseNumber());
 
         PropertyDto newPropertyDto = null;
@@ -40,7 +40,7 @@ public class PropertyService {
         return newPropertyDto;
     }
 
-    private PropertyDto getPropertyDto(PropertyDto command) {
+    private PropertyDto getPropertyDto(PropertyCommand command) {
         PropertyDto newPropertyDto;
         Property createProperty = new Property(command.getDescription(), command.getCategory(), command.getPrice(),
                 command.getCity(), command.getCounty(), command.getStreet(), command.getHouseNumber(), command.getImages());

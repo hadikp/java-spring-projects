@@ -30,7 +30,7 @@ public class PropertyController {
     }
 
     @PostMapping("/create")
-    public PropertyDto createProperty(@RequestBody PropertyDto command){
+    public PropertyDto createProperty(@RequestBody PropertyCommand command){
         return service.createProperty(command);
     }
 

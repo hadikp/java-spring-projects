@@ -1,13 +1,39 @@
 package pf;
 
+import com.google.auth.oauth2.GoogleCredentials;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.context.annotation.Bean;
 
-@SpringBootApplication
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Objects;
+
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 public class PropertyFirebaseApplication {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
+		ClassLoader classLoader = PropertyFirebaseApplication.class.getClassLoader();
+		File file = new File(Objects.requireNonNull(classLoader.getResource("property-firebase-key.json")).getFile());
+		FileInputStream serviceAccount = new FileInputStream(file.getAbsolutePath());
+		FirebaseOptions options = new FirebaseOptions.Builder()
+						.setCredentials(GoogleCredentials.fromStream(serviceAccount))
+						.setDatabaseUrl("https://marketplace-8a870-default-rtdb.europe-west1.firebasedatabase.app")
+						.build();
+
+		FirebaseApp.initializeApp(options);
+
 		SpringApplication.run(PropertyFirebaseApplication.class, args);
+	}
+
+	@Bean
+	public ModelMapper createModelMapper(){
+		return new ModelMapper();
 	}
 
 }

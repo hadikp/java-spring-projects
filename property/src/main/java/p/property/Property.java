@@ -32,6 +32,8 @@ public class Property {
     private String street;
     private int houseNumber;
 
+    private Boolean active;
+
     private List<String> images = new ArrayList<>(); //több kép is
 
     @JsonBackReference

@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.lang.annotation.Documented;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

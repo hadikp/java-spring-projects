@@ -11,6 +11,7 @@ import org.springframework.data.mongodb.core.mapping.FieldType;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 import p.user.User;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,12 +35,16 @@ public class Property {
 
     private Boolean active;
 
+    private LocalDate startDate;
+
+    private LocalDate endDate;
+
     private List<String> images = new ArrayList<>(); //több kép is
 
     @JsonBackReference
     private User user;
 
-    public Property(String description, Category category, int price, String city, String county, String street, int houseNumber, List<String> images) {
+    public Property(String description, Category category, int price, String city, String county, String street, int houseNumber, Boolean active, LocalDate startDate, LocalDate endDate, List<String> images) {
         this.description = description;
         this.category = category;
         this.price = price;
@@ -47,6 +52,9 @@ public class Property {
         this.county = county;
         this.street = street;
         this.houseNumber = houseNumber;
+        this.active = false;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.images = images;
     }
 }

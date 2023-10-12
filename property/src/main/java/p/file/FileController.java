@@ -1,9 +1,11 @@
 package p.file;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
@@ -12,15 +14,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@CrossOrigin("http://localhost:8081")
 @RequestMapping("api/file")
+@CrossOrigin("http://localhost:8081")
 public class FileController {
 
+    @Autowired
     private FileStorageService storageService;
 
-    public FileController(FileStorageService storageService) {
-        this.storageService = storageService;
-    }
+
 
     @PostMapping("/upload")
     public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file")MultipartFile file){

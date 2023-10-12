@@ -50,8 +50,8 @@ public class UserService {
         return "Succesfully deleted: " + id;
     }
 
-    public UserDto updateUser(String id, UserCommand command) {
+    /*public UserDto updateUser(String id, UserCommand command) {
         Firestore dbFirestore = FirestoreClient.getFirestore();
         ApiFuture<WriteResult> collectionApiFuture = dbFirestore.collection(COLLECTION_NAME).document(id).create(command);
-    }
+    }*/
 }

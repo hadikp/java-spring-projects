@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -42,8 +43,10 @@ public class PropertyService {
 
     private PropertyDto getPropertyDto(PropertyCommand command) {
         PropertyDto newPropertyDto;
+        LocalDate startDate = LocalDate.now();
         Property createProperty = new Property(command.getDescription(), command.getCategory(), command.getPrice(),
-                command.getCity(), command.getCounty(), command.getStreet(), command.getHouseNumber(), command.getImages());
+                command.getCity(), command.getCounty(), command.getStreet(), command.getHouseNumber(), command.getActive(),
+                startDate, startDate.plusDays(90), command.getImages());
         repository.save(createProperty);
         newPropertyDto = modelMapper.map(createProperty, PropertyDto.class);
         return newPropertyDto;

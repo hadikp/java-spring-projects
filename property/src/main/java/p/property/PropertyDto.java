@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -19,5 +20,8 @@ public class PropertyDto {
     private String county;
     private String street;
     private int houseNumber;
+    private Boolean active;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private List<String> images;
 }

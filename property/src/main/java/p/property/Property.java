@@ -57,4 +57,11 @@ public class Property {
         this.endDate = endDate;
         this.images = images;
     }
+
+    public void after3Month(){
+        LocalDate nowMinus90Days = LocalDate.now().plusDays(90);
+        if(this.startDate == nowMinus90Days){
+
+        }
+    }
 }

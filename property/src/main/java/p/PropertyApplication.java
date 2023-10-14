@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import p.file.FileStorageService;
+import p.property.PropertyService;
 
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 public class PropertyApplication implements CommandLineRunner {

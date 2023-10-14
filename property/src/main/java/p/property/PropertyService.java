@@ -61,4 +61,17 @@ public class PropertyService {
         List<Property> properties = repository.findByCategory(category);
         return properties.stream().map(p -> modelMapper.map(p, PropertyDto.class)).collect(Collectors.toList());
     }
+
+    public void expiredProperty(){
+        List<Property> properties = repository.findAll();
+        Property findProperty = null;
+        for (Property p: properties){
+            LocalDate currentDate = LocalDate.now();
+            findProperty = repository.nowBeforeEndDate(currentDate);
+
+        }
+        if (findProperty != null){
+            System.out.println("Property expired: " + findProperty.getDescription());
+        }
+    }
 }

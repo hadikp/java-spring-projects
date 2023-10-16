@@ -15,5 +15,5 @@ public interface PropertyRepository extends MongoRepository<Property, String> {
     Property existByCityAndStreetAndHouseNumber(String city, String street, int houseNumber);
 
     @Query("{endDate : {$lt:?0}}")
-    Property nowBeforeEndDate(LocalDate currentDate);
+    List<Property> nowBeforeEndDate(LocalDate currentDate);
 }

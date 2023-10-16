@@ -29,6 +29,11 @@ public class PropertyController {
         return service.findPropertyByCategory(category);
     }
 
+    @PutMapping("/{id}")
+    public PropertyDto updateProperty(@PathVariable("id") String id, @RequestBody PropertyCommand command){
+        return service.updateProperty(id, command);
+    }
+
     @PostMapping("/create")
     public PropertyDto createProperty(@RequestBody PropertyCommand command){
         return service.createProperty(command);

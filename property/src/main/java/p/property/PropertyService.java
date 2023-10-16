@@ -1,5 +1,6 @@
 package p.property;
 
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -64,14 +65,33 @@ public class PropertyService {
 
     public void expiredProperty(){
         List<Property> properties = repository.findAll();
-        Property findProperty = null;
+        List<Property> findPropertyList = new ArrayList<>();
         for (Property p: properties){
             LocalDate currentDate = LocalDate.now();
-            findProperty = repository.nowBeforeEndDate(currentDate);
+            findPropertyList = repository.nowBeforeEndDate(currentDate);
+        }
+        if (findPropertyList != null){
+            for (Property p: findPropertyList){
+                System.out.println("Property expired: " + p.getDescription());
+            }
+        }
+    }
 
-        }
-        if (findProperty != null){
-            System.out.println("Property expired: " + findProperty.getDescription());
-        }
+    @Transactional
+    public PropertyDto updateProperty(String id, PropertyCommand command) {
+        Property findproperty = repository.findById(id).orElseThrow(() -> new PropertyNotFoundexception(id));
+        findproperty.setDescription(command.getDescription());
+        findproperty.setCategory(command.getCategory());
+        findproperty.setPrice(command.getPrice());
+        findproperty.setCity(command.getCity());
+        findproperty.setCounty(command.getCounty());
+        findproperty.setStreet(command.getStreet());
+        findproperty.setHouseNumber(command.getHouseNumber());
+        findproperty.setActive(command.getActive());
+        findproperty.setStartDate(command.getStartDate());
+        findproperty.setEndDate(command.getEndDate());
+        findproperty.setImages(command.getImages());
+        repository.save(findproperty);
+        return modelMapper.map(findproperty, PropertyDto.class);
     }
 }

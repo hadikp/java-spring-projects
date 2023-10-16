@@ -51,4 +51,9 @@ public class FileController {
         Resource file = storageService.load(filename);
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment=\"" + file.getFilename() + "\"").body(file);
     }
+
+    @DeleteMapping
+    public void deleteAllFiles(){
+        storageService.deleteAll();
+    }
 }

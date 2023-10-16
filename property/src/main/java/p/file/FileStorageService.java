@@ -62,4 +62,8 @@ public class FileStorageService {
             throw new RuntimeException("Could not load the files!");
         }
     }
+
+    public void deleteAll(){
+        FileSystemUtils.deleteRecursively(root.toFile());
+    }
 }

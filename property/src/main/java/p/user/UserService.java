@@ -1,5 +1,6 @@
 package p.user;
 
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -43,5 +44,19 @@ public class UserService {
     public void deleteUser(String id) {
         User findUser = repository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
         repository.delete(findUser);
+    }
+
+    @Transactional
+    public UserDto updateUser(String id, UserCommand command) {
+        User findUser = repository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
+        findUser.setName(command.getName());
+        findUser.setEmail(command.getEmail());
+        findUser.setTelephone(command.getTelephone());
+        findUser.setCity(command.getCity());
+        findUser.setStreet(command.getStreet());
+        findUser.setRole(command.getRole());
+        findUser.setProperties(command.getProperties());
+        repository.save(findUser);
+        return modelMapper.map(findUser, UserDto.class);
     }
 }

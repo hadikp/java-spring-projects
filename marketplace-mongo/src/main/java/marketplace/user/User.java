@@ -4,12 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import marketplace.product.Product;
+import marketplace.role.Role;
 import org.springframework.data.mongodb.core.mapping.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -28,6 +30,8 @@ public class User {
    @DocumentReference(lazy = true)
     private List<Product> products = new ArrayList<>();
 
+   private Set<Role> roles = new HashSet<>();
+
 
     public User(String name, String email, String address, String password, LocalDateTime registrationDate) {
         this.name = name;
@@ -41,4 +45,9 @@ public class User {
         products.add(product);
         product.getUsers().add(this);
     }
+
+    /*public void addRole(Role role){
+        roles.add(role);
+        role.
+    }*/
 }

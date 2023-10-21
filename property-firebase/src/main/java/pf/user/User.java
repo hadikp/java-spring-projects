@@ -14,7 +14,7 @@ import java.lang.annotation.Documented;
 public class User {
 
     @DocumentId
-    private String id;
+    private String uid;
     private String name;
     private String email;
     private String telephone;

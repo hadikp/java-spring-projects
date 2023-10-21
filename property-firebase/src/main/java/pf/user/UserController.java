@@ -25,10 +25,10 @@ public class UserController {
         return service.createUser(id,command);
     }
 
-    @PutMapping("id")
+    /*@PutMapping("id")
     public UserDto updateUser(@PathVariable("id") String id, @RequestBody UserCommand command){
         return service.updateUser(id, command);
-    }
+    }*/
 
     @DeleteMapping("/{id}")
     public String deleteUser(@PathVariable("id") String id){

@@ -9,7 +9,8 @@ class UserPasswordTest {
 
     @Test
     void testEncode(){
-        System.out.println(new BCryptPasswordEncoder().encode("pass"));
+        System.out.println(new BCryptPasswordEncoder().encode("pass123")); //ROLE_ADMIN, peter
+        System.out.println(new BCryptPasswordEncoder().encode("pass456")); //ROLE_ADMIN, geri
     }
 
 }

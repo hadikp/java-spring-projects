@@ -14,12 +14,19 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @EnableWebSecurity
 public class SecurityConfig {
 
+    private final UserService userService;
+
+    public SecurityConfig(UserService userService) {
+        this.userService = userService;
+    }
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
          http.authorizeHttpRequests(auth ->auth.requestMatchers("/login").permitAll()
                                                 .requestMatchers("/")
                                                 .hasAnyRole("USER", "ADMIN")
                                                 .anyRequest().authenticated())
+               //.UserDetailsService(userService)
               .formLogin(login -> login.loginPage("/login").permitAll())
               .logout(logout -> logout.logoutUrl("/logout").permitAll());
          return http.build();

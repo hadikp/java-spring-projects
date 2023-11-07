@@ -14,15 +14,13 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-@Table(name = "users")
+@Table(name = "user")
 @Entity
 public class User implements UserDetails, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private String city;
 
     @Column(name = "user_name")
     private String username;
@@ -30,8 +28,6 @@ public class User implements UserDetails, Serializable {
     private String password;
     private String role;
 
-    @Column(name = "registration_date")
-    private LocalDateTime registrationDate;
 
     public User(String username, String email, String password, String role) {
         this.username = username;

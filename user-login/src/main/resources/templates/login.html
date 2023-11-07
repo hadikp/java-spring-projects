@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:xmln="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmln:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+</head>
+<body>
+    <div th:if="${param.error}">
+        <h2>Sikertelen bejelentkezés</h2>
+    </div>
+    <div th:if="${param.logout}">
+        <h2>Sikeres kijelentkezés</h2>
+    </div>
+    <form th:action="@{login}" method="post">
+        <input type="text" name="username">
+        <input type="password" name="password">
+        <input type="submit" value="Bejelentkezés">
+    </form>
+
+    <div sec:authorize="isAuthenticated()"></div>
+    <div sec:authorize="hasRole('ROLE_ADMIN')"></div>
+
+</body>
+</html>

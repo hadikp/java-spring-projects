@@ -4,9 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
@@ -33,5 +31,10 @@ public class UserController {
     public String addUser(@ModelAttribute User user){
         userService.addUser(user);
         return "redirect:/";
+    }
+
+    @DeleteMapping("/del/{id}")
+    public void deleteUser(@PathVariable("id") Long id){
+        userService.deleteUser(id);
     }
 }

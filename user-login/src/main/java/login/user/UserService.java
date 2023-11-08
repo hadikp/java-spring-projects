@@ -39,7 +39,7 @@ public class UserService implements UserDetailsService {
     }
 
 
-
-
-
+    public void deleteUser(Long id) {
+        repository.deleteById(id);
+    }
 }

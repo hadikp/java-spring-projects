@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.Map;
 
 
-@Controller
+@RestController("/api")
 @Slf4j
 @AllArgsConstructor
 public class UserController {

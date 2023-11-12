@@ -18,22 +18,22 @@ import java.util.List;
 @Slf4j
 public class UserService implements UserDetailsService {
 
-    private UserRepository userrepository;
+    private UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) {
-        return userrepository.findUserByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
+        return userRepository.findUserByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
     }
 
     public List<User> listUsers(){
         var user = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         log.debug("logged in user: {}", user);
-        return userrepository.findAll(Sort.by("username"));
+        return userRepository.findAll(Sort.by("username"));
     }
 
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public void addUser(User user){
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-        userrepository.save(user);
+        userRepository.save(user);
     }
 }

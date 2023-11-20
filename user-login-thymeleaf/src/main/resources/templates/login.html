@@ -14,7 +14,7 @@
         <h2>Sikeres kijelentkezés</h2>
     </div>
     <form th:action="@{login}" method="post">
-        <input type="text" name="username">
+        <input type="text" name="username" th:value="${session.lastUsername}">
         <input type="password" name="password">
         <input type="submit" value="Bejelentkezés">
     </form>

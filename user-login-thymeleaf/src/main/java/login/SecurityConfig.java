@@ -28,7 +28,7 @@ public class SecurityConfig {
                         .requestMatchers("/")
                         .hasAnyRole("USER", "ADMIN")
                         .anyRequest().authenticated())
-                .formLogin(login -> login.loginPage("/login").permitAll())
+                .formLogin(login -> login.loginPage("/login").failureHandler(userNameAuthenticationFailureHandler()).permitAll())
                 .logout(logout -> logout.logoutUrl("/logout").permitAll());
         return http.build();
     }
@@ -37,8 +37,8 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    /*@Bean
+    @Bean
     public UserNameAuthenticationFailureHandler userNameAuthenticationFailureHandler(){
         return new UserNameAuthenticationFailureHandler();
-    }*/
+    }
 }

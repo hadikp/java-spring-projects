@@ -1,0 +1,5 @@
+CREATE TABLE users (id BIGINT AUTO_INCREMENT, user_name VARCHAR(155), email VARCHAR(155), password VARCHAR(155), role VARCHAR(155),
+ PRIMARY KEY (id));
+
+insert into users(user_name, email, password, role) VALUES ('geri', 'geri@freemail.hu',
+ '$2a$10$G3HvW5Y2rdBzOA8Qg7LDvedRgEVRmUEDkrhohCuhkMMPv9InOkbSS', 'ROLE_USER');

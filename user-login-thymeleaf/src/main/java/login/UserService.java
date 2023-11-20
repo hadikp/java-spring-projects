@@ -31,7 +31,7 @@ public class UserService implements UserDetailsService {
         return userRepository.findAll(Sort.by("username"));
     }
 
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')") //a methódus meghívásakor jogosultság ellenőrzést végez
     public void addUser(User user){
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         userRepository.save(user);

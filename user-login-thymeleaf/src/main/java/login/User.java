@@ -37,7 +37,7 @@ public class User implements UserDetails, Serializable {
 
     @Override
     public Collection<GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role));
+        return List.of(new SimpleGrantedAuthority(role)); //a felhasználónak csak 1 szerepköre legyen
     }
 
     @Override

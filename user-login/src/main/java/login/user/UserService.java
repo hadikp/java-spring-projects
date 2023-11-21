@@ -2,7 +2,6 @@ package login.user;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -10,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,8 +30,8 @@ public class UserService implements UserDetailsService {
         return repository.findAll(Sort.by("username"));
     }
 
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public void addUser(User user){
+    //@PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    public void registerUser(User user){
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         repository.save(user);
     }

@@ -1,18 +1,14 @@
 package login.user;
 
-import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Map;
 
 
-@RestController("/api")
-@Slf4j
-@AllArgsConstructor
+@RestController
+@RequestMapping("/api")
 public class UserController {
 
     private UserService userService;
@@ -24,12 +20,11 @@ public class UserController {
 
     @GetMapping(value = "/")
     public ModelAndView index(@AuthenticationPrincipal User user){
-        log.debug("Logged in user: {}", user);
         return new ModelAndView("index", Map.of("users", userService.listUsers(), "user", new User()));
     }
-    @PostMapping(value = "/")
-    public String addUser(@ModelAttribute User user){
-        userService.addUser(user);
+    @PostMapping(value = "/reg")
+    public String registerUser(@RequestBody User user){
+        userService.registerUser(user);
         return "redirect:/";
     }
 

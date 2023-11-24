@@ -8,6 +8,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
@@ -27,13 +28,14 @@ public class User implements UserDetails, Serializable {
     private String email;
     private String password;
     private String role;
+    private LocalDate registrationDate;
 
 
-    public User(String username, String email, String password, String role) {
+    public User(String username, String email, String role, LocalDate registrationDate) {
         this.username = username;
         this.email = email;
-        this.password = password;
         this.role = role;
+        this.registrationDate = registrationDate;
     }
 
     @Override

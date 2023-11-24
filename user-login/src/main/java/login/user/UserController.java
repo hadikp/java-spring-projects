@@ -22,10 +22,9 @@ public class UserController {
     public ModelAndView index(@AuthenticationPrincipal User user){
         return new ModelAndView("index", Map.of("users", userService.listUsers(), "user", new User()));
     }
-    @PostMapping(value = "/reg")
-    public String registerUser(@RequestBody User user){
-        userService.registerUser(user);
-        return "redirect:/";
+    @PostMapping("/register")
+    public UserDto registerUser(@RequestBody UserCommand command){
+        return userService.registerUser(command);
     }
 
     @DeleteMapping("/del/{id}")

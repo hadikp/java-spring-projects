@@ -13,10 +13,14 @@ public class UserController {
 
     private UserService userService;
 
-    @GetMapping("/login")
-    public ModelAndView login(){
-        return new ModelAndView("login");
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
+
+    /*@GetMapping()
+    public UserDto login(){
+        return userService.listUsers();
+    }*/
 
     @GetMapping(value = "/")
     public ModelAndView index(@AuthenticationPrincipal User user){

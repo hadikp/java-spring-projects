@@ -15,7 +15,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-@Table(name = "user")
+@Table(name = "users")
 @Entity
 public class User implements UserDetails, Serializable {
 
@@ -28,6 +28,7 @@ public class User implements UserDetails, Serializable {
     private String email;
     private String password;
     private String role;
+    @Column(name = "registration_date")
     private LocalDate registrationDate;
 
 

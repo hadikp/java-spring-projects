@@ -37,14 +37,15 @@ public class UserService implements UserDetailsService {
 
     //@PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public UserDto registerUser(UserCommand command){
-       /* if(!command.getPassword().equals(command.getPasswordConfirm())){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Password do not match!");
-        }*/
+        if(command.getPassword().equals(command.getPasswordConfirm())){
+            User newUser = new User(command.getUsername(), command.getEmail(), command.getRole(), LocalDate.now());
+            newUser.setPassword(new BCryptPasswordEncoder().encode(command.getPassword()));
+            repository.save(newUser);
+            return modelMapper.map(newUser, UserDto.class);
+        } else {
+            throw new PasswordNotMatchException();
+        }
 
-        User newUser = new User(command.getUsername(), command.getEmail(), command.getRole(), LocalDate.now());
-        newUser.setPassword(new BCryptPasswordEncoder().encode(command.getPassword()));
-        repository.save(newUser);
-        return modelMapper.map(newUser, UserDto.class);
     }
 
 

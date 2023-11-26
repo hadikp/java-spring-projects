@@ -12,6 +12,6 @@ public class UserCommand {
     private String username;
     private String email;
     private String password;
-    //private String passwordConfirm;
+    private String passwordConfirm;
     private String role;
 }

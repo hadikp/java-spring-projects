@@ -5,8 +5,8 @@ import org.zalando.problem.Status;
 
 import java.net.URI;
 
-public class PasswordNotMatchException extends AbstractThrowableProblem {
-    public PasswordNotMatchException() {
+public class ExceptionPasswordNotMatch extends AbstractThrowableProblem {
+    public ExceptionPasswordNotMatch() {
         super(
                 URI.create("login/password-not-match"),
                 "Password not match",

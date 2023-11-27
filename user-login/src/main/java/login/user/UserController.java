@@ -21,11 +21,11 @@ public class UserController {
     public UserDto login(){
         return userService.listUsers();
     }*/
-
-    @GetMapping(value = "/")
-    public ModelAndView index(@AuthenticationPrincipal User user){
-        return new ModelAndView("index", Map.of("users", userService.listUsers(), "user", new User()));
+    @PostMapping("/login")
+    public UserDto login(@RequestBody LoginRequest loginRequest){
+       return userService.login(loginRequest);
     }
+
     @PostMapping("/register")
     public UserDto registerUser(@RequestBody UserCommand command){
         return userService.registerUser(command);

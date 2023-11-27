@@ -4,15 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Sort;
-import org.springframework.http.HttpStatus;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -20,20 +18,11 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 @Slf4j
-public class UserService implements UserDetailsService {
+public class UserService {
 
     private UserRepository repository;
     private ModelMapper modelMapper;
-    @Override
-    public UserDetails loadUserByUsername(String username) {
-        return repository.findUserByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
-    }
 
-    public List<User> listUsers(){
-        var user = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        log.debug("logged in user: {}", user);
-        return repository.findAll(Sort.by("username"));
-    }
 
     //@PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public UserDto registerUser(UserCommand command){
@@ -43,13 +32,22 @@ public class UserService implements UserDetailsService {
             repository.save(newUser);
             return modelMapper.map(newUser, UserDto.class);
         } else {
-            throw new PasswordNotMatchException();
+            throw new ExceptionPasswordNotMatch();
         }
 
     }
 
-
     public void deleteUser(Long id) {
         repository.deleteById(id);
+    }
+
+    public UserDto login(LoginRequest loginRequest) {
+        String username = loginRequest.getUsername();
+        User user = repository.findUserByUsername(username).orElseThrow(() -> new ExceptionUserNotFound(username));
+        if(!new BCryptPasswordEncoder().matches(loginRequest.getPassword(), user.getPassword())){
+            throw new ExceptionPasswordNotMatch();
+        } else {
+            return modelMapper.map(user, UserDto.class);
+        }
     }
 }

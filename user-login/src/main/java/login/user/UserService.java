@@ -1,26 +1,22 @@
 package login.user;
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
-import org.springframework.data.domain.Sort;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
-@Slf4j
 public class UserService {
+
+    private static final String COOKIE_NAME = "user-dto";
+    private static final int EXPIRATION = 30 * 60 * 1000;
 
     private UserRepository repository;
     private ModelMapper modelMapper;
@@ -43,14 +39,23 @@ public class UserService {
         repository.deleteById(id);
     }
 
-    public UserDto login(LoginRequest loginRequest) {
+    public UserDto login(LoginRequest loginRequest, HttpServletResponse response) {
         String username = loginRequest.getUsername();
         User user = repository.findUserByUsername(username).orElseThrow(() -> new ExceptionUserNotFound(username));
         if(!new BCryptPasswordEncoder().matches(loginRequest.getPassword(), user.getPassword())){
             throw new ExceptionPasswordNotMatch();
         } else {
-            return modelMapper.map(user, UserDto.class);
+            UserDto userDto = modelMapper.map(user, UserDto.class);
+            storeUserCookie(response, userDto);
+            return userDto;
         }
+    }
+
+    private void storeUserCookie(HttpServletResponse response, UserDto userDto) {
+        Cookie cookie = new Cookie(COOKIE_NAME, userDto.getUsername());
+        cookie.setMaxAge(EXPIRATION);
+        cookie.setHttpOnly(true);
+        response.addCookie(cookie);
     }
 
     public List<UserDto> listUsers() {

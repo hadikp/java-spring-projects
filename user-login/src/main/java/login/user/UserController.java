@@ -1,12 +1,9 @@
 package login.user;
 
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
-import java.util.Map;
-
 
 @RestController
 @RequestMapping("/api")
@@ -18,13 +15,13 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<UserDto>  login(){
         return userService.listUsers();
     }
     @PostMapping("/login")
-    public UserDto login(@RequestBody LoginRequest loginRequest){
-       return userService.login(loginRequest);
+    public UserDto login(@RequestBody LoginRequest loginRequest, HttpServletResponse response){
+       return userService.login(loginRequest, response);
     }
 
     @PostMapping("/register")

@@ -4,6 +4,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -17,10 +18,10 @@ public class UserController {
         this.userService = userService;
     }
 
-    /*@GetMapping()
-    public UserDto login(){
+    @GetMapping("/")
+    public List<UserDto>  login(){
         return userService.listUsers();
-    }*/
+    }
     @PostMapping("/login")
     public UserDto login(@RequestBody LoginRequest loginRequest){
        return userService.login(loginRequest);

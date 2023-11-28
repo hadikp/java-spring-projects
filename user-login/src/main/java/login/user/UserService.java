@@ -13,7 +13,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -49,5 +51,10 @@ public class UserService {
         } else {
             return modelMapper.map(user, UserDto.class);
         }
+    }
+
+    public List<UserDto> listUsers() {
+        List<User> users = repository.findAll();
+        return  users.stream().map(u -> modelMapper.map(u, UserDto.class)).collect(Collectors.toList());
     }
 }

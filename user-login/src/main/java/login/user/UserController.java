@@ -1,9 +1,11 @@
 package login.user;
 
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/api")
@@ -27,6 +29,11 @@ public class UserController {
     @PostMapping("/register")
     public UserDto registerUser(@RequestBody UserCommand command){
         return userService.registerUser(command);
+    }
+
+    @PostMapping("/logout")
+    public LogoutResponse logout(HttpServletResponse response){
+        return userService.logout(response);
     }
 
     @DeleteMapping("/del/{id}")

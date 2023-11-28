@@ -62,4 +62,12 @@ public class UserService {
         List<User> users = repository.findAll();
         return  users.stream().map(u -> modelMapper.map(u, UserDto.class)).collect(Collectors.toList());
     }
+
+    public LogoutResponse logout(HttpServletResponse response) {
+        Cookie cookie = new Cookie(COOKIE_NAME, null);
+        cookie.setMaxAge(0);
+        cookie.setHttpOnly(true);
+        response.addCookie(cookie);
+        return new LogoutResponse("User logout");
+    }
 }

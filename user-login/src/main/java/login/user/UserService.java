@@ -20,6 +20,7 @@ public class UserService {
 
     private UserRepository repository;
     private ModelMapper modelMapper;
+    private MailService mailService;
 
 
     //@PreAuthorize("hasAuthority('ROLE_ADMIN')")
@@ -32,7 +33,6 @@ public class UserService {
         } else {
             throw new ExceptionPasswordNotMatch();
         }
-
     }
 
     public void deleteUser(Long id) {
@@ -69,5 +69,9 @@ public class UserService {
         cookie.setHttpOnly(true);
         response.addCookie(cookie);
         return new LogoutResponse("User logout");
+    }
+
+    public void forgotPassword(String email, String originUrl){
+        mailService.sendForgotMessage(email, originUrl);
     }
 }

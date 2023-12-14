@@ -26,7 +26,7 @@ public class UserService {
     //@PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public UserDto registerUser(UserCommand command){
         if(command.getPassword().equals(command.getPasswordConfirm())){
-            User newUser = new User(command.getUsername(), command.getEmail(), command.getRole(), LocalDate.now());
+            User newUser = new User(command.getUsername(), command.getEmail(), command.getRole(), command.getAuthenticate(), LocalDate.now());
             newUser.setPassword(new BCryptPasswordEncoder().encode(command.getPassword()));
             repository.save(newUser);
             return modelMapper.map(newUser, UserDto.class);

@@ -15,5 +15,6 @@ public class UserDto {
     private String email;
     private String password;
     private String role;
+    private Boolean authenticate;
     private LocalDate registrationDate;
 }

@@ -1,11 +1,9 @@
 package login.user;
 
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/api")
@@ -18,7 +16,7 @@ public class UserController {
     }
 
     @GetMapping
-    public List<UserDto>  login(){
+    public List<UserDto>  listAllUser(){
         return userService.listUsers();
     }
     @PostMapping("/login")

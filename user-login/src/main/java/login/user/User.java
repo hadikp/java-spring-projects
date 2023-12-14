@@ -16,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @Table(name = "users")
 @Entity
-public class User implements UserDetails, Serializable {
+public class User implements UserDetails, Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,21 +26,26 @@ public class User implements UserDetails, Serializable {
     private String username;
     private String email;
     private String password;
-    private String role;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    private Boolean authenticate;
+
     @Column(name = "registration_date")
     private LocalDate registrationDate;
 
-
-    public User(String username, String email, String role, LocalDate registrationDate) {
+    public User(String username, String email, Role role, Boolean authenticate, LocalDate registrationDate) {
         this.username = username;
         this.email = email;
         this.role = role;
+        this.authenticate = authenticate;
         this.registrationDate = registrationDate;
     }
 
     @Override
     public Collection<GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role));
+        return List.of(new SimpleGrantedAuthority(role.name()));
     }
 
     @Override

@@ -14,5 +14,5 @@ public class UserCommand {
     private String password;
     private String passwordConfirm;
     private Role role;
-    private Boolean authenticate;
+    private Boolean permit;
 }

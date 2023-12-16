@@ -30,16 +30,16 @@ public class User implements UserDetails, Serializable{
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    private Boolean authenticate;
+    private Boolean permit;
 
     @Column(name = "registration_date")
     private LocalDate registrationDate;
 
-    public User(String username, String email, Role role, Boolean authenticate, LocalDate registrationDate) {
+    public User(String username, String email, Role role, Boolean permit, LocalDate registrationDate) {
         this.username = username;
         this.email = email;
         this.role = role;
-        this.authenticate = authenticate;
+        this.permit = false;
         this.registrationDate = registrationDate;
     }
 

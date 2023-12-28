@@ -1,6 +1,7 @@
 package login.user;
 
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class UserController {
         this.userService = userService;
     }
 
+    //@Secured("ROLE_USER")
     @GetMapping
     public List<UserDto>  listAllUser(){
         return userService.listUsers();

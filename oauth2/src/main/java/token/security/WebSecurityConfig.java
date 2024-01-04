@@ -40,7 +40,7 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    public InMemoryUserDetailsManager user(){
+    public InMemoryUserDetailsManager user(){ //Postman to Basic auth username and password
         return new InMemoryUserDetailsManager(User.withUsername("peter").password("{noop}password").authorities("read").build());
     }
 

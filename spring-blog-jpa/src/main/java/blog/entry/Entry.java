@@ -1,6 +1,7 @@
 package blog.entry;
 
 import blog.comment.Comment;
+import blog.image.ImageData;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,6 +35,9 @@ public class Entry {
     @OneToMany(mappedBy = "entry", cascade = CascadeType.PERSIST)
     private List<Comment> comments = new ArrayList<>();
 
+    @OneToMany(mappedBy = "entry", cascade = CascadeType.PERSIST)
+    private List<ImageData> images = new ArrayList<>();
+
     public Entry(String title, String description, String content, LocalDate createdAt) {
         this.title = title;
         this.description = description;
@@ -44,6 +48,11 @@ public class Entry {
     public void addComment (Comment comment){
         comments.add(comment);
         comment.setEntry(this);
+    }
+
+    public void addImage (ImageData imageData){
+        images.add(imageData);
+        imageData.setEntry(this);
     }
 
 }

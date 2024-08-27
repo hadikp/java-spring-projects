@@ -1,5 +1,6 @@
 package blog.image;
 
+import blog.entry.Entry;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,4 +21,7 @@ public class ImageData {
     private String name;
 
     private String type;
+
+    @ManyToOne
+    private Entry entry;
 }

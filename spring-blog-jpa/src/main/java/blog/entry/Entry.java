@@ -2,6 +2,7 @@ package blog.entry;
 
 import blog.comment.Comment;
 import blog.image.ImageData;
+import blog.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -37,6 +38,9 @@ public class Entry {
 
     @OneToMany(mappedBy = "entry", cascade = CascadeType.PERSIST)
     private List<ImageData> images = new ArrayList<>();
+
+    @ManyToOne
+    private User user;
 
     public Entry(String title, String description, String content, LocalDate createdAt) {
         this.title = title;

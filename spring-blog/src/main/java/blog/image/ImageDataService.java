@@ -18,4 +18,9 @@ public class ImageDataService {
         List<ImageData> imagesDatas = repository.findAll();
         return imagesDatas.stream().map(i -> modelMapper.map(i, ImageDataDto.class)).collect(Collectors.toList());
     }
+
+    public ImageDataDto findImageById(Long id) {
+        ImageData findImageData = repository.findById(id).orElseThrow(() -> new ImageNotFoundException(id));
+        return modelMapper.map(findImageData, ImageDataDto.class);
+    }
 }

@@ -1,4 +1,4 @@
-package run.post;
+package run.run;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

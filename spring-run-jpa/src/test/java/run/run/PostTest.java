@@ -29,7 +29,7 @@ class PostTest {
         training_fut.addPosts(futas2);
         training_by.addPosts(bicigli_1);
         training_by.addPosts(bicigli_2);
-        trainingRepository.save(training_fut);
-        trainingRepository.save(training_by);
+        //trainingRepository.save(training_fut);
+        //trainingRepository.save(training_by);
     }
 }

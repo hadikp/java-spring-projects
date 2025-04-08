@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import run.training.Training;
 
 import java.time.LocalDate;
@@ -12,7 +11,6 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Setter
 @Entity
 @Table(name = "posts")
 public class Post {
@@ -38,7 +36,17 @@ public class Post {
     @ManyToOne
     private Training training;
 
+    public Integer getKm() {
+        return km;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
     public void setTraining(Training training) {
         this.training = training;
     }
+
+
 }

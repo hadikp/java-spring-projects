@@ -7,8 +7,10 @@ import lombok.NoArgsConstructor;
 import run.run.Post;
 
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor
@@ -39,6 +41,26 @@ public class Training {
     public void addPosts(Post post){
         posts.add(post);
         post.setTraining(this);
+    }
+    public double getTrainingAllDistance(){
+        double sum = 0;
+        for (int i = 0; i < posts.size(); i++){
+            double distance = posts.get(i).getKm();
+            sum += distance;
+        }
+        return sum;
+    }
+
+    public double getTrainingOneMonthDistance(){
+        List<Post> actual_month_run = posts.stream().filter(post -> post.getDate() != null)
+                .filter(post -> post.getDate().getMonth() == LocalDate.now().getMonth())
+                .collect(Collectors.toList());
+        double sum = 0;
+        for (int i = 0; i < actual_month_run.size(); i++){
+            double distance = actual_month_run.get(i).getKm();
+            sum += distance;
+        }
+        return sum;
     }
 
 

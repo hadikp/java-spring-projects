@@ -3,6 +3,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import run.training.Training;
 
 import java.time.LocalDate;
 
@@ -17,9 +18,10 @@ public class Run {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String type;
     private String description;
 
-    private Integer km;
+    private double km;
 
     @Column(name = "run_date")
     private LocalDate date;
@@ -29,4 +31,7 @@ public class Run {
         this.km = km;
         this.date = date;
     }
+
+    @ManyToOne
+    private Training training;
 }

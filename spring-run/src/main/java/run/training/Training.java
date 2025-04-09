@@ -30,17 +30,27 @@ public class Training {
     @Column(name = "sum_year_km")
     private double yearlyKm;
 
+    @Column(name = "training_date")
+    private LocalDate date;
+
     @OneToMany(mappedBy = "training", cascade = CascadeType.ALL)
     private List<Run> runs = new ArrayList<>();
 
-    public Training(String type) {
+    public Training(String type, LocalDate date) {
         this.type = type;
+        this.date = date;
     }
 
+    public void updateKmValues() {
+        this.monthlyKm = getTrainingOneMonthDistance();
+        this.yearlyKm = getTrainingAllDistance();
+    }
     public void addRuns(Run run){
         runs.add(run);
         run.setTraining(this);
+        updateKmValues();
     }
+
 
     public double getTrainingAllDistance(){
         double sum = 0;

@@ -18,7 +18,7 @@ class TrainingTest {
         Run futas1 = new Run("futás1", "rövid futás", 15, LocalDate.of(2025, 04, 01));
         Run futas2 = new Run("futás2", "rövid futás", 15, LocalDate.of(2025, 04, 02));
         Run futas3 = new Run("futás3", "rövid futás", 10, LocalDate.of(2025, 04, 02));
-        Training training = new Training("futások");
+        Training training = new Training("futások", LocalDate.now());
         training.addRuns(futas1);
         training.addRuns(futas2);
         training.addRuns(futas3);
@@ -30,7 +30,7 @@ class TrainingTest {
         Run futas1 = new Run("futás1", "rövid futás", 15, LocalDate.of(2025, 03, 01));
         Run futas2 = new Run("futás2", "rövid futás", 15, LocalDate.of(2025, 04, 02));
         Run futas3 = new Run("futás3", "rövid futás", 10, LocalDate.of(2025, 04, 02));
-        Training training = new Training("futások");
+        Training training = new Training("futások", LocalDate.now());
         training.addRuns(futas1);
         training.addRuns(futas2);
         training.addRuns(futas3);

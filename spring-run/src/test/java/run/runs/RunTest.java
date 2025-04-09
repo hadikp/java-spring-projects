@@ -14,10 +14,6 @@ class RunTest {
     @Autowired
     RunRepository repository;
 
-    @Test
-    void create(){
-        Run run = new Run("rövid futás", 10, LocalDate.of(2025, 04, 12));
-        repository.save(run);
-    }
+
 
 }

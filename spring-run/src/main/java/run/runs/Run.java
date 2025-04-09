@@ -26,7 +26,8 @@ public class Run {
     @Column(name = "run_date")
     private LocalDate date;
 
-    public Run(String description, Integer km, LocalDate date) {
+    public Run(String type, String description, double km, LocalDate date) {
+        this.type = type;
         this.description = description;
         this.km = km;
         this.date = date;
@@ -34,4 +35,6 @@ public class Run {
 
     @ManyToOne
     private Training training;
+
+
 }

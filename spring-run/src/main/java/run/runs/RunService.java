@@ -18,4 +18,8 @@ public class RunService {
         List<Run> runs = runRepository.findAll();
         return runs.stream().map(r -> modelMapper.map(r, RunDto.class)).collect(Collectors.toList());
     }
+
+    public void deleteRun(Long id) {
+        runRepository.deleteById(id);
+    }
 }

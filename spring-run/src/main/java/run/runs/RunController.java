@@ -1,8 +1,7 @@
 package run.runs;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,5 +18,11 @@ public class RunController {
     @GetMapping
     public List<RunDto> éistAllRaces(){
         return service.listAllRaces();
+    }
+
+    @DeleteMapping("/del/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteRun(@PathVariable("id") Long id){
+        service.deleteRun(id);
     }
 }

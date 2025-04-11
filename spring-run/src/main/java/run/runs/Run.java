@@ -33,7 +33,7 @@ public class Run {
         this.date = date;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Training training;
 
 

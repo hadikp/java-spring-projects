@@ -37,4 +37,10 @@ public class EntryController {
     public EntryDto updateEntry(@PathVariable("id") Long id, @RequestBody EntryCommand command){
         return service.updateEntry(id, command);
     }
+
+    @DeleteMapping("/del/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteEntry(@PathVariable("id") Long id){
+        service.deleteEntry(id);
+    }
 }

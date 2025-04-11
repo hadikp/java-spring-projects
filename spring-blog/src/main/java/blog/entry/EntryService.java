@@ -47,4 +47,8 @@ public class EntryService {
         Entry findEntry = repository.findById(id).orElseThrow(() -> new EntryNotFoundException(id));
         return modelMapper.map(findEntry, EntryDto.class);
     }
+
+    public void deleteEntry(Long id) {
+        repository.deleteById(id);
+    }
 }

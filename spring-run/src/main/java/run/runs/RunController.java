@@ -20,9 +20,9 @@ public class RunController {
         return service.listAllRaces();
     }
 
-    @DeleteMapping("/del/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteRun(@PathVariable("id") Long id){
-        service.deleteRun(id);
+    @PostMapping("/create")
+    @ResponseStatus(HttpStatus.CREATED)
+    public RunDto createRun(@RequestBody RunCommand command){
+        return service.createRun(command);
     }
 }

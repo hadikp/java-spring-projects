@@ -22,4 +22,10 @@ public class RunService {
     public void deleteRun(Long id) {
         runRepository.deleteById(id);
     }
+
+    public RunDto createRun(RunCommand command) {
+        Run run = new Run(command.getType(), command.getDescription(), command.getKm(), command.getDate());
+        runRepository.save(run);
+        return modelMapper.map(run, RunDto.class);
+    }
 }

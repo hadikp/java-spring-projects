@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import run.runs.Run;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,10 +27,10 @@ public class Training {
     private String type;
 
     @Column(name = "sun_month_km")
-    private double monthlyKm;
+    private BigDecimal monthlyKm;
 
     @Column(name = "sum_year_km")
-    private double yearlyKm;
+    private BigDecimal yearlyKm;
 
     @Column(name = "training_date")
     private LocalDate date;
@@ -41,16 +43,24 @@ public class Training {
         this.date = date;
     }
 
+    public void setMonthlyKm(BigDecimal monthlyKm) {
+        this.monthlyKm = monthlyKm;
+    }
+
+    public void setYearlyKm(BigDecimal yearlyKm) {
+        BigDecimal bg = yearlyKm.setScale(1, RoundingMode.HALF_UP);
+        this.yearlyKm = bg;
+    }
+
     public void updateKmValues() {
-        this.monthlyKm = getTrainingOneMonthDistance();
-        this.yearlyKm = getTrainingAllDistance();
+        this.monthlyKm = BigDecimal.valueOf(getTrainingOneMonthDistance());
+        this.yearlyKm = BigDecimal.valueOf(getTrainingAllDistance());
     }
     public void addRuns(Run run){
         runs.add(run);
         run.setTraining(this);
         updateKmValues();
     }
-
 
     public double getTrainingAllDistance(){
         double sum = 0;
@@ -63,7 +73,7 @@ public class Training {
 
     public double getTrainingOneMonthDistance(){
         List<Run> actual_month_run = runs.stream().filter(post -> post.getDate() != null)
-                .filter(post -> post.getDate().getMonth() == LocalDate.of(2025, 02, 22).getMonth())
+                .filter(post -> post.getDate().getMonth() == LocalDate.of(2009, 10, 25).getMonth())
                 .collect(Collectors.toList());
         double sum = 0;
         for (int i = 0; i < actual_month_run.size(); i++){

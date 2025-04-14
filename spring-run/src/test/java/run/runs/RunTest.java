@@ -20,7 +20,7 @@ class RunTest {
     void createRun2009() {
         Run futas1 = new Run("futás", "rövid futás", 9.2, LocalDate.of(2009, 9, 05));
         Run futas2 = new Run("futás", "rövid futás", 31, LocalDate.of(2009, 9, 06));
-        Run futas3 = new Run("futás", "rövid futás", 6.6, LocalDate.of(2009, 10, 25));
+        Run futas3 = new Run("futás", "rövid futás", 22, LocalDate.of(2009, 10, 25));
 
         /*Run futas3 = new Run("futás", "rövid futás", 50, LocalDate.of(2009, 01, 18));
         Run futas5 = new Run("futás", "rövid futás", 50, LocalDate.of(2009, 02, 01));

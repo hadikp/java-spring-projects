@@ -7,7 +7,5 @@ import java.math.BigDecimal;
 
 public interface TrainingRepository extends JpaRepository<Training, Long> {
 
-    //@Query("SELECT y.yearlyKm FROM Training y ORDER BY y.id DESC")
-    //BigDecimal findLatestSumYearKm();
     Training findFirstByOrderByIdDesc();
 }

@@ -26,7 +26,7 @@ public class Training {
 
     private String type;
 
-    @Column(name = "sun_month_km")
+    @Column(name = "sum_month_km")
     private BigDecimal monthlyKm;
 
     @Column(name = "sum_year_km")
@@ -59,7 +59,7 @@ public class Training {
     public void addRuns(Run run){
         runs.add(run);
         run.setTraining(this);
-        updateKmValues();
+        //updateKmValues();
     }
 
     public double getTrainingAllDistance(){
@@ -73,7 +73,7 @@ public class Training {
 
     public double getTrainingOneMonthDistance(){
         List<Run> actual_month_run = runs.stream().filter(post -> post.getDate() != null)
-                .filter(post -> post.getDate().getMonth() == LocalDate.of(2009, 10, 25).getMonth())
+                .filter(post -> post.getDate().getMonth() == LocalDate.of(2012, 7, 13).getMonth())
                 .collect(Collectors.toList());
         double sum = 0;
         for (int i = 0; i < actual_month_run.size(); i++){

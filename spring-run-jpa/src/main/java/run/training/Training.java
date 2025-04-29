@@ -29,8 +29,6 @@ public class Training {
     @Column(name = "sum_km")
     private Integer km;
 
-
-
     @OneToMany(mappedBy = "training", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Post> posts = new ArrayList<>();
 
@@ -45,6 +43,11 @@ public class Training {
     public void addPosts(Post post){
         posts.add(post);
         post.setTraining(this);
+    }
+
+    public void addBike(Bike bike){
+        bikes.add(bike);
+        bike.setTraining(this);
     }
     public double getTrainingAllDistance(){
         double sum = 0;
@@ -66,7 +69,4 @@ public class Training {
         }
         return sum;
     }
-
-
-
 }

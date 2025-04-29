@@ -36,13 +36,6 @@ public class Post {
     @ManyToOne
     private Training training;
 
-    public Integer getKm() {
-        return km;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
 
     public void setTraining(Training training) {
         this.training = training;

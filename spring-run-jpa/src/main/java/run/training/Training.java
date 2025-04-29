@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import run.bike.Bike;
 import run.run.Post;
 
 
@@ -32,6 +33,9 @@ public class Training {
 
     @OneToMany(mappedBy = "training", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Post> posts = new ArrayList<>();
+
+    @OneToMany(mappedBy = "training", cascade = CascadeType.ALL)
+    private List<Bike> bikes = new ArrayList<>();
 
     public Training(String type, Integer km) {
         this.type = type;

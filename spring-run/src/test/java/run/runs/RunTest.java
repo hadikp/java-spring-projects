@@ -23,33 +23,28 @@ class RunTest {
 
     @Test
     void createRun2009() {
-        /*Run futas1 = new Run("futás", "rövid futás", 5, LocalDate.of(2010, 01, 03));
-        Run futas2 = new Run("futás", "rövid futás", 7.6, LocalDate.of(2010, 01, 17));
-        Run futas3 = new Run("futás", "rövid futás", 6.2, LocalDate.of(2010, 01, 23));*/
+        Run b1 = new Run("bicigli", "rövid kerékpározás", 30, LocalDate.of(2013, 5, 5));
+        Run futas1 = new Run("futás", "rövid futás", 15, LocalDate.of(2013, 5, 8));
+        Run b2 = new Run("bicigli", "rövid kerékpározás", 30, LocalDate.of(2013, 5, 11));
+        Run b3 = new Run("bicigli", "rövid kerékpározás", 15, LocalDate.of(2013, 5, 16));
+        Run futas2 = new Run("futás", "rövid futás", 15, LocalDate.of(2013, 5, 22));
+        Run b4 = new Run("bicigli", "rövid kerékpározás", 15, LocalDate.of(2013, 5, 22));
+        Run b5 = new Run("bicigli", "rövid kerékpározás", 30, LocalDate.of(2013, 5, 24));
+        Run futas3 = new Run("futás", "rövid futás", 24, LocalDate.of(2013, 5, 26));
+        Run futas4 = new Run("futás", "rövid futás", 24, LocalDate.of(2013, 5, 28));
 
-       /* Run futas1 = new Run("futás", "rövid futás", 9.2, LocalDate.of(2009, 9, 05));
-        Run futas2 = new Run("futás", "rövid futás", 31, LocalDate.of(2009, 9, 06));*/
+        Run futas5 = new Run("futás", "rövid futás", 19, LocalDate.of(2012, 6, 19));
+        Run futas6 = new Run("futás", "rövid futás", 21, LocalDate.of(2012, 6, 20));
+        Run futas7 = new Run("futás", "rövid futás", 24, LocalDate.of(2012, 6, 23));
 
-        Run futas1 = new Run("futás", "rövid futás", 16, LocalDate.of(2012, 7, 8));
-        Run futas2 = new Run("futás", "rövid futás", 16, LocalDate.of(2012, 7, 22));
-        Run futas3 = new Run("futás", "rövid futás", 15, LocalDate.of(2012, 7, 30));
-        Run futas4 = new Run("futás", "rövid futás", 17, LocalDate.of(2012, 6, 13));
-        Run futas5 = new Run("futás", "rövid futás", 17, LocalDate.of(2012, 6, 16));
-        Run futas6 = new Run("futás", "rövid futás", 19, LocalDate.of(2012, 6, 19));
-        Run futas7 = new Run("futás", "rövid futás", 21, LocalDate.of(2012, 6, 20));
-        Run futas8 = new Run("futás", "rövid futás", 24, LocalDate.of(2012, 6, 23));
-
-
-        //Training training = new Training("futás", LocalDate.of(2009, 9,06));
-
-        Training training = new Training("futás", LocalDate.of(2012, 7,30));
+        Training training = new Training("futás", LocalDate.of(2013, 1,30));
         //Training training = new Training("futás", LocalDate.of(2010, 01,23));
 
         training.addRuns(futas1);
         training.addRuns(futas2);
         training.addRuns(futas3);
-        /*training.addRuns(futas4);
-        training.addRuns(futas5);
+        training.addRuns(futas4);
+        /*training.addRuns(futas5);
         training.addRuns(futas6);
         training.addRuns(futas7);
         training.addRuns(futas8);*/

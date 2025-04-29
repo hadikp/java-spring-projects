@@ -73,7 +73,7 @@ public class Training {
 
     public double getTrainingOneMonthDistance(){
         List<Run> actual_month_run = runs.stream().filter(post -> post.getDate() != null)
-                .filter(post -> post.getDate().getMonth() == LocalDate.of(2012, 7, 13).getMonth())
+                .filter(post -> post.getDate().getMonth() == LocalDate.of(2013, 5, 13).getMonth())
                 .collect(Collectors.toList());
         double sum = 0;
         for (int i = 0; i < actual_month_run.size(); i++){

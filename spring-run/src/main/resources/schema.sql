@@ -1,7 +1,7 @@
 -- Először a szülőtábla (Route), mivel arra hivatkozunk később
 CREATE TABLE IF NOT EXISTS trainings (
     id bigint auto_increment PRIMARY KEY,
-    type VARCHAR(50), sun_month_km DECIMAL(5,1), sum_year_km DECIMAL(5,1), training_date date
+    type VARCHAR(50), sum_month_km DECIMAL(5,1), sum_year_km DECIMAL(5,1), training_date date
 );
 
 -- A gyerektábla (Trackpoint), amely idegen kulcsot tartalmaz a Route-ra

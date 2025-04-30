@@ -11,3 +11,10 @@ CREATE TABLE IF NOT EXISTS runs (
     training_id BIGINT,
     CONSTRAINT fk_run_training FOREIGN KEY (training_id) REFERENCES trainings(id)
 );
+
+CREATE TABLE IF NOT EXISTS bikes (
+    id bigint auto_increment PRIMARY KEY,
+    type VARCHAR(50), description VARCHAR(255), km DOUBLE, bike_date DATE,
+    training_id BIGINT,
+    CONSTRAINT fk_bike_training FOREIGN KEY (training_id) REFERENCES trainings(id)
+);

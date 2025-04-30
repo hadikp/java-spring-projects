@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import run.bike.Bike;
 import run.runs.Run;
 
 import java.math.BigDecimal;
@@ -38,6 +39,9 @@ public class Training {
     @OneToMany(mappedBy = "training", cascade = CascadeType.ALL)
     private List<Run> runs = new ArrayList<>();
 
+    @OneToMany(mappedBy = "training", cascade = CascadeType.ALL)
+    private List<Bike> bikes = new ArrayList<>();
+
     public Training(String type, LocalDate date) {
         this.type = type;
         this.date = date;
@@ -62,24 +66,49 @@ public class Training {
         //updateKmValues();
     }
 
-    public double getTrainingAllDistance(){
+    public void addBikes(Bike bike){
+        bikes.add(bike);
+        bike.setTraining(this);
+        updateKmValues();
+    }
+
+    public double getTrainingAllDistance() {
         double sum = 0;
-        for (int i = 0; i < runs.size(); i++){
-            double distance = runs.get(i).getKm();
-            sum += distance;
+        if ("futás".equalsIgnoreCase(type)) {
+            for (Run run : runs) {
+                sum += run.getKm();
+            }
+        } else if ("bicigli".equalsIgnoreCase(type)) {
+            for (Bike bike : bikes) {
+                sum += bike.getKm();
+            }
         }
         return sum;
     }
 
-    public double getTrainingOneMonthDistance(){
-        List<Run> actual_month_run = runs.stream().filter(post -> post.getDate() != null)
-                .filter(post -> post.getDate().getMonth() == LocalDate.of(2013, 5, 13).getMonth())
-                .collect(Collectors.toList());
+    public double getTrainingOneMonthDistance() {
         double sum = 0;
-        for (int i = 0; i < actual_month_run.size(); i++){
-            double distance = actual_month_run.get(i).getKm();
-            sum += distance;
+
+        if ("futás".equalsIgnoreCase(type)) {
+            List<Run> actualMonthRuns = runs.stream()
+                    .filter(run -> run.getDate() != null)
+                    .filter(run -> run.getDate().getMonth() == LocalDate.of(2013, 6, 13).getMonth())
+                    .collect(Collectors.toList());
+
+            for (Run run : actualMonthRuns) {
+                sum += run.getKm();
+            }
+        } else if ("bicigli".equalsIgnoreCase(type)) {
+            List<Bike> actualMonthBikes = bikes.stream()
+                    .filter(bike -> bike.getDate() != null)
+                    .filter(bike -> bike.getDate().getMonth() == LocalDate.of(2013, 6, 13).getMonth())
+                    .collect(Collectors.toList());
+
+            for (Bike bike : actualMonthBikes) {
+                sum += bike.getKm();
+            }
         }
+
         return sum;
     }
 }

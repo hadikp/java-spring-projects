@@ -1,4 +1,5 @@
-package run.runs;
+package run.bike;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,23 +12,23 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "runs")
-public class Run {
+@Table(name = "bikes")
+public class Bike {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String type;
+
     private String description;
 
-    private double km;
+    private Integer km;
 
-
-    @Column(name = "run_date")
+    @Column(name = "bike_date")
     private LocalDate date;
 
-    public Run(String type, String description, double km, LocalDate date) {
+    public Bike(String type, String description, Integer km, LocalDate date) {
         this.type = type;
         this.description = description;
         this.km = km;
@@ -36,6 +37,4 @@ public class Run {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Training training;
-
-
 }

@@ -92,7 +92,7 @@ public class Training {
         if ("futás".equalsIgnoreCase(type)) {
             List<Run> actualMonthRuns = runs.stream()
                     .filter(run -> run.getDate() != null)
-                    .filter(run -> run.getDate().getMonth() == LocalDate.of(2013, 6, 13).getMonth())
+                    .filter(run -> run.getDate().getMonth() == LocalDate.of(2015, 12, 30).getMonth())
                     .collect(Collectors.toList());
 
             for (Run run : actualMonthRuns) {
@@ -101,7 +101,7 @@ public class Training {
         } else if ("bicigli".equalsIgnoreCase(type)) {
             List<Bike> actualMonthBikes = bikes.stream()
                     .filter(bike -> bike.getDate() != null)
-                    .filter(bike -> bike.getDate().getMonth() == LocalDate.of(2013, 6, 13).getMonth())
+                    .filter(bike -> bike.getDate().getMonth() == LocalDate.of(2015, 12, 5).getMonth())
                     .collect(Collectors.toList());
 
             for (Bike bike : actualMonthBikes) {

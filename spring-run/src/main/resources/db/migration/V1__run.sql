@@ -15,3 +15,4 @@ insert into runs(type, description, km, run_date, training_id) values ('futás',
 insert into runs(type, description, km, run_date, training_id) values ('bicigli', 'biciglizés az Úrhidai telekre és vissza', 24, '2025-04-26', 13);
 insert into runs(type, description, km, run_date, training_id) values ('bicigli', 'biciglizés az Úrhidai telekre és vissza', 24, '2025-05-01', 14);
 insert into runs(type, description, km, run_date, training_id) values ('bicigli', 'biciglizés az Úrhidai telekre és vissza', 24, '2025-05-03', 15);
+insert into runs(type, description, km, run_date, training_id) values ('futás', 'futás Budai úton', 13, '2025-05-07', 16);

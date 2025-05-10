@@ -1,9 +1,8 @@
 package marketplace.wish;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import marketplace.product.Type;
+import marketplace.book.Type;
 import marketplace.user.User;
 
 import javax.persistence.*;

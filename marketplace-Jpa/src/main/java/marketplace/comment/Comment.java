@@ -3,7 +3,7 @@ package marketplace.comment;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import marketplace.product.Product;
+import marketplace.book.Book;
 import marketplace.user.User;
 
 import javax.persistence.*;
@@ -28,7 +28,7 @@ public class Comment {
     private User user;
 
     @ManyToOne
-    private Product product;
+    private Book book;
 
     public Comment(String content, LocalDate date) {
         this.content = content;

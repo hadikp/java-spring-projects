@@ -1,4 +1,4 @@
-package marketplace.product;
+package marketplace.book;
 
 import marketplace.comment.Comment;
 import org.junit.jupiter.api.Test;
@@ -11,14 +11,14 @@ import java.time.LocalDate;
 class ProductITTest {
 
     @Autowired
-    ProductRepository repository;
+    BookRepository repository;
 
     @Test
     void testCreate(){
-        Product product = new Product("könyv", "Ez egy könyv", "src/images/", 1100, Type.BOOK);
+        Book book = new Book("könyv", "Ez egy könyv", "src/images/", 1100, Type.BOOK);
         Comment com1 = new Comment("com1 content", LocalDate.of(2022, 12, 01));
-        product.addComment(com1);
-        repository.save(product);
+        book.addComment(com1);
+        repository.save(book);
     }
 
 }

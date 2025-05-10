@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import marketplace.comment.Comment;
 import marketplace.message.Message;
-import marketplace.product.Product;
+import marketplace.book.Book;
 import marketplace.wish.Wish;
 
 import javax.persistence.*;
@@ -29,6 +29,8 @@ public class User {
     @Column(name = "user_name")
     private String userName;
 
+    private List cities = new ArrayList<>();
+
     private String email;
 
     private String password;
@@ -39,7 +41,7 @@ public class User {
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "user_product", joinColumns = @JoinColumn(name = "user_id"),
     inverseJoinColumns = @JoinColumn(name = "product_id"))
-    private List<Product> products = new ArrayList<>();
+    private List<Book> books = new ArrayList<>(); //saját, felkínált könyvek, szerzett könyvek
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
     private List<Comment> comments = new ArrayList<>();
@@ -50,19 +52,12 @@ public class User {
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "user_wish", joinColumns = @JoinColumn(name = "user_id"),
      inverseJoinColumns = @JoinColumn(name = "wish_id"))
-    private List<Wish> wishes = new ArrayList<>();
+    private List<Wish> wishes = new ArrayList<>(); //könyvek listája
 
-    public User(String name, String userName, String email, String password, LocalDate registrationDate) {
-        this.name = name;
-        this.userName = userName;
-        this.email = email;
-        this.password = password;
-        this.registrationDate = registrationDate;
-    }
 
-    public void addProduct(Product product){
-        products.add(product);
-        product.getUsers().add(this);
+    public void addBook(Book book){
+        books.add(book);
+        book.getUsers().add(this);
     }
 
     public void addComments(Comment comment){
@@ -79,7 +74,4 @@ public class User {
         wishes.add(wish);
         wish.getUsers().add(this);
     }
-
-
-
 }

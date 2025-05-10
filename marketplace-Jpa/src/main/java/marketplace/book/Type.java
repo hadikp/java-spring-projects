@@ -1,4 +1,4 @@
-package marketplace.product;
+package marketplace.book;
 
 public enum Type {
 

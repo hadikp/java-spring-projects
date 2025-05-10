@@ -2,9 +2,9 @@ package marketplace.user;
 
 import marketplace.comment.Comment;
 import marketplace.message.Message;
-import marketplace.product.Product;
-import marketplace.product.ProductRepository;
-import marketplace.product.Type;
+import marketplace.book.Book;
+import marketplace.book.BookRepository;
+import marketplace.book.Type;
 import marketplace.wish.Wish;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,39 +12,36 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class UserITTest {
 
     @Autowired
-    ProductRepository productRepository;
+    BookRepository bookRepository;
 
     @Autowired
     UserRepository repository;
 
     User gergo;
     User peter;
-    Product book1;
-    Product book2;
-    Product radio;
+    Book book1;
+    Book book2;
+    Book radio;
 
     @BeforeEach
     void init(){
-        Product demand1 = new Product("könvv", "Ez a demand1 könyv", "src/images", 4300, Type.BOOK);
-        Product demand2 = new Product("könvv", "Ez a demand2 könyv", "src/images", 3300, Type.BOOK);
-        Product demand3 = new Product("rádió", "Ez a demand3 rádió", "src/images", 12300, Type.RADIO);
+        Book demand1 = new Book("könvv", "Ez a demand1 könyv", "src/images", 4300, Type.BOOK);
+        Book demand2 = new Book("könvv", "Ez a demand2 könyv", "src/images", 3300, Type.BOOK);
+        Book demand3 = new Book("rádió", "Ez a demand3 rádió", "src/images", 12300, Type.RADIO);
         Wish wish1 = new Wish("wish1", "wish1 description", Type.BOOK);
         Wish wish2 = new Wish("wish2", "wish2 description", Type.BOOK);
         Wish wish3 = new Wish("wish3", "wish3 description", Type.RADIO);
 
         gergo = new User("Gergő", "kissg", "kissg@gmail.com", "pass123", LocalDate.of(2022, 12, 25));
         peter = new User("Péter", "hadikp", "hadikg@gmail.com", "p123", LocalDate.of(2022, 12, 26));
-        book1 = new Product("könyv", "Ez egy könyv", "src/images", 510, Type.BOOK);
-        book2 = new Product("Másik könyv", "Ez a másik könyv", "src/images", 1510, Type.BOOK);
-        radio = new Product("rádió", "Ez egy rádió", "src/images", 5510, Type.RADIO);
+        book1 = new Book("könyv", "Ez egy könyv", "src/images", 510, Type.BOOK);
+        book2 = new Book("Másik könyv", "Ez a másik könyv", "src/images", 1510, Type.BOOK);
+        radio = new Book("rádió", "Ez egy rádió", "src/images", 5510, Type.RADIO);
 
 
 
@@ -59,10 +56,10 @@ class UserITTest {
         book1.addComment(com2);
         book2.addComment(com3);
 
-        gergo.addProduct(book1);
-        gergo.addProduct(radio);
+        gergo.addBook(book1);
+        gergo.addBook(radio);
         gergo.addMessages(message1);
-        peter.addProduct(book2);
+        peter.addBook(book2);
         peter.addMessages(message2);
         peter.addMessages(message3);
 

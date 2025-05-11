@@ -38,6 +38,18 @@ public class Book {
 
     private Boolean active; //ha user felajánlja akkor true; default false
 
+    public Book(String author, String title, String subTitle, String description, String isbn, String publication, Boolean approved, Boolean active, String imagePath) {
+        this.author = author;
+        this.title = title;
+        this.subTitle = subTitle;
+        this.description = description;
+        this.isbn = isbn;
+        this.publication = publication;
+        this.approved = approved;
+        this.active = active;
+        this.imagePath = imagePath;
+    }
+
     @Column(name = "image_path")
     private String imagePath;
 

@@ -29,7 +29,10 @@ public class User {
     @Column(name = "user_name")
     private String userName;
 
-    private List cities = new ArrayList<>();
+    @ElementCollection
+    @CollectionTable(name = "user_cities", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "city")
+    private List<String>  cities = new ArrayList<>();
 
     private String email;
 
@@ -37,6 +40,15 @@ public class User {
 
     @Column(name = "registration_date")
     private LocalDate registrationDate;
+
+    public User(String name, String userName, List<String> cities, String email, String password, LocalDate registrationDate) {
+        this.name = name;
+        this.userName = userName;
+        this.cities = cities;
+        this.email = email;
+        this.password = password;
+        this.registrationDate = registrationDate;
+    }
 
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "user_product", joinColumns = @JoinColumn(name = "user_id"),

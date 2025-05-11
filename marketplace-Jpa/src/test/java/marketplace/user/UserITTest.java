@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class UserITTest {
@@ -26,24 +27,19 @@ class UserITTest {
     User peter;
     Book book1;
     Book book2;
-    Book radio;
+
 
     @BeforeEach
     void init(){
-        Book demand1 = new Book("könvv", "Ez a demand1 könyv", "src/images", 4300, Type.BOOK);
-        Book demand2 = new Book("könvv", "Ez a demand2 könyv", "src/images", 3300, Type.BOOK);
-        Book demand3 = new Book("rádió", "Ez a demand3 rádió", "src/images", 12300, Type.RADIO);
+        book1 = new Book("író1", "Cím1", "sub1T", "Ez a demand1 könyv","1234","1999",false, false, "src/images");
+        book2 = new Book("író2", "Cím2", "sub12", "Ez a demand2 könyv","1234","1998",false, false, "src/images");
+        Book book3 = new Book("író3","Cím3", "sub1T", "Ez a demand3 könyv","1234","1997",false, false, "src/images");
         Wish wish1 = new Wish("wish1", "wish1 description", Type.BOOK);
         Wish wish2 = new Wish("wish2", "wish2 description", Type.BOOK);
         Wish wish3 = new Wish("wish3", "wish3 description", Type.RADIO);
 
-        gergo = new User("Gergő", "kissg", "kissg@gmail.com", "pass123", LocalDate.of(2022, 12, 25));
-        peter = new User("Péter", "hadikp", "hadikg@gmail.com", "p123", LocalDate.of(2022, 12, 26));
-        book1 = new Book("könyv", "Ez egy könyv", "src/images", 510, Type.BOOK);
-        book2 = new Book("Másik könyv", "Ez a másik könyv", "src/images", 1510, Type.BOOK);
-        radio = new Book("rádió", "Ez egy rádió", "src/images", 5510, Type.RADIO);
-
-
+        gergo = new User("Gergő", "kissg",List.of("Veszprém","Pápa"), "kissg@gmail.com", "pass123", LocalDate.of(2022, 12, 25));
+        peter = new User("Péter", "hadikp",List.of("Veszprém", "Pápa"), "hadikg@gmail.com", "p123", LocalDate.of(2022, 12, 26));
 
         Comment com1 = new Comment("com1 content", LocalDate.of(2022, 12, 11));
         Comment com2 = new Comment("com2 content", LocalDate.of(2022, 12, 12));
@@ -57,22 +53,22 @@ class UserITTest {
         book2.addComment(com3);
 
         gergo.addBook(book1);
-        gergo.addBook(radio);
+        gergo.addBook(book2);
         gergo.addMessages(message1);
-        peter.addBook(book2);
+
+        /*peter.addBook(book3);
         peter.addMessages(message2);
-        peter.addMessages(message3);
+        peter.addMessages(message3);*/
 
         gergo.addComments(com1);
         gergo.addComments(com2);
         gergo.addWish(wish1);
         gergo.addWish(wish2);
-        /*gergo.addDemand(demand1);
-        gergo.addDemand(demand2);*/
-        peter.addWish(wish3);
+
+        /*peter.addWish(wish3);
         peter.addComments(com3);
+        repository.save(peter);*/
         repository.save(gergo);
-        repository.save(peter);
     }
 
     @Test

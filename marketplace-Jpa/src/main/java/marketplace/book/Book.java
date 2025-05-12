@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import marketplace.comment.Comment;
 import marketplace.user.User;
+import marketplace.userbook.UserBook;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -38,6 +39,9 @@ public class Book {
 
     private Boolean active; //ha user felajánlja akkor true; default false
 
+    @Column(name = "image_path")
+    private String imagePath;
+
     public Book(String author, String title, String subTitle, String description, String isbn, String publication, Boolean approved, Boolean active, String imagePath) {
         this.author = author;
         this.title = title;
@@ -50,18 +54,10 @@ public class Book {
         this.imagePath = imagePath;
     }
 
-    @Column(name = "image_path")
-    private String imagePath;
-
-    @ManyToMany(mappedBy = "books")
-    private List<User> users = new ArrayList<>();
-
     @OneToMany(mappedBy = "book", cascade = CascadeType.PERSIST)
     private List<Comment> commentList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "book", cascade = CascadeType.PERSIST)
+    private List<UserBook> userRelations = new ArrayList<>();
 
-    public void addComment(Comment comment) {
-        commentList.add(comment);
-        comment.setBook(this);
-    }
 }

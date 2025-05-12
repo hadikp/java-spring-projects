@@ -1,4 +1,4 @@
-package marketplace.comment;
+package marketplace.userbook;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,22 +7,16 @@ import marketplace.book.Book;
 import marketplace.user.User;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 @Entity
-@Table(name = "comments")
-public class Comment {
-
+@Table(name = "user_book")
+public class UserBook {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private String content;
-
-    private LocalDate date;
 
     @ManyToOne
     private User user;
@@ -30,13 +24,17 @@ public class Comment {
     @ManyToOne
     private Book book;
 
-    public Comment(String content) {
-        this.content = content;
+    @Enumerated(EnumType.STRING)
+    private UserBookRelationType relationType;
+
+    public UserBook(User user, Book book) {
+        this.user = user;
+        this.book = book;
     }
 
-    public Comment(String content, LocalDate date, User user) {
-        this.content = content;
-        this.date = date;
+    public UserBook(User user, Book book, UserBookRelationType relationType) {
         this.user = user;
+        this.book = book;
+        this.relationType = relationType;
     }
 }

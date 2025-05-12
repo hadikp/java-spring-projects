@@ -17,14 +17,16 @@ public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String subject;
-    private String content;
+
+    private String email;
+
+    private String message;
+
+    public Message(String email, String message) {
+        this.email = email;
+        this.message = message;
+    }
 
     @ManyToOne
     private User user;
-
-    public Message(String subject, String content) {
-        this.subject = subject;
-        this.content = content;
-    }
 }

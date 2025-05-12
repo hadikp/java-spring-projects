@@ -7,12 +7,9 @@ import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.WriteResult;
 import com.google.firebase.cloud.FirestoreClient;
 import lombok.AllArgsConstructor;
-import marketplace.product.Product;
-import marketplace.product.ProductNotFoundException;
-import marketplace.product.ProductRepository;
-import marketplace.wish.Wish;
-import marketplace.wish.WishNotFoundException;
-import marketplace.wish.WishRepository;
+import marketplace.book.Book;
+import marketplace.book.BookNotFoundException;
+import marketplace.book.BookRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -28,28 +25,24 @@ import java.util.stream.Collectors;
 public class UserService {
 
     private UserRepository repository;
-    private WishRepository wishRepository;
-
-    private ProductRepository productRepository;
+        private BookRepository bookRepository;
     private ModelMapper modelMapper;
 
-    public List<UserProductDto> listAllUser() {
+    public List<UserDto> listAllUser() {
         List<User> users = repository.findAll();
-        return users.stream().map(u -> modelMapper.map(u, UserProductDto.class)).collect(Collectors.toList());
+        return users.stream().map(u -> modelMapper.map(u, UserDto.class)).collect(Collectors.toList());
     }
 
-    public UserProductDto findUserById(Long id) {
+    public UserDto findUserById(Long id) {
         User user = repository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
-        return modelMapper.map(user, UserProductDto.class);
+        return modelMapper.map(user, UserDto.class);
     }
 
-    public UserProductDto createUser(UserCommand command) {
-        List<Wish> wishes = command.getWishes();
-        User user = new User(command.getName(), command.getCity(), command.getUserName(), command.getEmail(), command.getPassword(),
-                command.getRole(), command.getRegistrationDate());
-        user.setWishes(wishes);
+    public UserDto createUser(UserCommand command) {
+        User user = new User(command.getName(), command.getUserName(), command.getEmail(), command.getPassword(),
+        command.getRole(), command.getRegistrationDate());
         repository.save(user);
-        return modelMapper.map(user, UserProductDto.class);
+        return modelMapper.map(user, UserDto.class);
     }
 
     public void deleteUser(Long id) {
@@ -57,32 +50,18 @@ public class UserService {
     }
 
     @Transactional
-    public UserProductDto updateUser(Long id, UpdateUser command) {
+    public UserDto updateUser(Long id, UpdateUser command) {
         User findUser = repository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
         findUser.setName(command.getName());
-        findUser.setCity(command.getCity());
         findUser.setUserName(command.getUserName());
         findUser.setEmail(command.getEmail());
         findUser.setPassword(command.getPassword());
         findUser.setRole(command.getRole());
         findUser.setRegistrationDate(command.getRegistrationDate());
-        return modelMapper.map(findUser, UserProductDto.class);
+        return modelMapper.map(findUser, UserDto.class);
     }
 
-
-    public UserProductDto userAddWish(Long id, UserAddWishCommand command) {
-        List<Wish> wishes = command.getWishes();
-        User user = repository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
-        user.setWishes(wishes);
-
-        //if user exist I need to add wishes to the user, and save the new wishes
-        for(int i = 0; i < wishes.size(); i++){
-            wishRepository.save(wishes.get(i));
-        }
-        return modelMapper.map(user, UserProductDto.class);
-    }
-
-    public UserProductDto userAddExistingWish(Long userId, Long wishId) {
+    /*public UserProductDto userAddExistingWish(Long userId, Long wishId) {
         User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
         Wish wish = wishRepository.findById(wishId).orElseThrow(() -> new WishNotFoundException(wishId));
 
@@ -99,18 +78,18 @@ public class UserService {
 
     public UserProductDto userAddExistingProduct(Long userId, Long productId) {
         User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
-        Product product = productRepository.findById(productId).orElseThrow(() -> new ProductNotFoundException(productId));
+        Book book = bookRepository.findById(productId).orElseThrow(() -> new BookNotFoundException(productId));
 
         //Is Product included in the user product list?
-        Boolean userProducts = repository.findProductThisUser(userId).getProducts().contains(product);
+        Boolean userProducts = repository.findProductThisUser(userId).getBooks().contains(book);
         if(userProducts){
             System.out.println("This product is already in user product list");
         }else{
-            user.addProduct(product);
+            user.addProduct(book);
             repository.save(user);
         }
         return modelMapper.map(user, UserProductDto.class);
-    }
+    }*/
     public List<FireStoreDto> firebaseDatas() throws ExecutionException, InterruptedException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
         Iterable<DocumentReference> documentReference = dbFirestore.collection("cusers").listDocuments();

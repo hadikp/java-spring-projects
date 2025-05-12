@@ -31,7 +31,7 @@ public class MessageController {
         return service.findMessageById(id);
     }
 
-    @PostMapping("/create")
+    /*@PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
     @ApiResponse(responseCode = "201", description = "Message has been created")
     public MessageDto createMessage(@RequestBody MessageCommand command){
@@ -50,5 +50,5 @@ public class MessageController {
     @ApiResponse(responseCode = "204", description = "Message has been deleted")
     public void deleteMessage(@PathVariable("id") Long id){
         service.deleteMessage(id);
-    }
+    }*/
 }

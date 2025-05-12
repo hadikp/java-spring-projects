@@ -1,14 +1,13 @@
 package marketplace.user;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import marketplace.comment.Comment;
 import marketplace.message.Message;
-import marketplace.product.Product;
-import marketplace.wish.Wish;
+import marketplace.book.Book;
+import marketplace.userbook.UserBook;
+import marketplace.userbook.UserBookRelationType;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -28,10 +27,13 @@ public class User {
 
     private String name;
 
-    private String city;
-
     @Column(name = "user_name")
     private String userName;
+
+    @ElementCollection
+    @CollectionTable(name = "user_cities", joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "city")
+    private List<String>  cities = new ArrayList<>();
 
     private String email;
 
@@ -42,27 +44,8 @@ public class User {
     @Column(name = "registration_date")
     private LocalDate registrationDate;
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
-    @JoinTable(name = "user_product", joinColumns = @JoinColumn(name = "user_id"),
-    inverseJoinColumns = @JoinColumn(name = "product_id"))
-//    @JsonManagedReference
-    private List<Product> products = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
-//    @JsonManagedReference
-    private List<Comment> userComments = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
-    private List<Message> messages = new ArrayList<>();
-
-    @ManyToMany(cascade = CascadeType.PERSIST)
-    @JoinTable(name = "user_wish", joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "wish_id"))
-    private List<Wish> wishes = new ArrayList<>();
-
-    public User(String name, String city, String userName, String email, String password, Long role, LocalDate registrationDate) {
+    public User(String name, String userName, String email, String password, Long role, LocalDate registrationDate) {
         this.name = name;
-        this.city = city;
         this.userName = userName;
         this.email = email;
         this.password = password;
@@ -70,24 +53,37 @@ public class User {
         this.registrationDate = registrationDate;
     }
 
-    public void addProduct(Product product){
-        products.add(product);
-        product.getUsers().add(this);
-    }
+    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+    private List<Comment> comments = new ArrayList<>();
 
-    public void addComment(Comment comment){
-        userComments.add(comment);
-        comment.setUser(this);
-    }
+    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+    private List<Message> messages = new ArrayList<>();
+
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+    private List<UserBook> bookRelations = new ArrayList<>();
+
+
+   /* public void addComments(Book book, String content){
+        Comment comment = new Comment(content, LocalDate.now(), this);
+        comments.add(comment);
+        book.getCommentList().add(comment);
+    }*/
 
     public void addMessages(Message message){
         messages.add(message);
         message.setUser(this);
     }
 
-    public void addWish(Wish wish){
-        wishes.add(wish);
-        wish.getUsers().add(this);
+    public void addBook(Book book, UserBookRelationType relationType){
+        UserBook userBook = new UserBook(this, book, relationType);
+        bookRelations.add(userBook);
+        book.getUserRelations().add(userBook);
+    }
+
+    public void removeBook(Book book, UserBookRelationType relationType) {
+        bookRelations.removeIf(ub -> ub.getBook().equals(book) && ub.getRelationType() == relationType);
+        book.getUserRelations().removeIf(ub -> ub.getUser().equals(this) && ub.getRelationType() == relationType);
     }
 
 

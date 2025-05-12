@@ -1,0 +1,7 @@
+create table books(id bigint auto_increment PRIMARY KEY, author varchar(50), title varchar(50), sub_title varchar(50),
+ description varchar(150), isbn varchar(50), publication varchar(50), approved tinyint(0), active tinyint(0), image_path varchar(50));
+insert into books(author, title, sub_title, description, isbn, publication, approved, active, image_path)values ('Asimov', 'könyv cím1', 'alcím1', 'Ez egy könyv', '1234', '1995', true, false, 'src/images');
+insert into books(author, title, sub_title, description, isbn, publication, approved, active, image_path) values ('Asimov', 'könyv cím2', 'alcím2', 'Ez egy rádió', '1122', '1999', true, false, 'src/images');
+insert into books(author, title, sub_title, description, isbn, publication, approved, active, image_path) values ('Asimov', 'Másik könyv cím', 'alcím3', 'Ez a másik könyv', '1123', '2001', true, false, 'src/images');
+insert into books(author, title, sub_title, description, isbn, publication, approved, active, image_path) values ('Asimov', 'könyv cím3', 'Ez egy másik rádió', 'alcím4', '1235', '2020', false, false, 'src/images');
+insert into books(author, title, sub_title, description, isbn, publication, approved, active, image_path) values ('Asimov', 'Harmadik köny cím1', 'alcím5', 'Ez egy harmadik könyv', '1112', '2022', true, false, 'src/images');

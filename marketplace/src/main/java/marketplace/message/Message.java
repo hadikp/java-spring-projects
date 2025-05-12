@@ -19,18 +19,16 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String subject;
-    private String content;
+    private String email;
 
-    @Column(name = "create_date")
-    private LocalDate createDate;
+    private String message;
+
+    public Message(String email, String message) {
+        this.email = email;
+        this.message = message;
+    }
 
     @ManyToOne
     private User user;
 
-    public Message(String subject, String content, LocalDate createDate) {
-        this.subject = subject;
-        this.content = content;
-        this.createDate = createDate;
-    }
 }

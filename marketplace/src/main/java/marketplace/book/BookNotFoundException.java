@@ -1,12 +1,12 @@
-package marketplace.product;
+package marketplace.book;
 
 import org.zalando.problem.AbstractThrowableProblem;
 import org.zalando.problem.Status;
 
 import java.net.URI;
 
-public class ProductNotFoundException extends AbstractThrowableProblem {
-    public ProductNotFoundException(Long id) {
+public class BookNotFoundException extends AbstractThrowableProblem {
+    public BookNotFoundException(Long id) {
         super(
                 URI.create("product/not-found"),
                 "Not-found",

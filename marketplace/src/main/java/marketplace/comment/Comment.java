@@ -1,10 +1,9 @@
 package marketplace.comment;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import marketplace.product.Product;
+import marketplace.book.Book;
 import marketplace.user.User;
 
 import javax.persistence.*;
@@ -32,9 +31,9 @@ public class Comment {
 
     @ManyToOne
 //    @JsonBackReference
-    private Product product;
+    private Book book;
 
-    public Comment(String content, LocalDate date) {
+    public Comment(String content, LocalDate date, CommentService user) {
         this.content = content;
         this.createDate = date;
     }

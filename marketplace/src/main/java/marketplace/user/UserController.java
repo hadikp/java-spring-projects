@@ -21,12 +21,12 @@ public class UserController {
     }
 
     @GetMapping
-    public List<UserProductDto> listAllUser(){
+    public List<UserDto> listAllUser(){
         return service.listAllUser();
     }
 
     @GetMapping("/{id}")
-    public UserProductDto findUserById(@PathVariable("id") Long id){
+    public UserDto findUserById(@PathVariable("id") Long id){
         return service.findUserById(id);
     }
 
@@ -49,13 +49,13 @@ public class UserController {
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Create a user")
     @ApiResponse(responseCode = "201", description = "User has been created")
-    public UserProductDto createUser(@RequestBody UserCommand command){
+    public UserDto createUser(@RequestBody UserCommand command){
         return service.createUser(command);
     }
 
     @PutMapping("/{id}")
     @Operation(summary = "Update the user")
-    public UserProductDto updateUser(@PathVariable("id") Long id, @RequestBody UpdateUser command){
+    public UserDto updateUser(@PathVariable("id") Long id, @RequestBody UpdateUser command){
         return service.updateUser(id, command);
     }
 
@@ -67,15 +67,7 @@ public class UserController {
         service.deleteUser(id);
     }
 
-    @PostMapping("/{id}/wish")
-    @ResponseStatus(HttpStatus.CREATED)
-    @Operation(summary = "Add a new wish to an existing user")
-    @ApiResponse(responseCode = "201", description = "New wish has been added to the user")
-    public UserProductDto userAddNewWish(@PathVariable("id") Long id, @RequestBody UserAddWishCommand command){
-        return service.userAddWish(id, command);
-    }
-
-    @PostMapping("/{userId}/wish/{wishId}")
+    /*@PostMapping("/{userId}/wish/{wishId}")
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Add an existing wish to an existing user")
     @ApiResponse(responseCode = "201", description = "Old wish has been added to the user")
@@ -89,5 +81,5 @@ public class UserController {
     @ApiResponse(responseCode = "201", description = "Old product has been added to the user")
     public UserProductDto userAddExistingProduct(@PathVariable("userId") Long userId, @PathVariable("productId") Long productId) {
         return service.userAddExistingProduct(userId, productId);
-    }
+    }*/
 }

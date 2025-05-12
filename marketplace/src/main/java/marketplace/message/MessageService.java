@@ -25,7 +25,7 @@ public class MessageService {
         return modelMapper.map(message, MessageDto.class);
     }
 
-    public MessageDto createMessage(MessageCommand command) {
+    /*public MessageDto createMessage(MessageCommand command) {
         Message message = new Message(command.getSubject(), command.getContent(), command.getCreateDate());
         repository.save(message);
         return modelMapper.map(message, MessageDto.class);
@@ -42,5 +42,5 @@ public class MessageService {
         findMessage.setContent(command.getContent());
         findMessage.setCreateDate(command.getCreateDate());
         return modelMapper.map(findMessage, MessageDto.class);
-    }
+    }*/
 }

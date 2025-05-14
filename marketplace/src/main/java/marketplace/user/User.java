@@ -64,11 +64,10 @@ public class User {
     private List<UserBook> bookRelations = new ArrayList<>();
 
 
-   /* public void addComments(Book book, String content){
-        Comment comment = new Comment(content, LocalDate.now(), this);
+    public void addComments(Comment comment){
         comments.add(comment);
-        book.getCommentList().add(comment);
-    }*/
+        comment.setUser(this);
+    }
 
     public void addMessages(Message message){
         messages.add(message);

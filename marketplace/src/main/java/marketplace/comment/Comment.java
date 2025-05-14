@@ -26,7 +26,6 @@ public class Comment {
     private LocalDate createDate;
 
     @ManyToOne
-//    @JsonBackReference
     private User user;
 
     @ManyToOne

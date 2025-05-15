@@ -3,6 +3,7 @@ package marketplace.user;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import marketplace.userbook.UserBookRelationType;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -73,13 +74,13 @@ public class UserController {
     @ApiResponse(responseCode = "201", description = "Old wish has been added to the user")
     public UserProductDto userAddOldWish(@PathVariable("userId") Long userId, @PathVariable("wishId") Long wishId){
         return service.userAddExistingWish(userId, wishId);
-    }
-
-    @PostMapping("/{userId}/product/{productId}")
-    @ResponseStatus(HttpStatus.CREATED)
-    @Operation(summary = "Add an existing product to an existing user")
-    @ApiResponse(responseCode = "201", description = "Old product has been added to the user")
-    public UserProductDto userAddExistingProduct(@PathVariable("userId") Long userId, @PathVariable("productId") Long productId) {
-        return service.userAddExistingProduct(userId, productId);
     }*/
+
+    @PostMapping("/{userId}/book/{bookId}")
+    @ResponseStatus(HttpStatus.CREATED)
+    @Operation(summary = "Add an existing book to an existing user")
+    @ApiResponse(responseCode = "201", description = "Old book has been added to the user")
+    public UserBookDto addExistingBookToUser(@PathVariable("userId") Long userId, @PathVariable("bookId") Long bookId, @RequestParam("relationType") UserBookRelationType relationType) {
+        return service.addExistingBookToUser(userId, bookId, relationType);
+    }
 }

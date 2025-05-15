@@ -60,7 +60,7 @@ public class User {
     private List<Message> messages = new ArrayList<>();
 
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "user")
     private List<UserBook> bookRelations = new ArrayList<>();
 
 

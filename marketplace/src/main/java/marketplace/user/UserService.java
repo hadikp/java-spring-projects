@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import marketplace.book.Book;
 import marketplace.book.BookNotFoundException;
 import marketplace.book.BookRepository;
+import marketplace.userbook.UserBookRelationType;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -74,22 +75,21 @@ public class UserService {
             repository.save(user);
         }
         return modelMapper.map(user, UserProductDto.class);
-    }
+    }*/
 
-    public UserProductDto userAddExistingProduct(Long userId, Long productId) {
+    public UserBookDto addExistingBookToUser(Long userId, Long productId, UserBookRelationType relationType) {
         User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
         Book book = bookRepository.findById(productId).orElseThrow(() -> new BookNotFoundException(productId));
 
-        //Is Product included in the user product list?
-        Boolean userProducts = repository.findProductThisUser(userId).getBooks().contains(book);
-        if(userProducts){
-            System.out.println("This product is already in user product list");
-        }else{
-            user.addProduct(book);
+        boolean alreadyExists = user.getBookRelations().stream()
+                .anyMatch(ub -> ub.getBook().equals(book) && ub.getRelationType() == relationType);
+
+        if (!alreadyExists) {
+            user.addBook(book, relationType);
             repository.save(user);
         }
-        return modelMapper.map(user, UserProductDto.class);
-    }*/
+        return modelMapper.map(user, UserBookDto.class);
+    }
     public List<FireStoreDto> firebaseDatas() throws ExecutionException, InterruptedException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
         Iterable<DocumentReference> documentReference = dbFirestore.collection("cusers").listDocuments();

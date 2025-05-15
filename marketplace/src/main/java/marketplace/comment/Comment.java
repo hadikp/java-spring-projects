@@ -32,7 +32,7 @@ public class Comment {
 //    @JsonBackReference
     private Book book;
 
-    public Comment(String content, LocalDate date, CommentService user) {
+    public Comment(String content, LocalDate date) {
         this.content = content;
         this.createDate = date;
     }

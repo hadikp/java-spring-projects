@@ -26,7 +26,7 @@ public class CommentService {
     }
 
     public CommentDto createComment(CommentCommand command) {
-        Comment comment = new Comment(command.getContent(), command.getCreateDate(), this);
+        Comment comment = new Comment(command.getContent(), command.getCreateDate());
         repository.save(comment);
         return modelMapper.map(comment, CommentDto.class);
     }

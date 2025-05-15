@@ -54,7 +54,7 @@ public class Book {
     }
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.PERSIST)
-    private List<Comment> commentList = new ArrayList<>();
+    private List<Comment> comments = new ArrayList<>();
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.PERSIST)
     private List<UserBook> userRelations = new ArrayList<>();

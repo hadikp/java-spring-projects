@@ -65,10 +65,13 @@ public class User {
     private List<UserBook> bookRelations = new ArrayList<>();
 
 
-    public void addComments(Book book, String content){
-        Comment comment = new Comment(content, LocalDate.now(), this);
+    public void addComment(Book book, String content) {
+        Comment comment = new Comment(content, LocalDate.now());
+        comment.setUser(this);
+        comment.setBook(book);
+
         comments.add(comment);
-        book.getCommentList().add(comment);
+        book.getComments().add(comment);
     }
 
     public void addMessages(Message message){

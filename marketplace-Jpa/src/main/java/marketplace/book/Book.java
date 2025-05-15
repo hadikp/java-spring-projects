@@ -54,8 +54,8 @@ public class Book {
         this.imagePath = imagePath;
     }
 
-    @OneToMany(mappedBy = "book", cascade = CascadeType.PERSIST)
-    private List<Comment> commentList = new ArrayList<>();
+    @OneToMany(mappedBy = "book")
+    private List<Comment> comments = new ArrayList<>();
 
     @OneToMany(mappedBy = "book", cascade = CascadeType.PERSIST)
     private List<UserBook> userRelations = new ArrayList<>();

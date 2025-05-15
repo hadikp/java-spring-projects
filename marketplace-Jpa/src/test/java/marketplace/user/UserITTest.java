@@ -44,9 +44,9 @@ class UserITTest {
         UserBook userBook2 = new UserBook(gergo, book1);
         UserBook userBook3 = new UserBook(gergo, book1);
 
-        /*gergo.addComments(book1, "com1 content");
-        gergo.addComments(book2, "com2 content");
-        gergo.addComments(book3, "com3 content");*/
+        gergo.addComment(book1, "com1 content");
+        gergo.addComment(book2, "com2 content");
+        peter.addComment(book3, "com3 content");
 
         Message message1 = new Message("gabi@freemail.hu", "message1");
         Message message2 = new Message("jani@gmail.com", "message2");

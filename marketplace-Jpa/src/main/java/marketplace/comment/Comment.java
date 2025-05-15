@@ -30,13 +30,9 @@ public class Comment {
     @ManyToOne
     private Book book;
 
-    public Comment(String content) {
-        this.content = content;
-    }
-
-    public Comment(String content, LocalDate date, User user) {
+    public Comment(String content, LocalDate date) {
         this.content = content;
         this.date = date;
-        this.user = user;
     }
+
 }

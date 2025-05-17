@@ -3,7 +3,10 @@ package marketplace;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
+import marketplace.user.User;
+import marketplace.user.UserDto;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -35,7 +38,18 @@ public class MarketplaceApplication {
 
 	@Bean
 	public ModelMapper createModelMapper(){
-		return new ModelMapper();
+		ModelMapper mapper = new ModelMapper();
+
+		// Precízebb egyezés
+		mapper.getConfiguration()
+				.setMatchingStrategy(MatchingStrategies.STRICT)
+				.setSkipNullEnabled(true);
+
+		// Itt explicit mappoljuk a cities mezőt
+		mapper.typeMap(marketplace.user.User.class, UserDto.class)
+				.addMappings(m -> m.map(User::getCities, UserDto::setCities));
+
+		return mapper;
 	}
 
 }

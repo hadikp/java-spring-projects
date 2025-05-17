@@ -38,18 +38,7 @@ public class MarketplaceApplication {
 
 	@Bean
 	public ModelMapper createModelMapper(){
-		ModelMapper mapper = new ModelMapper();
-
-		// Precízebb egyezés
-		mapper.getConfiguration()
-				.setMatchingStrategy(MatchingStrategies.STRICT)
-				.setSkipNullEnabled(true);
-
-		// Itt explicit mappoljuk a cities mezőt
-		mapper.typeMap(marketplace.user.User.class, UserDto.class)
-				.addMappings(m -> m.map(User::getCities, UserDto::setCities));
-
-		return mapper;
+		return new ModelMapper();
 	}
 
 }

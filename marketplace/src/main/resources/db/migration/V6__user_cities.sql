@@ -1,5 +1,5 @@
-create table user_cities(id bigint auto_increment PRIMARY KEY, city varchar(50));
-insert into user_cities(city) values ('Veszprém');
-insert into user_cities(city) values ('Pápa');
-insert into user_cities(city) values ('Cece');
-insert into user_cities(city) values ('Ajka');
+create table user_cities(user_id bigint, city varchar(50));
+insert into user_cities(user_id, city) values (1, 'Veszprém');
+insert into user_cities(user_id, city) values (1, 'Pápa');
+insert into user_cities(user_id, city) values (2, 'Cece');
+insert into user_cities(user_id, city) values (2, 'Ajka');

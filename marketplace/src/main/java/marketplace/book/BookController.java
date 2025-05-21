@@ -3,6 +3,7 @@ package marketplace.book;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import marketplace.user.UserDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,6 +52,11 @@ public class BookController {
     @ApiResponse(responseCode = "204", description = "Book has been deleted")
     public void deleteBook(@PathVariable("id") Long id){
         service.deleteBook(id);
+    }
+
+    @GetMapping("/{bookId}/offeredBy") //adott Book-nál melyik User van Offer kapcsolatban vele
+    public List<UserDto> getUsersWhoOfferedBook(@PathVariable("bookId") Long bookId){
+        return service.getUsersWhoOfferedBook(bookId);
     }
 
 }

@@ -23,7 +23,7 @@ class UserITTest {
 
     @Test
     void testCreate(){
-        gergo = new User("Gergő", "kissg",  "kissg@gmail.com", "pass123", 1L, LocalDate.of(2022, 12, 23));
+        gergo = new User("Gergő", "kissg", List.of("Kb", "ba"), "kissg@gmail.com", "pass123", 1L, LocalDate.of(2022, 12, 23));
 
         book1 = new Book("Asimov", "könyv cime","subtitle", "Ez egy könyv", "1122","2022",  true, false, "src/images");
         book2 = new Book("Asimov", "könyv cime","subtitle", "Ez egy könyv", "1122","2022",  true, false, "src/images");

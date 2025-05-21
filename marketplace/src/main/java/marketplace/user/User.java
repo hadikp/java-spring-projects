@@ -44,9 +44,10 @@ public class User {
     @Column(name = "registration_date")
     private LocalDate registrationDate;
 
-    public User(String name, String userName, String email, String password, Long role, LocalDate registrationDate) {
+    public User(String name, String userName, List<String> cities, String email, String password, Long role, LocalDate registrationDate) {
         this.name = name;
         this.userName = userName;
+        this.cities = cities;
         this.email = email;
         this.password = password;
         this.role = role;

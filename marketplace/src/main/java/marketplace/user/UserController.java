@@ -76,11 +76,16 @@ public class UserController {
         return service.userAddExistingWish(userId, wishId);
     }*/
 
-    @PostMapping("/{userId}/book/{bookId}")
+    @PostMapping("/{userId}/book/{bookId}") //adott usernél wish, offer... létrehozása
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Add an existing book to an existing user")
     @ApiResponse(responseCode = "201", description = "Old book has been added to the user")
     public UserBookDto addExistingBookToUser(@PathVariable("userId") Long userId, @PathVariable("bookId") Long bookId, @RequestParam("relationType") UserBookRelationType relationType) {
         return service.addExistingBookToUser(userId, bookId, relationType);
+    }
+
+    @GetMapping("/{userId}/relationType") // egy adott usernél az összes book lekérdezése
+    public List<UserBookDto> getAllUserBookRelations(@PathVariable("userId") Long userId) {
+        return service.getAllUserBookRelations(userId);
     }
 }

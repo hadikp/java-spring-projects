@@ -40,7 +40,7 @@ public class UserService {
     }
 
     public UserDto createUser(UserCommand command) {
-        User user = new User(command.getName(), command.getUserName(), command.getEmail(), command.getPassword(),
+        User user = new User(command.getName(), command.getUserName(), command.getCities(), command.getEmail(), command.getPassword(),
         command.getRole(), command.getRegistrationDate());
         repository.save(user);
         return modelMapper.map(user, UserDto.class);
@@ -120,5 +120,11 @@ public class UserService {
         Firestore dbFirestore = FirestoreClient.getFirestore();
         ApiFuture<WriteResult> writeResult = dbFirestore.collection("cusers").document(documentId).delete();
         return "Succesfully deleted " + documentId;
+    }
+
+    public List<UserBookDto> getAllUserBookRelations(Long userId) {
+        User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+        return user.getBookRelations().stream().map(rel -> modelMapper.map(rel, UserBookDto.class))
+                .collect(Collectors.toList());
     }
 }

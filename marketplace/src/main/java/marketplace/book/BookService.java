@@ -1,6 +1,8 @@
 package marketplace.book;
 
 import lombok.AllArgsConstructor;
+import marketplace.user.UserDto;
+import marketplace.userbook.UserBookRelationType;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -51,4 +53,11 @@ public class BookService {
         return modelMapper.map(book, BookDto.class);
     }
 
+    public List<UserDto> getUsersWhoOfferedBook(Long bookId) {
+        Book book = repository.findById(bookId).orElseThrow(() -> new BookNotFoundException(bookId));
+        return book.getUserRelations().stream()
+                .filter(rel -> rel.getRelationType() == UserBookRelationType.OFFERED)
+                .map(rel -> modelMapper.map(rel.getUser(), UserDto.class))
+                .collect(Collectors.toList());
+    }
 }

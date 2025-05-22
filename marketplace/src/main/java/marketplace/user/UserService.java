@@ -15,6 +15,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -41,7 +42,7 @@ public class UserService {
 
     public UserDto createUser(UserCommand command) {
         User user = new User(command.getName(), command.getUserName(), command.getCities(), command.getEmail(), command.getPassword(),
-        command.getRole(), command.getRegistrationDate());
+        command.getRole(), LocalDate.now());
         repository.save(user);
         return modelMapper.map(user, UserDto.class);
     }

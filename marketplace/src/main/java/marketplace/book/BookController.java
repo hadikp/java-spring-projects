@@ -40,13 +40,13 @@ public class BookController {
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
     @ApiResponse(responseCode = "201", description = "Book has been created")
-    public BookDto createBook(@RequestBody BookCommand command){
+    public ResponseEntity<BookDto> createBook(@ModelAttribute BookCommand command){
         return service.createBook(command);
     }
 
     @PutMapping("/{id}")
     @Operation(summary = "Update the user")
-    public BookDto updateBook(@PathVariable("id") Long id, @RequestBody UpdateBook command){
+    public ResponseEntity<BookDto> updateBook(@PathVariable("id") Long id, @ModelAttribute BookCommand command){
         return service.updateBook(id, command);
     }
 
@@ -63,7 +63,7 @@ public class BookController {
         return service.getUsersWhoOfferedBook(bookId);
     }
 
-    @PostMapping("/upload")
+    @PostMapping("/upload") //külön végpont file feltöltésre
     public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file, @RequestParam("bookId") Long bookId){
         return service.uploadImage(file, bookId);
     }

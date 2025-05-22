@@ -3,6 +3,7 @@ package marketplace.book;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 @Data
 @NoArgsConstructor
@@ -18,6 +19,7 @@ public class BookCommand {
     private Boolean approved; //default false
     private Boolean active;
     private String imagePath;
+    private MultipartFile image;
 
 
 

@@ -12,7 +12,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -36,11 +35,19 @@ public class BookService {
     }
 
 
-    public BookDto createBook(BookCommand command) {
+    public ResponseEntity<BookDto> createBook(BookCommand command) {
         Book book = new Book(command.getAuthor(), command.getTitle(), command.getSubTitle(), command.getDescription(),
                 command.getIsbn(), command.getPublication(), command.getApproved(), command.getActive(), command.getImagePath());
+        try {
+            String imagePath = storeFile(command.getImage());
+            if (imagePath != null) {
+                book.setImagePath(imagePath);
+            }
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
         repository.save(book);
-        return modelMapper.map(book, BookDto.class);
+        return ResponseEntity.status(HttpStatus.CREATED).body(modelMapper.map(book, BookDto.class));
     }
 
     public void deleteBook(Long id) {
@@ -48,7 +55,7 @@ public class BookService {
     }
 
     @Transactional
-    public BookDto updateBook(Long id, UpdateBook command) {
+    public ResponseEntity<BookDto> updateBook(Long id, BookCommand command) {
         Book findBook = repository.findById(id).orElseThrow(() -> new BookNotFoundException(id));
         findBook.setAuthor(command.getAuthor());
         findBook.setTitle(command.getTitle());
@@ -59,7 +66,16 @@ public class BookService {
         findBook.setApproved(command.getApproved());
         findBook.setActive(command.getActive());
         findBook.setImagePath(command.getImagePath());
-        return modelMapper.map(findBook, BookDto.class);
+        try {
+            String imagePath = storeFile(command.getImage());
+            if (imagePath != null) {
+                findBook.setImagePath(imagePath);
+            }
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+        repository.save(findBook);
+        return ResponseEntity.ok(modelMapper.map(findBook, BookDto.class));
     }
 
     public BookDto findBookById(Long id) {
@@ -75,35 +91,50 @@ public class BookService {
                 .collect(Collectors.toList());
     }
 
-    public ResponseEntity<String> uploadImage(MultipartFile file, Long bookId) {
+    public ResponseEntity<String> uploadImage(MultipartFile file, Long bookId) { //külön végpont file feltöltésre
         Book book = repository.findById(bookId).orElseThrow(() -> new BookNotFoundException(bookId));
-
         try {
             if (file.isEmpty()) {
                 return ResponseEntity.badRequest().body("A fájl üres.");
             }
-
             // Fájl mentési útvonal
             String filename = UUID.randomUUID() + "_" + file.getOriginalFilename();
             Path uploadPath = Paths.get(UPLOAD_DIR);
-
             if (!Files.exists(uploadPath)) {
                 Files.createDirectories(uploadPath);
             }
-
             Path filePath = uploadPath.resolve(filename);
             try (InputStream inputStream = file.getInputStream()) {
                 Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
             }
-
             // Útvonal mentése a könyvhöz
             book.setImagePath(filename);
             repository.save(book);
-
             return ResponseEntity.ok("Sikeres feltöltés: " + filename);
         } catch (IOException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Hiba a feltöltés során: " + e.getMessage());
         }
+    }
+
+    //segédfüggvény file feltöltéshez
+    public static String storeFile(MultipartFile file) throws IOException {
+        if (file == null || file.isEmpty()) {
+                return null;
+        }
+
+        String filename = UUID.randomUUID() + "_" + file.getOriginalFilename();
+        Path uploadPath = Paths.get(UPLOAD_DIR);
+
+        if (!Files.exists(uploadPath)) {
+            Files.createDirectories(uploadPath);
+        }
+
+        Path filePath = uploadPath.resolve(filename);
+        try (InputStream inputStream = file.getInputStream()) {
+            Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+        }
+
+        return filename;
     }
 }

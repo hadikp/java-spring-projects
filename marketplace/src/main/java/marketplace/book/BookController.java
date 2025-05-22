@@ -5,7 +5,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import marketplace.user.UserDto;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -15,6 +17,8 @@ import java.util.List;
 public class BookController {
 
     private BookService service;
+
+
 
     public BookController(BookService service) {
         this.service = service;
@@ -57,6 +61,11 @@ public class BookController {
     @GetMapping("/{bookId}/offeredBy") //adott Book-nál melyik User van Offer kapcsolatban vele
     public List<UserDto> getUsersWhoOfferedBook(@PathVariable("bookId") Long bookId){
         return service.getUsersWhoOfferedBook(bookId);
+    }
+
+    @PostMapping("/upload")
+    public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file, @RequestParam("bookId") Long bookId){
+        return service.uploadImage(file, bookId);
     }
 
 }

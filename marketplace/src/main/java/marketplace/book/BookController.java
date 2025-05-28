@@ -45,7 +45,7 @@ public class BookController {
     }
 
     @PutMapping("/{id}")
-    @Operation(summary = "Update the user")
+    @Operation(summary = "Update the Book")
     public ResponseEntity<BookDto> updateBook(@PathVariable("id") Long id, @ModelAttribute BookCommand command){
         return service.updateBook(id, command);
     }

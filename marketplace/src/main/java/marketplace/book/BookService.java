@@ -123,7 +123,7 @@ public class BookService {
                 return null;
         }
 
-        String filename = UUID.randomUUID() + "_" + file.getOriginalFilename();
+        String filename = UUID.randomUUID() + "_" +file.getOriginalFilename();
         Path uploadPath = Paths.get(UPLOAD_DIR);
 
         if (!Files.exists(uploadPath)) {

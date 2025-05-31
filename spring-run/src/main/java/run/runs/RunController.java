@@ -16,7 +16,7 @@ public class RunController {
     }
 
     @GetMapping
-    public List<RunDto> éistAllRaces(){
+    public List<RunDto> listAllRaces(){
         return service.listAllRaces();
     }
 

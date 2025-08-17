@@ -18,11 +18,13 @@ insert into runs(type, description, km, run_date, training_id) values ('futás',
 insert into runs(type, description, km, run_date, training_id) values ('futás', 'hosszú futás megint a régi távon', 50, '2025-06-07', 26);
 insert into runs(type, description, km, run_date, training_id) values ('futás', 'futás a Pákozdi erdőig oda-vissza', 30, '2025-06-13', 29);
 insert into runs(type, description, km, run_date, training_id) values ('futás', 'futás a Pákozdi erdőig oda-vissza', 50, '2025-06-21', 32);
-insert into runs(type, description, km, run_date, training_id) values ('futás', 'indulás:4:28 Halesz:18p Kisfalud:56p M7:1ó06p Lótusz:1ó18p kanyarbüfé:1ó31p Agárd:2ó04p Velencefürdő:2ó29p Velence:2ö54p Spar:35p Katonai:8:45 Kisfalud:9:54 Óra:10:22', 50, '2025-06-28', 33);
+insert into runs(type, description, km, run_date, training_id) values ('futás', 'indulás:4:28 Halesz:18p Kisfalud:56p M7:1ó06p Lótusz:1ó18p kanyarbüfé:1ó31p Agárd:2ó04p Velencefürdő:2ó29p Velence:2ó54p Spar:35p Katonai:8:45 Kisfalud:9:54 Óra:10:22', 50, '2025-06-28', 33);
 insert into runs(type, description, km, run_date, training_id) values ('futás', 'indulás:5:10 Agárd:2ó05p Velence:2ö56p Óra:11:10', 50, '2025-07-05', 34);
 insert into runs(type, description, km, run_date, training_id) values ('futás', 'hosszú futás', 50, '2025-07-12', 35);
 insert into runs(type, description, km, run_date, training_id) values ('futás', 'hosszú futás', 50, '2025-07-26', 36);
 insert into runs(type, description, km, run_date, training_id) values ('futás', 'indulás:4:00 Agárd:2ó10p Velence:3ó02p Óra:09:55', 50, '2025-08-02', 37);
+insert into runs(type, description, km, run_date, training_id) values ('futás', 'indulás:4:21 Halesz:19p Kisfalud:54p M7:12p Lótusz:25p kanyarbüfé:12p Agárd:2ó04p Velencefürdő:31p Velence:2ó52p Spar:30p Katonai:8:30 Kisfalud:9:34 Óra:10:07', 55, '2025-08-07', 38);
+insert into runs(type, description, km, run_date, training_id) values ('futás', 'indulás:3:42 Agárd:2ó13p Velence:3ó10p Óra:09:55', 50, '2025-08-16', 39);
 
 
 

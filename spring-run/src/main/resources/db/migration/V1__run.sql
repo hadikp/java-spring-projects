@@ -12,6 +12,9 @@ insert into runs(type, description, km, run_date, training_id) values ('futás',
 insert into runs(type, description, km, run_date, training_id) values ('futás', 'indulás:5:00 Agárd:2ó10p Velence:3ó07p Óra:10:46', 55, '2025-09-27', 256);
 insert into runs(type, description, km, run_date, training_id) values ('futás', 'indulás:5:30 Agárd:2ó15p Velence:3ó10p Óra:11:30 2x15 fekvo', 50, '2025-10-04', 257);
 insert into runs(type, description, km, run_date, training_id) values ('futás', 'indulás:5:32 Agárd:2ó15p Velence:3ó08p Óra:11:30 2x10 fekvo', 50, '2025-10-11', 258);
+insert into runs(type, description, km, run_date, training_id) values ('futás', 'indulás:5:53 Agárd:2ó17p Velence:3ó07p Óra:11:45 2x15 fekvo', 50, '2025-10-18', 259);
+insert into runs(type, description, km, run_date, training_id) values ('futás', 'indulás:5:53 Agárd:2ó17p Velence:3ó07p Óra:11:45 2x15 fekvo', 50, '2025-10-23', 260);
+insert into runs(type, description, km, run_date, training_id) values ('futás', 'indulás:7:53, óraállítás vissza', 22, '2025-10-26', 261);
 
 
 

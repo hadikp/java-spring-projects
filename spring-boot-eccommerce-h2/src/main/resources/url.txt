@@ -1,0 +1,9 @@
+jdbc:h2:mem:testdb
+
+http://localhost:8080/h2-console/
+
+http://localhost:8080/products/search/findByCategoryId?id=1
+
+http://localhost:8080/product-category
+
+http://localhost:8080/states/search/findByCountryCode?code=US

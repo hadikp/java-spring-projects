@@ -10,6 +10,7 @@ import java.util.Set;
 @Table(name = "product_category")
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 public class ProductCategory {
 
     @Id
@@ -22,19 +23,4 @@ public class ProductCategory {
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private Set<Product> products;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getCategoryName() {
-        return categoryName;
-    }
-
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
 }

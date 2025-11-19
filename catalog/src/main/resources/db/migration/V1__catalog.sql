@@ -1,7 +1,9 @@
 CREATE TABLE catalog (
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-    description VARCHAR(500)
+    description VARCHAR(500),
+    parameter VARCHAR(1000),
+    modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Katalógusok

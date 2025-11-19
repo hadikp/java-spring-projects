@@ -1,15 +1,16 @@
 CREATE TABLE catalog_item (
     id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    catalog_id BIGINT UNSIGNED NOT NULL,
     item_value VARCHAR(100),
     name VARCHAR(255) NOT NULL,
+    catalog_id BIGINT UNSIGNED NOT NULL,
+    modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (catalog_id) REFERENCES catalog(id)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Katalógus elemek Elektronikus csatorna típusa
-INSERT INTO catalog_item (catalog_id, item_value, name) VALUES (1, '1', 'Email');
+INSERT INTO catalog_item (item_value, name, catalog_id, modified) VALUES ('1', 'Email', 1, CURRENT_TIMESTAMP);
 INSERT INTO catalog_item (catalog_id, item_value, name) VALUES (1, '2', 'CIB Bank Mobilalkalmazás/CIB Bank Online');
 INSERT INTO catalog_item (catalog_id, item_value, name) VALUES (1, '3', 'Elektronikus csatornák');
 

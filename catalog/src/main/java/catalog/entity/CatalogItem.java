@@ -19,11 +19,17 @@ public class CatalogItem {
     private Long id;
 
     @Column(name = "item_value")
-    private String value;
+    private String itemValue;
 
     private String name;
 
     private LocalDateTime modified;
+
+    public CatalogItem(String itemValue, String name, LocalDateTime modified) {
+        this.itemValue = itemValue;
+        this.name = name;
+        this.modified = modified;
+    }
 
     @ManyToOne
     @JoinColumn(name = "catalog_id", nullable = false)

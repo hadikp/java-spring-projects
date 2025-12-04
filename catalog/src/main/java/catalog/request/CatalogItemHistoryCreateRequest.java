@@ -8,12 +8,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CatalogItemCreateRequest {
+public class CatalogItemHistoryCreateRequest {
 
-    @Column(name = "item_value")
-    private String value;
+    @Column(name = "catalog_item_id")
+    private Long catalogItemId;
 
-    private String name;
+    private String parameter;
 
-    private Long catalogId;
+    private String comment;
 }

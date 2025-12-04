@@ -19,14 +19,14 @@ public class CatalogItem {
     private Long id;
 
     @Column(name = "item_value")
-    private String itemValue;
+    private String value;
 
     private String name;
 
     private LocalDateTime modified;
 
-    public CatalogItem(String itemValue, String name, LocalDateTime modified) {
-        this.itemValue = itemValue;
+    public CatalogItem(String value, String name, LocalDateTime modified) {
+        this.value = value;
         this.name = name;
         this.modified = modified;
     }

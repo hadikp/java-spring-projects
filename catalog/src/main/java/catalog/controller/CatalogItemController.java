@@ -6,10 +6,7 @@ import catalog.request.CatalogItemCreateRequest;
 import catalog.service.CatalogItemService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/catalog-item")
@@ -21,9 +18,14 @@ public class CatalogItemController {
         this.service = service;
     }
 
-    @PostMapping("/create")
+    @PostMapping("")
     public ResponseEntity<CatalogItemDto> createCatalogItem (@RequestBody CatalogItemCreateRequest catalogItemCreateRequest){
         CatalogItemDto created = service.createCatalogItem(catalogItemCreateRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteCatalogItem(@PathVariable("id") Long itemId) {
+        service.deleteCatalogItem(itemId);
     }
 }

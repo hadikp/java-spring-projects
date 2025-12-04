@@ -4,7 +4,9 @@ import catalog.dto.CatalogDto;
 import catalog.dto.CatalogItemDto;
 import catalog.entity.Catalog;
 import catalog.entity.CatalogItem;
+import catalog.exception.CatalogItemWithoutCatalogException;
 import catalog.exception.CatalogNotFoundException;
+import catalog.repository.CatalogItemHistoryRepository;
 import catalog.repository.CatalogItemRepository;
 import catalog.repository.CatalogRepository;
 import catalog.request.CatalogItemCreateRequest;
@@ -20,6 +22,8 @@ public class CatalogItemService {
 
     private CatalogRepository catalogRepository;
 
+    private CatalogItemHistoryRepository historyRepository;
+
     private CatalogItemRepository repository;
 
     private ModelMapper modelMapper;
@@ -33,10 +37,26 @@ public class CatalogItemService {
             throw new IllegalStateException("Már létezik ilyen elem ebben a katalógusban: " + catalogName);
         }
 
-        CatalogItem newCatalogItem = new CatalogItem(catalogItemCreateRequest.getItemValue(), catalogName, LocalDateTime.now());
+        CatalogItem newCatalogItem = new CatalogItem(catalogItemCreateRequest.getValue(), catalogName, LocalDateTime.now());
 
         catalog.addCatalogItem(newCatalogItem);
         repository.save(newCatalogItem);
         return modelMapper.map(newCatalogItem, CatalogItemDto.class);
+    }
+
+    public void deleteCatalogItem(Long itemId) {
+        CatalogItem catalogItem = repository.findById(itemId).orElseThrow();
+        Catalog catalog = catalogItem.getCatalog();
+        if (catalog == null) {
+            throw new CatalogItemWithoutCatalogException(itemId);
+        }
+        // Töröljük a history rekordokat
+        historyRepository.deleteByCatalogItemId(itemId);
+
+        // Eltávolítjuk az elemet a katalógusból
+        catalog.removeCatalogItem(catalogItem);
+
+        // Mentjük a katalógust (orphanRemoval miatt törlődik az elem)
+        catalogRepository.save(catalog);
     }
 }

@@ -39,4 +39,14 @@ public class Catalog {
             catalogItem.setCatalog(this);
         }
     }
+
+    public void removeCatalogItem(CatalogItem catalogItem) {
+        if (catalogItem == null) {
+            throw new IllegalArgumentException("CatalogItem nem lehet null");
+        }
+        if (catalogItems.contains(catalogItem)) {
+            catalogItems.remove(catalogItem);
+            catalogItem.setCatalog(null); // Kapcsolat megszüntetése
+        }
+    }
 }

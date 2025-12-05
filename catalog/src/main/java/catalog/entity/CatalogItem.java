@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -34,4 +36,26 @@ public class CatalogItem {
     @ManyToOne
     @JoinColumn(name = "catalog_id", nullable = false)
     private Catalog catalog;
+
+    @OneToMany(mappedBy = "catalogItem")
+    private List<CatalogItemHistory> historyList = new ArrayList<>();
+
+    public void addHistory(CatalogItemHistory history) {
+        this.historyList.add(history);
+        history.setCatalogItem(this);
+    }
+
+    @PrePersist
+    public void onCreate() {
+        if (modified == null) {
+            modified = LocalDateTime.now();
+        }
+    }
+
+    @PreUpdate
+    public void onUpdate() {
+        modified = LocalDateTime.now();
+    }
+
+
 }

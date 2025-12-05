@@ -1,16 +1,17 @@
 CREATE TABLE catalog_item_history (
     id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     catalog_item_id BIGINT UNSIGNED NOT NULL,
-    `parameter` VARCHAR(1000),
+    `parameter` LONGTEXT,  -- nagy szöveg, JSON tárolásra ideális
     `comment`   VARCHAR(250),
-    modified TIMESTAMP
+     modified TIMESTAMP
         DEFAULT CURRENT_TIMESTAMP
-        ON UPDATE CURRENT_TIMESTAMP, -- automatikus frissítés módosításkor
+        ON UPDATE CURRENT_TIMESTAMP,
     CONSTRAINT fk_ci_history_ci
         FOREIGN KEY (catalog_item_id)
         REFERENCES catalog_item(id)
         ON UPDATE CASCADE
-        ON DELETE RESTRICT
+        ON DELETE RESTRICT,
+    CONSTRAINT chk_parameter_json_valid CHECK (parameter IS NULL OR JSON_VALID(parameter)) -- opcionális JSON ellenőrzés
 ) ENGINE=InnoDB
   DEFAULT CHARSET = utf8mb4;
 

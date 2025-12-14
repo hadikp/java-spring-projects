@@ -33,6 +33,10 @@ public class CatalogItemHistory {
     @JoinColumn(name = "catalog_item_id", nullable = false)
     private CatalogItem catalogItem;
 
+    @ManyToOne
+    @JoinColumn(name = "catalog_id", nullable = false)
+    private Catalog catalog;
+
     @PrePersist
     public void onCreate() {
         if (modified == null) {

@@ -1,9 +1,12 @@
 package catalog.request;
 
+import catalog.dto.ParameterDto;
 import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -16,4 +19,6 @@ public class CatalogItemCreateRequest {
     private String name;
 
     private Long catalogId;
+
+    private List<ParameterDto> currentItems;
 }

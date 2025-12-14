@@ -1,12 +1,10 @@
 package catalog.service;
 
-import catalog.dto.CatalogDto;
 import catalog.dto.CatalogItemDto;
 import catalog.dto.ParameterDto;
 import catalog.entity.Catalog;
 import catalog.entity.CatalogItem;
 import catalog.entity.CatalogItemHistory;
-import catalog.exception.CatalogItemWithoutCatalogException;
 import catalog.exception.CatalogNotFoundException;
 import catalog.repository.CatalogItemHistoryRepository;
 import catalog.repository.CatalogItemRepository;
@@ -20,6 +18,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -31,8 +31,6 @@ public class CatalogItemService {
 
     private CatalogItemHistoryRepository historyRepository;
 
-    private CatalogItemRepository repository;
-
     private ObjectMapper objectMapper;
 
     private ModelMapper modelMapper;
@@ -40,50 +38,52 @@ public class CatalogItemService {
     @Transactional
     public CatalogItemDto createCatalogItem(CatalogItemCreateRequest catalogItemCreateRequest) {
         Long catalogId = catalogItemCreateRequest.getCatalogId();
-        String catalogName = catalogItemCreateRequest.getName();
+        String catalogItemName = catalogItemCreateRequest.getName();
         String catalogItemValue = catalogItemCreateRequest.getValue();
 
         Catalog catalog = catalogRepository.findById(catalogId).orElseThrow(() -> new CatalogNotFoundException(catalogId));
-        if (catalogItemRepository.existsByCatalogIdAndName(catalogId, catalogName)) {
-            throw new IllegalStateException("Már létezik ilyen elem ebben a katalógusban: " + catalogName);
+        if (catalogItemRepository.existsByCatalogIdAndName(catalogId, catalogItemName)) {
+            throw new IllegalStateException("Már létezik ilyen elem ebben a katalógusban: " + catalogItemName);
         }
 
-        CatalogItem newCatalogItem = new CatalogItem(catalogItemValue, catalogName, LocalDateTime.now());
+        CatalogItem newCatalogItem = new CatalogItem(catalogItemValue, catalogItemName, LocalDateTime.now());
         catalog.addCatalogItem(newCatalogItem);
         catalogItemRepository.save(newCatalogItem);
 
         // --- History parameter JSON felépítése Jacksonnal a típusos DTO-ból ---
-        ParameterDto param = new ParameterDto(catalogItemValue, catalogName);
+        List<ParameterDto> itemsToSave = catalogItemCreateRequest.getCurrentItems();
+
+        if(itemsToSave == null) {
+            itemsToSave = new ArrayList<>();
+            itemsToSave.add(new ParameterDto(catalogItemValue, catalogItemName));
+        }
+
         String parameterJson;
         try {
-            parameterJson = objectMapper.writeValueAsString(param);
+            parameterJson = objectMapper.writeValueAsString(itemsToSave);
         } catch (JsonProcessingException e) {
             throw new IllegalStateException("Nem sikerült a history JSON szerializálása.", e);
         }
 
         // --- History létrehozása ---
         CatalogItemHistory history = new CatalogItemHistory(parameterJson, "Elem létrehozva: ");
-        newCatalogItem.addHistory(history);
-        historyRepository.save(history);
-
+        catalog.addHistory(history);
 
         catalogRepository.save(catalog);
         return modelMapper.map(newCatalogItem, CatalogItemDto.class);
     }
 
     public void deleteCatalogItem(Long itemId) {
-        CatalogItem catalogItem = repository.findById(itemId).orElseThrow();
+        CatalogItem catalogItem = catalogItemRepository.findById(itemId).orElseThrow();
         Catalog catalog = catalogItem.getCatalog();
-        if (catalog == null) {
-            throw new CatalogItemWithoutCatalogException(itemId);
+
+        if (catalog != null) {
+            catalog.removeCatalogItem(catalogItem);
+            catalogRepository.save(catalog);
+        } else {
+            // Ha nincs szülője mehet a direkt törlés
+            catalogItemRepository.delete(catalogItem);
         }
-        // Töröljük a history rekordokat
-        historyRepository.deleteByCatalogItemId(itemId);
 
-        // Eltávolítjuk az elemet a katalógusból
-        catalog.removeCatalogItem(catalogItem);
-
-        // Mentjük a katalógust (orphanRemoval miatt törlődik az elem)
-        catalogRepository.save(catalog);
     }
 }

@@ -3,11 +3,13 @@ CREATE TABLE catalog_item (
     item_value VARCHAR(100),
     name VARCHAR(255) NOT NULL,
     catalog_id BIGINT UNSIGNED NOT NULL,
-    modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (catalog_id) REFERENCES catalog(id)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+    modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- Frissüljön módosításkor is
+    deleted BOOLEAN DEFAULT FALSE,
+    CONSTRAINT fk_catalog_item_catalog -- Érdemes nevet adni a kényszernek
+            FOREIGN KEY (catalog_id) REFERENCES catalog(id)
+            ON UPDATE CASCADE
+            ON DELETE RESTRICT
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Katalógus elemek Elektronikus csatorna típusa
 INSERT INTO catalog_item (item_value, name, catalog_id, modified) VALUES ('1', 'Email', 1, CURRENT_TIMESTAMP);

@@ -1,6 +1,6 @@
 package catalog.service;
 
-import catalog.dto.CatalogDto;
+import catalog.dto.CatalogAndItemsDto;
 import catalog.entity.Catalog;
 import catalog.exception.CatalogNotFoundException;
 import catalog.repository.CatalogRepository;
@@ -20,13 +20,13 @@ public class CatalogService {
     private ModelMapper modelMapper;
 
 
-    public List<CatalogDto> getAllCatalogs() {
+    public List<CatalogAndItemsDto> getAllCatalogs() {
         List<Catalog> catalogs = repository.findAll();
-        return catalogs.stream().map(c -> modelMapper.map(c, CatalogDto.class)).collect(Collectors.toList());
+        return catalogs.stream().map(c -> modelMapper.map(c, CatalogAndItemsDto.class)).collect(Collectors.toList());
     }
 
-    public CatalogDto findCatalogById(Long id) {
+    public CatalogAndItemsDto findCatalogById(Long id) {
         Catalog findCatalog = repository.findById(id).orElseThrow(() -> new CatalogNotFoundException(id));
-        return modelMapper.map(findCatalog, CatalogDto.class);
+        return modelMapper.map(findCatalog, CatalogAndItemsDto.class);
     }
 }

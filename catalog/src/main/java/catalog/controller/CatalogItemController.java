@@ -1,6 +1,5 @@
 package catalog.controller;
 
-import catalog.dto.CatalogDto;
 import catalog.dto.CatalogItemDto;
 import catalog.request.CatalogItemCreateRequest;
 import catalog.service.CatalogItemService;

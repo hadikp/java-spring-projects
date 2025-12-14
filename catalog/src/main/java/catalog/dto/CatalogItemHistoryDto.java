@@ -1,27 +1,22 @@
 package catalog.dto;
 
-import catalog.service.CatalogItemService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
+import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CatalogDto {
+public class CatalogItemHistoryDto {
 
     private Long id;
 
-    private String name;
-
-    private String description;
-
     private String parameter;
 
-    private LocalDateTime modified;
+    private String comment;
 
-    private List<CatalogItemDto> items;
+    private LocalDateTime modified;
 }

@@ -1,6 +1,6 @@
 package catalog.controller;
 
-import catalog.dto.CatalogDto;
+import catalog.dto.CatalogAndItemsDto;
 import catalog.service.CatalogService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,14 +21,14 @@ public class CatalogController {
     }
 
     @GetMapping
-    private ResponseEntity<List<CatalogDto>> getAllCatalogs() {
-        List<CatalogDto> catalogs = service.getAllCatalogs();
+    private ResponseEntity<List<CatalogAndItemsDto>> getAllCatalogs() {
+        List<CatalogAndItemsDto> catalogs = service.getAllCatalogs();
         return ResponseEntity.ok(catalogs);
     }
 
     @GetMapping("/{id}")
-    private ResponseEntity<CatalogDto> getCatalogById(@PathVariable("id") Long id) {
-        CatalogDto catalogDto = service.findCatalogById(id);
+    private ResponseEntity<CatalogAndItemsDto> getCatalogById(@PathVariable("id") Long id) {
+        CatalogAndItemsDto catalogDto = service.findCatalogById(id);
         return ResponseEntity.ok(catalogDto);
     }
 }

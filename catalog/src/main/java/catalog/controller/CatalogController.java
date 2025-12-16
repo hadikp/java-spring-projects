@@ -1,5 +1,6 @@
 package catalog.controller;
 
+import catalog.dto.CatalogAndHistoryDto;
 import catalog.dto.CatalogAndItemsDto;
 import catalog.service.CatalogService;
 import org.springframework.http.ResponseEntity;
@@ -30,5 +31,11 @@ public class CatalogController {
     private ResponseEntity<CatalogAndItemsDto> getCatalogById(@PathVariable("id") Long id) {
         CatalogAndItemsDto catalogDto = service.findCatalogById(id);
         return ResponseEntity.ok(catalogDto);
+    }
+
+    @GetMapping("/{id}/item-history")
+    public ResponseEntity<CatalogAndHistoryDto> getByIdCatalogHistory(@PathVariable("id") long id) {
+        CatalogAndHistoryDto catalogAndHistoryDto = service.getByIdCatalogHistory(id);
+        return ResponseEntity.ok(catalogAndHistoryDto);
     }
 }

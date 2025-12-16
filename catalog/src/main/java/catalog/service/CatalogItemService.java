@@ -48,7 +48,6 @@ public class CatalogItemService {
 
         CatalogItem newCatalogItem = new CatalogItem(catalogItemValue, catalogItemName, LocalDateTime.now());
         catalog.addCatalogItem(newCatalogItem);
-        catalogItemRepository.save(newCatalogItem);
 
         // --- History parameter JSON felépítése Jacksonnal a típusos DTO-ból ---
         List<ParameterDto> itemsToSave = catalogItemCreateRequest.getCurrentItems();

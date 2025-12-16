@@ -1,3 +1,4 @@
 http://localhost:8080/catalog
 
-http://localhost:8080/product-category
+http://localhost:8080/catalog/1/item-history
+

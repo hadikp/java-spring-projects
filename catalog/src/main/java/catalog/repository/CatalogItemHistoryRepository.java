@@ -5,5 +5,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CatalogItemHistoryRepository extends JpaRepository<CatalogItemHistory, Long> {
 
-    void deleteByCatalogItemId(Long catalogItemId);
 }

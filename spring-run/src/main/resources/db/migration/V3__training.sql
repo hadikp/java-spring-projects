@@ -20,5 +20,6 @@ insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('f
 insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 151, 1694, '2025-11-15');
 insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 201, 1744, '2025-11-22');
 insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 50, 1794, '2025-12-06');
+insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 100, 1844, '2025-12-13');
 
 

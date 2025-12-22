@@ -32,3 +32,15 @@ VALUES (2, '[{"value":"1","name":"Tranzakció dátuma"}, {"value":"2","name":"Tr
 
 INSERT INTO catalog_item_history (catalog_id, parameter, comment, modified)
 VALUES (3, '[{"value":"1","name":"HUF"}, {"value":"2","name":"EUR"}]', 'Devizák', '2025-11-17 12:30:00');
+
+INSERT INTO catalog_item_history (catalog_id, parameter, comment, modified)
+VALUES (3, '[{"value":"1","name":"HUF"}, {"value":"2","name":"EUR"}, {"value":"2","name":"GBP"}]', 'plusz GBP', '2025-11-17 13:00:00');
+
+INSERT INTO catalog_item_history (catalog_id, parameter, comment, modified)
+VALUES (3, '[{"value":"1","name":"HUF"}, {"value":"2","name":"EUR"}, {"value":"3","name":"GBP"}, {"value":"4","name":"USD"}]', 'plusz USD', '2025-11-17 13:30:00');
+
+INSERT INTO catalog_item_history (catalog_id, parameter, comment, modified)
+VALUES (4, '[{"value":"1","name":"EMAIL"}, {"value":"2","name":"EUR"}]', 'Írásos visszajelzés módja', '2025-11-17 12:30:00');
+
+INSERT INTO catalog_item_history (catalog_id, parameter, comment, modified)
+VALUES (4, '[{"value":"1","name":"EMAIL"}, {"value":"2","name":"Postai levél"}]', 'plusz postai levél', '2025-11-17 13:00:00');

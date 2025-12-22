@@ -65,7 +65,7 @@ public class CatalogItemService {
         }
 
         // --- History létrehozása ---
-        CatalogItemHistory history = new CatalogItemHistory(parameterJson, "Elem létrehozva: ");
+        CatalogItemHistory history = new CatalogItemHistory(parameterJson, "Űj Elem létrehozva: ");
         catalog.addHistory(history);
 
         catalogRepository.save(catalog);

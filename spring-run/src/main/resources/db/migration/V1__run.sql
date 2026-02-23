@@ -23,7 +23,14 @@ insert into runs(type, description, km, run_date, training_id) values ('futás',
 insert into runs(type, description, km, run_date, training_id) values ('futás', 'indulás:5:45 Agárd:2ó25p Velence:3ó17 Óra:11:55 2x20 fekvo', 50, '2025-12-13', 267);
 insert into runs(type, description, km, run_date, training_id) values ('futás', 'indulás:4:20 Agárd:2ó25p Velence:3ó12 Óra:10:30 2x20 fekvo', 50, '2025-12-20', 268);
 insert into runs(type, description, km, run_date, training_id) values ('futás', 'indulás:5:52 Agárd:2ó20p Velence:3ó13 Óra:11:45 2x22 fekvo', 50, '2025-12-23', 269);
-insert into runs(type, description, km, run_date, training_id) values ('futás', 'indulás:6:45 Agárd:2ó25p Velence:3ó20 Óra:12:50 2x22, 22fekvo, 2C', 50, '2026-01-03', 270);
+insert into runs(type, description, km, run_date, training_id) values ('futás', 'indulás:6:45 Agárd:2ó25p Velence:3ó20 Óra:12:50 2x22, fekvo, 2C', 50, '2026-01-03', 270);
+insert into runs(type, description, km, run_date, training_id) values ('futás', 'indulás:4:00 Agárd:2ó30p Velence:3ó20 Óra:10:20 2x20, fekvo, 1C', 50, '2026-01-17', 271);
+insert into runs(type, description, km, run_date, training_id) values ('futás', 'futás az Úrhidai telekre és vissza -6C', 24, '2026-01-19', 272);
+insert into runs(type, description, km, run_date, training_id) values ('futás', 'indulás:6:00 Velence templom óra: 8:35 Agárd:9ó55p Óra:12:05 1x20, fekvo, 1C', 52, '2026-01-24', 273);
+insert into runs(type, description, km, run_date, training_id) values ('futás', 'indulás:6:10 Velence templom óra: 9:10 Agárd:10ó30p Óra:12:50 2x20, fekvo, 2C', 54, '2026-02-01', 274);
+insert into runs(type, description, km, run_date, training_id) values ('futás', 'indulás:4:30 Velence templom óra: 7:10 Agárd:8ó25p Óra:10:45 2x20, fekvo, 3C', 52, '2026-02-07', 275);
+insert into runs(type, description, km, run_date, training_id) values ('futás', 'indulás:4:45 Velence templom óra: 7:25 Agárd:8ó45p Óra:10:55 2x20, fekvo, 2C', 52, '2026-02-14', 276);
+insert into runs(type, description, km, run_date, training_id) values ('futás', 'indulás:4:37 Velence templom óra: 7:15 Agárd:8ó35p Óra:10:35 2x20, fekvo, 1C', 52, '2026-02-21', 277);
 
 
 

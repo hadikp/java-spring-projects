@@ -1,9 +1,5 @@
 create table runs(id bigint auto_increment PRIMARY KEY, type varchar(50), description varchar(200), km double,
  run_date date, training_id bigint);
-insert into runs(type, description, km, run_date, training_id) values ('futás', 'hosszú futás', 50, '2025-07-26', 247);
-insert into runs(type, description, km, run_date, training_id) values ('futás', 'indulás:4:00 Agárd:2ó10p Velence:3ó02p Óra:09:55', 50, '2025-08-02', 248);
-insert into runs(type, description, km, run_date, training_id) values ('futás', 'indulás:4:21 Halesz:19p Kisfalud:54p M7:12p Lótusz:25p kanyarbüfé:12p Agárd:2ó04p Velencefürdő:31p Velence:2ó52p Spar:30p Katonai:8:30 Kisfalud:9:34 Óra:10:07', 55, '2025-08-07', 249);
-insert into runs(type, description, km, run_date, training_id) values ('futás', 'indulás:3:42 Agárd:2ó13p Velence:3ó10p Óra:09:55', 50, '2025-08-16', 250);
 insert into runs(type, description, km, run_date, training_id) values ('futás', 'indulás:4:10 Agárd:2ó15p Velence:3ó10p Óra:10:20', 50, '2025-08-20', 251);
 insert into runs(type, description, km, run_date, training_id) values ('futás', 'indulás:4:10 Agárd:2ó20p Velence:3ó11p Óra:10:16', 51, '2025-08-30', 252);
 insert into runs(type, description, km, run_date, training_id) values ('futás', 'indulás:4:10 Agárd:2ó10p Velence:3ó11p Óra:10:16', 52, '2025-09-05', 253);
@@ -31,6 +27,8 @@ insert into runs(type, description, km, run_date, training_id) values ('futás',
 insert into runs(type, description, km, run_date, training_id) values ('futás', 'indulás:4:30 Velence templom óra: 7:10 Agárd:8ó25p Óra:10:45 2x20, fekvo, 3C', 52, '2026-02-07', 275);
 insert into runs(type, description, km, run_date, training_id) values ('futás', 'indulás:4:45 Velence templom óra: 7:25 Agárd:8ó45p Óra:10:55 2x20, fekvo, 2C', 52, '2026-02-14', 276);
 insert into runs(type, description, km, run_date, training_id) values ('futás', 'indulás:4:37 Velence templom óra: 7:15 Agárd:8ó35p Óra:10:35 2x20, fekvo, 1C', 52, '2026-02-21', 277);
+insert into runs(type, description, km, run_date, training_id) values ('futás', 'gyorsulás: 10km 54p', 19, '2026-02-26', 278);
+insert into runs(type, description, km, run_date, training_id) values ('futás', 'indulás:4:31 Velence templom óra: 7:05 Agárd:8ó20p Óra:10:30 2x20, fekvo, -1C', 52, '2026-03-07', 279);
 
 
 

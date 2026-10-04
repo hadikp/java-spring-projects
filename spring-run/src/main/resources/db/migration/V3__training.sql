@@ -1,34 +1,42 @@
 create table trainings(id bigint auto_increment PRIMARY KEY, type varchar(50), sum_month_km double, sum_year_km double,
  training_date date);
-insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 205, 1060, '2025-08-20');
-insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 256, 1111, '2025-08-30');
-insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 52, 1163, '2025-09-05');
-insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 105, 1216, '2025-09-13');
-insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 155, 1266, '2025-09-20');
-insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 210, 1321, '2025-09-27');
-insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 50, 1371, '2025-10-04');
-insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 100, 1421, '2025-10-11');
-insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 150, 1471, '2025-10-18');
-insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 200, 1521, '2025-10-23');
-insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 222, 1543, '2025-10-26');
-insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 51, 1594, '2025-11-01');
-insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 101, 1644, '2025-11-08');
-insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 151, 1694, '2025-11-15');
-insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 201, 1744, '2025-11-22');
-insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 50, 1794, '2025-12-06');
-insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 100, 1844, '2025-12-13');
-insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 150, 1894, '2025-12-20');
-insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 200, 1944, '2025-12-23');
-insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 50, 50, '2026-01-03');
-insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 100, 100, '2026-01-17');
-insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 124, 124, '2026-01-19');
-insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 176, 176, '2026-01-24');
-insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 54, 230, '2026-02-01');
-insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 106, 282, '2026-02-07');
-insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 158, 334, '2026-02-14');
-insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 210, 386, '2026-02-21');
-insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 229, 405, '2026-02-26');
 insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 52, 457, '2026-03-07');
+insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 104, 509, '2026-03-14');
+insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 156, 561, '2026-03-21');
+insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 208, 613, '2026-03-28');
+insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 52, 665, '2026-04-18');
+insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 104, 717, '2026-04-25');
+insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 52, 769, '2026-05-09');
+insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 102, 819, '2026-05-16');
+insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 126, 843, '2026-05-25');
+insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 188, 905, '2026-05-30');
+insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 74, 979, '2026-06-13');
+insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 124, 1029, '2026-06-20');
+insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 50, 1079, '2026-07-04');
+insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('bicigli', 24, 24, '2026-07-04');
+insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 100, 1129, '2026-07-11');
+insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('bicigli', 48, 48, '2026-07-11');
+insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 150, 1179, '2026-07-18');
+insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('bicigli', 72, 72, '2026-07-18');
+insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 200, 1229, '2026-07-25');
+insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('bicigli', 96, 96, '2026-07-25');
+insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 50, 1279, '2026-08-08');
+insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('bicigli', 24, 120, '2026-08-08');
+insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 100, 1329, '2026-08-20');
+insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('bicigli', 48, 144, '2026-08-20');
+insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 150, 1379, '2026-08-29');
+insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('bicigli', 72, 168, '2026-08-29');
+insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 50, 1429, '2026-09-05');
+insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('bicigli', 24, 192, '2026-09-05');
+insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 100, 1479, '2026-09-12');
+insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('bicigli', 48, 216, '2026-09-12');
+insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 150, 1529, '2026-09-26');
+insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('bicigli', 72, 240, '2026-09-26');
+into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 50, 1579, '2026-10-03');
+insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('bicigli', 24, 264, '2026-10-03');
+
+
+
 
 
 

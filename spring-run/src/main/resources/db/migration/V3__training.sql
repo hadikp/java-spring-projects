@@ -39,7 +39,11 @@ insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('b
 insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 150, 1679, '2026-10-17');
 insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('bicigli', 72, 312, '2026-10-17');
 insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 200, 1729, '2026-10-24');
-insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('bicigli', 96, 3336, '2026-10-24');
+insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('bicigli', 96, 336, '2026-10-24');
+insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('futás', 50, 1779, '2026-11-05');
+insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('bicigli', 24, 360, '2026-11-05');
+insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('bicigli', 44, 404, '2026-11-06');
+insert into trainings(type, sum_month_km, sum_year_km, training_date) values ('bicigli', 22, 426, '2026-11-07');
 
 
 

@@ -15,3 +15,6 @@ insert into bikes(type, description, km, bike_date, training_id) values ('bicigl
 insert into bikes(type, description, km, bike_date, training_id) values ('bicigli', 'Futás előtt és után Úrhidára', 24, '2026-10-10', 314);
 insert into bikes(type, description, km, bike_date, training_id) values ('bicigli', 'Futás előtt és után Úrhidára', 24, '2026-10-17', 316);
 insert into bikes(type, description, km, bike_date, training_id) values ('bicigli', 'Futás előtt és után Úrhidára', 24, '2026-10-24', 318);
+insert into bikes(type, description, km, bike_date, training_id) values ('bicigli', 'Futás előtt és után Úrhidára', 24, '2026-11-05', 320);
+insert into bikes(type, description, km, bike_date, training_id) values ('bicigli', 'Biciglivel a Csóri kertbe és vissza', 44, '2026-11-06', 321);
+insert into bikes(type, description, km, bike_date, training_id) values ('bicigli', 'Biciglivel almáért a Borbás kertbe', 22, '2026-11-07', 322);
